@@ -123,8 +123,10 @@ else
   call gruvbox_material#highlight('StatusLineTerm', s:palette.fg1, s:palette.bg_statusline2)
   call gruvbox_material#highlight('StatusLineNC', s:palette.grey2, s:palette.bg_statusline2)
   call gruvbox_material#highlight('StatusLineTermNC', s:palette.grey2, s:palette.bg_statusline2)
-  call gruvbox_material#highlight('TabLine', s:palette.fg1, s:palette.bg_statusline3)
-  call gruvbox_material#highlight('TabLineFill', s:palette.fg0, s:palette.bg_statusline1)
+  " call gruvbox_material#highlight('TabLine', s:palette.fg1, s:palette.bg_statusline3)
+  call gruvbox_material#highlight('TabLine', s:palette.fg1, s:palette.bg4)
+  " call gruvbox_material#highlight('TabLineFill', s:palette.fg0, s:palette.bg_statusline1)
+  call gruvbox_material#highlight('TabLineFill', s:palette.fg0, s:palette.bg0)
   call gruvbox_material#highlight('TabLineSel', s:palette.bg0, s:palette.grey2)
 endif
 call gruvbox_material#highlight('VertSplit', s:palette.bg5, s:palette.none)
@@ -615,21 +617,20 @@ highlight! link ClapProviderColon ClapBlines
 highlight! link ClapProviderAbout ClapBlines
 " }}}
 " junegunn/fzf.vim {{{
-let g:fzf_colors = {
-      \ 'fg':      ['fg', 'Normal'],
-      \ 'bg':      ['bg', 'Normal'],
-      \ 'hl':      ['fg', 'Green'],
-      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-      \ 'hl+':     ['fg', 'Aqua'],
-      \ 'info':    ['fg', 'Aqua'],
-      \ 'border':  ['fg', 'Grey'],
-      \ 'prompt':  ['fg', 'Orange'],
-      \ 'pointer': ['fg', 'Blue'],
-      \ 'marker':  ['fg', 'Yellow'],
-      \ 'spinner': ['fg', 'Yellow'],
-      \ 'header':  ['fg', 'Grey']
-      \ }
+" let g:fzf_colors = {
+"       \ 'fg':      ['fg', 'Normal'],
+"       \ 'bg':      ['bg', 'Normal'],
+"       \ 'hl':      ['fg', 'Green'],
+"       \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"       \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"       \ 'hl+':     ['fg', 'Aqua'],
+"       \ 'info':    ['fg', 'Aqua'],
+"       \ 'prompt':  ['fg', 'Orange'],
+"       \ 'pointer': ['fg', 'Blue'],
+"       \ 'marker':  ['fg', 'Yellow'],
+"       \ 'spinner': ['fg', 'Yellow'],
+"       \ 'header':  ['fg', 'Grey']
+"       \ }
 " }}}
 " nvim-telescope/telescope.nvim {{{
 call gruvbox_material#highlight('TelescopeMatching', s:palette.green, s:palette.none, 'bold')

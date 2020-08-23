@@ -5,6 +5,7 @@
 " Email: sainnhe@gmail.com
 " License: MIT License
 " =============================================================================
+" 'bg0':              ['#1d2021',   '234'],
 
 function! gruvbox_material#get_configuration() "{{{
   return {
@@ -33,7 +34,7 @@ function! gruvbox_material#get_palette(background, palette) "{{{
   if a:background ==# 'hard' "{{{
     if &background ==# 'dark'
       let palette1 = {
-            \ 'bg0':              ['#1d2021',   '234'],
+            \ 'bg0':              ['#1c1c1c',   '234'],
             \ 'bg1':              ['#282828',   '235'],
             \ 'bg2':              ['#282828',   '235'],
             \ 'bg3':              ['#3c3836',   '237'],

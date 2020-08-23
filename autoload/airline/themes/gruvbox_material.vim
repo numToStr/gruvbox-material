@@ -98,7 +98,8 @@ else "{{{
   let s:tab_sel_fg = s:palette.bg0
   let s:tab_sel_bg = s:palette.grey2
   let s:tab_mid_fg = s:palette.fg1
-  let s:tab_mid_bg = s:palette.bg_statusline1
+  " let s:tab_mid_bg = s:palette.bg_statusline1
+  let s:tab_mid_bg = s:palette.bg0
   let s:tab_mod_fg = s:palette.bg0
   let s:tab_mod_bg = s:palette.bg_green
   let s:tab_type_fg = s:palette.bg0
@@ -152,7 +153,8 @@ else "{{{
   let s:commandline_mod_bg = s:palette.bg_statusline1
 
   let s:inactive_side_fg = s:palette.fg1
-  let s:inactive_side_bg = s:palette.bg_statusline3
+  let s:inactive_side_bg = s:palette.bg4
+  " let s:inactive_side_bg = s:palette.bg_statusline3
   let s:inactive_sub_fg = s:palette.fg1
   let s:inactive_sub_bg = s:palette.bg_statusline3
   let s:inactive_mid_fg = s:palette.fg1

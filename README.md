@@ -1,3 +1,33 @@
+## NOTE: This is a fork of [gruvbox_material](https://github.com/sainnhe/gruvbox-material). I just changed some colors to my liking. The changed colors will only be effective if `background=dark` and `g:gruvbox_material_background='hard'`
+
+-   changed background color from `#1d2021` to `#1c1c1c`.
+    <!-- ./autoload/gruvbox-material.vim#L6 -->
+-   changed tabline fill color from `#282828` to `#1c1c1c` (for airline)
+    <!-- ./autoload/gruvbox_material.vim#L118 -->
+    <!-- ./autoload/airline/themes/gruvbox_material.vim#L101 -->
+-   changed inactive tab color from `#504945` to `#3c3836` (for airline)
+    <!-- ./autoload/gruvbox_material.vim#L116 -->
+    <!-- ./autoload/airline/themes/gruvbox_material.vim#L156 -->
+-   removed `fzf.vim` color scheme. Bring your own config or use the default one below.
+    <!-- ./autoload/gruvbox_material.vim#L495-L508 -->
+
+```vim
+let g:fzf_colors = {
+      \ 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Green'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Aqua'],
+      \ 'info':    ['fg', 'Aqua'],
+      \ 'prompt':  ['fg', 'Orange'],
+      \ 'pointer': ['fg', 'Blue'],
+      \ 'marker':  ['fg', 'Yellow'],
+      \ 'spinner': ['fg', 'Yellow'],
+      \ 'header':  ['fg', 'Grey']
+      \ }
+```
+
 ## Introduction
 
 Gruvbox Material is a modified version of [Gruvbox](https://github.com/morhetz/gruvbox), the contrast is adjusted to be softer in order to protect developers' eyes.
@@ -41,11 +71,11 @@ This color scheme uses the `material` palette by default, you can use a global v
 
 ### Features
 
-- Carefully designed color palette for eye protection.
-- Switch back to the original color palette whenever you like.
-- Highly customizable.
-- Rich support for common file types and plugins.
-- [Italic support](https://github.com/sainnhe/icursive-nerd-font) 🎉
+-   Carefully designed color palette for eye protection.
+-   Switch back to the original color palette whenever you like.
+-   Highly customizable.
+-   Rich support for common file types and plugins.
+-   [Italic support](https://github.com/sainnhe/icursive-nerd-font) 🎉
 
 ## Installation
 
@@ -54,7 +84,7 @@ This color scheme uses the `material` palette by default, you can use a global v
 Take [vim-plug](https://github.com/junegunn/vim-plug) for example:
 
 ```vim
-Plug 'sainnhe/gruvbox-material'
+Plug 'numtostr/gruvbox-material'
 ```
 
 For better syntax highlighting support, please install [sheerun/vim-polyglot](https://github.com/sheerun/vim-polyglot) or [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter).
@@ -72,8 +102,8 @@ For better syntax highlighting support, please install [sheerun/vim-polyglot](ht
 
 There are some packages available for Arch Linux users in AUR:
 
-- [vim-gruvbox-material-git](https://aur.archlinux.org/pkgbase/vim-gruvbox-material-git/)
-- [neovim-gruvbox-material-git](https://aur.archlinux.org/pkgbase/neovim-gruvbox-material-git/)
+-   [vim-gruvbox-material-git](https://aur.archlinux.org/pkgbase/vim-gruvbox-material-git/)
+-   [neovim-gruvbox-material-git](https://aur.archlinux.org/pkgbase/neovim-gruvbox-material-git/)
 
 ## Usage
 
@@ -85,21 +115,21 @@ See this [wiki page](https://github.com/sainnhe/gruvbox-material/wiki/Related-Pr
 
 ## More Color Schemes
 
-- [Everforest](https://github.com/sainnhe/everforest)
-- [Edge](https://github.com/sainnhe/edge)
-- [Sonokai](https://github.com/sainnhe/sonokai)
+-   [Everforest](https://github.com/sainnhe/everforest)
+-   [Edge](https://github.com/sainnhe/edge)
+-   [Sonokai](https://github.com/sainnhe/sonokai)
 
 ## Credits
 
-- The color palette is based on [gruvbox](https://github.com/morhetz/gruvbox) by [@morhetz](https://github.com/morhetz)
-- The color palette is adjusted by [@sainnhe](https://github.com/sainnhe)
+-   The color palette is based on [gruvbox](https://github.com/morhetz/gruvbox) by [@morhetz](https://github.com/morhetz)
+-   The color palette is adjusted by [@sainnhe](https://github.com/sainnhe)
 
 ## Inspirations
 
-- [morhetz/gruvbox](https://github.com/morhetz/gruvbox): original gruvbox
-- [atom.io](https://atom.io): the `white` color in the dark variant
-- [zefei/cake16](https://github.com/zefei/cake16): the `black` color in the light variant
-- [Google Material Design](https://www.material.io)
+-   [morhetz/gruvbox](https://github.com/morhetz/gruvbox): original gruvbox
+-   [atom.io](https://atom.io): the `white` color in the dark variant
+-   [zefei/cake16](https://github.com/zefei/cake16): the `black` color in the light variant
+-   [Google Material Design](https://www.material.io)
 
 ## Maintainers
 
