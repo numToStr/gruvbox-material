@@ -40,6 +40,10 @@ All notable changes to this project will be documented in this file.
 - Fix `CursorColumn` in diff mode.
 - Clear highlights when better performance is disabled.
 
+### Changed
+
+- Remove duplicate docs in README.
+
 ## [1.2.0] - 2020-06-04
 
 ### Added
