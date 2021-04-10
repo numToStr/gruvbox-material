@@ -7,7 +7,21 @@ local gruvbox = {
     defaults = {
         enable = true, -- boolean
         background = "hard", -- 'hard' | 'medium' | 'soft'
-        palette = "material" -- 'material' | 'mix' | 'original'
+        palette = "material", -- 'material' | 'mix' | 'original'
+        italic = false,
+        italic_comment = false,
+        bold = false,
+        curor = "auto", -- `'auto'`, `'red'`, `'orange'`, `'yellow'`, `'green'`, `'aqua'`, `'blue'`, `'purple'`
+        transparent_bg = false,
+        visual = "grey background", -- `'grey background'`, `'green background'`, `'blue background'`, `'red background'`, `'reverse'`
+        menu_bg = "grey", -- `'grey'`, `'red'`, `'orange'`, `'yellow'`, `'green'`, `'aqua'`, `'blue'`, `'purple'`
+        sing_column_bg = "default", -- `'default'`, `'none'`
+        -- LSP
+        diagnostic_text_highlight = false,
+        diagnostic_line_highlight = false,
+        cursor_word = "grey background", -- `'grey background'`, `'bold'`, `'underline'`, `'italic'`
+        statusline_style = "default", -- `'default'`, `'original'`
+        better_perf = false
     }
 }
 
