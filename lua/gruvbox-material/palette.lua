@@ -1,6 +1,6 @@
 local palette = {}
 local bg = vim.o.background
-local rgb_color = vim.api.nvim_get_color_by_name
+-- local rgb_color = vim.api.nvim_get_color_by_name
 
 local is_dark = bg == "dark"
 
@@ -8,7 +8,7 @@ local function palette_1(gruvbox_bg)
     if gruvbox_bg == "hard" then
         if is_dark then
             return {
-                bg0 = {"#1a1a1a", "234"},
+                bg0 = {"#1a1a1a", "233"},
                 bg1 = {"#282828", "235"},
                 bg2 = {"#282828", "235"},
                 bg3 = {"#3c3836", "237"},
@@ -239,13 +239,15 @@ local function palette_3()
         return {
             grey0 = {"#7c6f64", "243"},
             grey1 = {"#928374", "245"},
-            grey2 = {"#a89984", "246"}
+            grey2 = {"#a89984", "246"},
+            none = {"NONE", "NONE"}
         }
     else
         return {
             grey0 = {"#a89984", "246"},
             grey1 = {"#928374", "245"},
-            grey2 = {"#7c6f64", "243"}
+            grey2 = {"#7c6f64", "243"},
+            none = {"NONE", "NONE"}
         }
     end
 end
@@ -255,21 +257,21 @@ function palette.get_palette(gruvbox_bg, gruvbox_palette)
     local p2 = palette_2(gruvbox_palette)
     local p3 = palette_3()
 
-    local colors = {}
+    -- local colors = {}
+    --
+    -- for key, value in pairs(p1) do
+    --     colors[key] = rgb_color(value[1])
+    -- end
+    --
+    -- for key, value in pairs(p2) do
+    --     colors[key] = rgb_color(value[1])
+    -- end
+    --
+    -- for key, value in pairs(p3) do
+    --     colors[key] = rgb_color(value[1])
+    -- end
 
-    for key, value in pairs(p1) do
-        colors[key] = rgb_color(value[1])
-    end
-
-    for key, value in pairs(p2) do
-        colors[key] = rgb_color(value[1])
-    end
-
-    for key, value in pairs(p3) do
-        colors[key] = rgb_color(value[1])
-    end
-
-    return colors
+    return vim.tbl_extend("keep", p1, p2, p3)
 end
 
 return palette

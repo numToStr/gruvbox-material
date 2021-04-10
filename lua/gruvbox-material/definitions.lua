@@ -1,1368 +1,1553 @@
+local wo = vim.wo
 local palette = require("gruvbox-material.palette")
 local definitions = {}
 
-function definitions.get_definitions(opts)
-    local colors = palette.get_palette(opts.background, opts.palette)
+function definitions.get_definitions(opt)
+    local colors = palette.get_palette(opt.background, opt.palette)
+    local d = {}
 
-    return {
-        -- ####### Common: Start
-        -- UI: Start
-        -- transparent_background = false
-        Normal = {fg = colors.fg0, bg = colors.bg0},
-        Terminal = {fg = colors.fg0, bg = colors.bg0},
-        EndOfBuffer = {fg = colors.bg0, bg = colors.bg0},
-        Folded = {fg = colors.grey1, bg = colors.bg2},
-        ToolbarLine = {fg = colors.fg1, bg = colors.bg3},
-        MsgArea = {link = "Normal"},
-        -- sign_coloumn = 'none'
-        SignColumn = {fg = colors.fg0, bg = colors.none},
-        FoldColumn = {fg = colors.grey0, bg = colors.none},
-        --
-        IncSearch = {fg = colors.bg0, bg = colors.bg_red},
-        Search = {fg = colors.bg0, bg = colors.bg_green},
-        ColorColumn = {fg = colors.none, bg = colors.bg2},
-        Conceal = {fg = colors.grey0, bg = colors.none},
-        -- cursor = 'auto'
-        Cursor = {fg = colors.none, bg = colors.none, reverse = true},
-        --
-        vCursor = {link = "Cursor"},
-        iCursor = {link = "Cursor"},
-        lCursor = {link = "Cursor"},
-        CursorIM = {link = "Cursor"},
-        -- diff = false
-        CursorLine = {fg = colors.none, bg = colors.bg1},
-        CursorColumn = {fg = colors.none, bg = colors.bg1},
-        CursorLineNr = {fg = colors.grey2, bg = colors.bg1},
-        --
-        LineNr = {fg = colors.grey0, bg = colors.none},
-        DiffAdd = {fg = colors.none, bg = colors.bg_diff_green},
-        DiffChange = {fg = colors.none, bg = colors.bg_diff_blue},
-        DiffDelete = {fg = colors.none, bg = colors.bg_diff_red},
-        DiffText = {fg = colors.bg0, bg = colors.fg0},
-        Directory = {fg = colors.green, bg = colors.none},
-        ErrorMsg = {fg = colors.red, bg = colors.none, bold = true, underline = true},
-        WarningMsg = {fg = colors.yellow, bg = colors.none, bold = true},
-        ModeMsg = {fg = colors.fg0, bg = colors.none, bold = true},
-        MoreMsg = {fg = colors.yellow, bg = colors.none, bold = true},
-        MatchParen = {fg = colors.none, bg = colors.bg4},
-        NonText = {fg = colors.bg5, bg = colors.none},
-        Whitespace = {fg = colors.bg5, bg = colors.none},
-        SpecialKey = {fg = colors.bg5, bg = colors.none},
-        Pmenu = {fg = colors.fg1, bg = colors.bg3},
-        PmenuSbar = {fg = colors.none, bg = colors.bg3},
-        -- menu_selection_background = 'grey'
-        PmenuSel = {fg = colors.bg3, bg = colors.grey2},
-        --
-        WildMenu = {link = "PmenuSel"},
-        PmenuThumb = {fg = colors.none, bg = colors.grey0},
-        NormalFloat = {fg = colors.fg1, bg = colors.bg3},
-        Question = {fg = colors.yellow, bg = colors.none},
-        SpellBad = {fg = colors.red, bg = colors.none, undercurl = true},
-        SpellCap = {fg = colors.blue, bg = colors.none, undercurl = true},
-        SpellLocal = {fg = colors.aqua, bg = colors.none, undercurl = true},
-        SpellRare = {fg = colors.purple, bg = colors.none, undercurl = true},
-        -- statusline_style = default
-        StatusLine = {fg = colors.fg1, bg = colors.bg_statusline2},
-        StatusLineTerm = {fg = colors.fg1, bg = colors.bg_statusline2},
-        StatusLineNC = {fg = colors.grey2, bg = colors.bg_statusline2},
-        StatusLineTermNC = {fg = colors.grey2, bg = colors.bg_statusline2},
-        TabLine = {fg = colors.fg1, bg = colors.bg4},
-        TabLineFill = {fg = colors.fg0, bg = colors.bg0},
-        TabLineSel = {fg = colors.bg0, bg = colors.grey2},
-        --
-        VertSplit = {fg = colors.bg5, bg = colors.none},
-        -- visual = 'grey background'
-        Visual = {fg = colors.none, bg = colors.bg3},
-        VisualNOS = {fg = colors.none, bg = colors.bg3},
-        --
-        QuickFixLine = {fg = colors.purple, bg = colors.none, bold = true},
-        Debug = {fg = colors.orange, bg = colors.none},
-        debugPC = {fg = colors.bg0, bg = colors.green},
-        debugBreakpoint = {fg = colors.bg0, bg = colors.red},
-        ToolbarButton = {fg = colors.bg0, bg = colors.grey2},
-        -- if nvim
-        Substitute = {fg = colors.bg0, bg = colors.yellow},
-        LspDiagnosticsFloatingError = {link = "ErrorFloat"},
-        LspDiagnosticsFloatingWarning = {link = "WarningFloat"},
-        LspDiagnosticsFloatingInformation = {link = "InfoFloat"},
-        LspDiagnosticsFloatingHint = {link = "HintFloat"},
-        LspDiagnosticsDefaultError = {link = "ErrorText"},
-        LspDiagnosticsDefaultWarning = {link = "WarningText"},
-        LspDiagnosticsDefaultInformation = {link = "InfoText"},
-        LspDiagnosticsDefaultHint = {link = "HintText"},
-        LspDiagnosticsVirtualTextError = {link = "Grey"},
-        LspDiagnosticsVirtualTextWarning = {link = "Grey"},
-        LspDiagnosticsVirtualTextInformation = {link = "Grey"},
-        LspDiagnosticsVirtualTextHint = {link = "Grey"},
-        LspDiagnosticsUnderlineError = {link = "ErrorText"},
-        LspDiagnosticsUnderlineWarning = {link = "WarningText"},
-        LspDiagnosticsUnderlineInformation = {link = "InfoText"},
-        LspDiagnosticsUnderlineHint = {link = "HintText"},
-        LspDiagnosticsSignError = {link = "RedSign"},
-        LspDiagnosticsSignWarning = {link = "YellowSign"},
-        LspDiagnosticsSignInformation = {link = "BlueSign"},
-        LspDiagnosticsSignHint = {link = "AquaSign"},
-        LspReferenceText = {link = "CurrentWord"},
-        LspReferenceRead = {link = "CurrentWord"},
-        LspReferenceWrite = {link = "CurrentWord"},
-        TermCursor = {link = "Cursor"},
-        healthError = {link = "Red"},
-        healthSuccess = {link = "Green"},
-        healthWarning = {link = "Yellow"},
-        -- UI: End
+    -- ####### Common: Start
+    -- UI: Start
+    if opt.transparent_bg then
+        d.Normal = {fg = colors.fg0, bg = colors.none}
+        d.Terminal = {fg = colors.fg0, bg = colors.none}
+        d.EndOfBuffer = {fg = colors.bg0, bg = colors.none}
+        d.FoldColumn = {fg = colors.grey0, bg = colors.none}
+        d.Folded = {fg = colors.grey1, bg = colors.none}
+        d.SignColumn = {fg = colors.fg0, bg = colors.none}
+        d.ToolbarLine = {fg = colors.fg0, bg = colors.none}
+    else
+        d.Normal = {fg = colors.fg0, bg = colors.bg0}
+        d.Terminal = {fg = colors.fg0, bg = colors.bg0}
+        d.EndOfBuffer = {fg = colors.bg0, bg = colors.bg0}
+        d.Folded = {fg = colors.grey1, bg = colors.bg2}
+        d.ToolbarLine = {fg = colors.fg1, bg = colors.bg3}
+        d.SignColumn = {fg = colors.fg0, bg = colors.none}
+        d.FoldColumn = {fg = colors.grey0, bg = colors.none}
+    end
 
-        -- Syntax: Start
-        Boolean = {fg = colors.purple, bg = colors.none},
-        Number = {fg = colors.purple, bg = colors.none},
-        Float = {fg = colors.purple, bg = colors.none},
-        -- italic = false
-        PreProc = {fg = colors.purple, bg = colors.none},
-        PreCondit = {fg = colors.purple, bg = colors.none},
-        Include = {fg = colors.purple, bg = colors.none},
-        Define = {fg = colors.purple, bg = colors.none},
-        Conditional = {fg = colors.red, bg = colors.none},
-        Repeat = {fg = colors.red, bg = colors.none},
-        Keyword = {fg = colors.red, bg = colors.none},
-        Typedef = {fg = colors.red, bg = colors.none},
-        Exception = {fg = colors.red, bg = colors.none},
-        Statement = {fg = colors.red, bg = colors.none},
-        --
-        Error = {fg = colors.red, bg = colors.none},
-        StorageClass = {fg = colors.orange, bg = colors.none},
-        Tag = {fg = colors.orange, bg = colors.none},
-        Label = {fg = colors.orange, bg = colors.none},
-        Structure = {fg = colors.orange, bg = colors.none},
-        Operator = {fg = colors.orange, bg = colors.none},
-        Title = {fg = colors.orange, bg = colors.none, bold = true},
-        Special = {fg = colors.yellow, bg = colors.none},
-        SpecialChar = {fg = colors.yellow, bg = colors.none},
-        Type = {fg = colors.yellow, bg = colors.none},
-        -- bold = false
-        Function = {fg = colors.green, bg = colors.none},
-        --
-        String = {fg = colors.green, bg = colors.none},
-        Character = {fg = colors.green, bg = colors.none},
-        Constant = {fg = colors.aqua, bg = colors.none},
-        Macro = {fg = colors.aqua, bg = colors.none},
-        Identifier = {fg = colors.blue, bg = colors.none},
-        -- italic_comment = true
-        Comment = {fg = colors.grey1, bg = colors.none, italic = true},
-        SpecialComment = {fg = colors.grey1, bg = colors.none, italic = true},
-        Todo = {fg = colors.purple, bg = colors.none, italic = true},
-        --
-        Delimiter = {fg = colors.fg0, bg = colors.none},
-        Ignore = {fg = colors.grey1, bg = colors.none},
-        Underlined = {fg = colors.none, bg = colors.none, underline = true},
-        -- Syntax: End
+    d.MsgArea = {link = "Normal"}
+    d.IncSearch = {fg = colors.bg0, bg = colors.bg_red}
+    d.Search = {fg = colors.bg0, bg = colors.bg_green}
+    d.ColorColumn = {fg = colors.none, bg = colors.bg2}
+    d.Conceal = {fg = colors.grey0, bg = colors.none}
+    d.Cursor = {fg = colors.none, bg = colors.none, reverse = true}
+    d.vCursor = {link = "Cursor"}
+    d.iCursor = {link = "Cursor"}
+    d.lCursor = {link = "Cursor"}
+    d.CursorIM = {link = "Cursor"}
 
-        -- Predefined: Start
-        Fg = {fg = colors.fg0, bg = colors.none},
-        Grey = {fg = colors.grey1, bg = colors.none},
-        Red = {fg = colors.red, bg = colors.none},
-        Orange = {fg = colors.orange, bg = colors.none},
-        Yellow = {fg = colors.yellow, bg = colors.none},
-        Green = {fg = colors.green, bg = colors.none},
-        Aqua = {fg = colors.aqua, bg = colors.none},
-        Blue = {fg = colors.blue, bg = colors.none},
-        Purple = {fg = colors.purple, bg = colors.none},
-        RedItalic = {fg = colors.red, bg = colors.none, italic = true},
-        OrangeItalic = {fg = colors.orange, bg = colors.none, italic = true},
-        YellowItalic = {fg = colors.yellow, bg = colors.none, italic = true},
-        GreenItalic = {fg = colors.green, bg = colors.none, italic = true},
-        AquaItalic = {fg = colors.aqua, bg = colors.none, italic = true},
-        BlueItalic = {fg = colors.blue, bg = colors.none, italic = true},
-        PurpleItalic = {fg = colors.purple, bg = colors.none, italic = true},
-        RedBold = {fg = colors.red, bg = colors.none, bold = true},
-        OrangeBold = {fg = colors.orange, bg = colors.none, bold = true},
-        YellowBold = {fg = colors.yellow, bg = colors.none, bold = true},
-        GreenBold = {fg = colors.green, bg = colors.none, bold = true},
-        AquaBold = {fg = colors.aqua, bg = colors.none, bold = true},
-        BlueBold = {fg = colors.blue, bg = colors.none, bold = true},
-        PurpleBold = {fg = colors.purple, bg = colors.none, bold = true},
-        -- sign_coloumn = 'none'
-        RedSign = {fg = colors.red, bg = colors.none},
-        OrangeSign = {fg = colors.orange, bg = colors.none},
-        YellowSign = {fg = colors.yellow, bg = colors.none},
-        GreenSign = {fg = colors.green, bg = colors.none},
-        AquaSign = {fg = colors.aqua, bg = colors.none},
-        BlueSign = {fg = colors.blue, bg = colors.none},
-        PurpleSign = {fg = colors.purple, bg = colors.none},
-        -- diagnostic_text_highlight = true
-        ErrorText = {fg = colors.none, bg = colors.bg_visual_red, underline = true},
-        WarningText = {fg = colors.none, bg = colors.bg_visual_yellow, underline = true},
-        InfoText = {fg = colors.none, bg = colors.bg_visual_blue, underline = true},
-        HintText = {fg = colors.none, bg = colors.bg_visual_green, underline = true},
-        -- diagnostic_line_highlight = true
-        ErrorLine = {fg = colors.none, bg = colors.bg_visual_red},
-        WarningLine = {fg = colors.none, bg = colors.bg_visual_yellow},
-        InfoLine = {fg = colors.none, bg = colors.bg_visual_blue},
-        HintLine = {fg = colors.none, bg = colors.bg_visual_green},
-        --
-        ErrorFloat = {fg = colors.red, bg = colors.bg3},
-        WarningFloat = {fg = colors.yellow, bg = colors.bg3},
-        InfoFloat = {fg = colors.blue, bg = colors.bg3},
-        HintFloat = {fg = colors.green, bg = colors.bg3},
-        -- diff = false and current_word = 'grey background'
-        CurrentWord = {fg = colors.none, bg = colors.bg_current_word},
-        -- Predefined: End
-        -- ####### Common: End
+    if wo.diff then
+        d.CursorLine = {fg = colors.none, bg = colors.none, underline = true}
+        d.CursorColumn = {fg = colors.none, bg = colors.none, bold = true}
+    else
+        d.CursorLine = {fg = colors.none, bg = colors.bg1}
+        d.CursorColumn = {fg = colors.none, bg = colors.bg1}
+    end
 
-        -- ####### Terminal: Start
-        -- ####### Terminal: End
+    d.CursorLineNr = {fg = colors.grey2, bg = colors.none}
+    d.LineNr = {fg = colors.grey0, bg = colors.none}
+    d.DiffAdd = {fg = colors.none, bg = colors.bg_diff_green}
+    d.DiffChange = {fg = colors.none, bg = colors.bg_diff_blue}
+    d.DiffDelete = {fg = colors.none, bg = colors.bg_diff_red}
+    d.DiffText = {fg = colors.bg0, bg = colors.fg0}
+    d.Directory = {fg = colors.green, bg = colors.none}
+    d.ErrorMsg = {fg = colors.red, bg = colors.none, bold = true, underline = true}
+    d.WarningMsg = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.ModeMsg = {fg = colors.fg0, bg = colors.none, bold = true}
+    d.MoreMsg = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.MatchParen = {fg = colors.none, bg = colors.bg4}
+    d.NonText = {fg = colors.bg5, bg = colors.none}
+    d.Whitespace = {fg = colors.bg5, bg = colors.none}
+    d.SpecialKey = {fg = colors.bg5, bg = colors.none}
+    d.Pmenu = {fg = colors.fg1, bg = colors.bg3}
+    d.PmenuSbar = {fg = colors.none, bg = colors.bg3}
+    d.PmenuSel = {fg = colors.bg3, bg = colors.grey2}
+    d.WildMenu = {link = "PmenuSel"}
+    d.PmenuThumb = {fg = colors.none, bg = colors.grey0}
+    d.NormalFloat = {fg = colors.fg1, bg = colors.bg3}
+    d.Question = {fg = colors.yellow, bg = colors.none}
+    d.SpellBad = {fg = colors.red, bg = colors.none, undercurl = true}
+    d.SpellCap = {fg = colors.blue, bg = colors.none, undercurl = true}
+    d.SpellLocal = {fg = colors.aqua, bg = colors.none, undercurl = true}
+    d.SpellRare = {fg = colors.purple, bg = colors.none, undercurl = true}
+    d.StatusLine = {fg = colors.fg1, bg = colors.bg_statusline2}
+    d.StatusLineTerm = {fg = colors.fg1, bg = colors.bg_statusline2}
+    d.StatusLineNC = {fg = colors.grey2, bg = colors.bg_statusline2}
+    d.StatusLineTermNC = {fg = colors.grey2, bg = colors.bg_statusline2}
+    d.TabLine = {fg = colors.fg1, bg = colors.bg4}
+    d.TabLineFill = {fg = colors.fg0, bg = colors.bg0}
+    d.TabLineSel = {fg = colors.bg0, bg = colors.grey2}
+    d.VertSplit = {fg = colors.bg5, bg = colors.none}
+    d.Visual = {fg = colors.none, bg = colors.bg3}
+    d.VisualNOS = {fg = colors.none, bg = colors.bg3}
+    d.QuickFixLine = {fg = colors.purple, bg = colors.none, bold = true}
+    d.Debug = {fg = colors.orange, bg = colors.none}
+    d.debugPC = {fg = colors.bg0, bg = colors.green}
+    d.debugBreakpoint = {fg = colors.bg0, bg = colors.red}
+    d.ToolbarButton = {fg = colors.bg0, bg = colors.grey2}
+    d.Substitute = {fg = colors.bg0, bg = colors.yellow}
+    d.LspDiagnosticsFloatingError = {link = "ErrorFloat"}
+    d.LspDiagnosticsFloatingWarning = {link = "WarningFloat"}
+    d.LspDiagnosticsFloatingInformation = {link = "InfoFloat"}
+    d.LspDiagnosticsFloatingHint = {link = "HintFloat"}
+    d.LspDiagnosticsDefaultError = {link = "ErrorText"}
+    d.LspDiagnosticsDefaultWarning = {link = "WarningText"}
+    d.LspDiagnosticsDefaultInformation = {link = "InfoText"}
+    d.LspDiagnosticsDefaultHint = {link = "HintText"}
+    d.LspDiagnosticsVirtualTextError = {link = "Grey"}
+    d.LspDiagnosticsVirtualTextWarning = {link = "Grey"}
+    d.LspDiagnosticsVirtualTextInformation = {link = "Grey"}
+    d.LspDiagnosticsVirtualTextHint = {link = "Grey"}
+    d.LspDiagnosticsUnderlineError = {link = "ErrorText"}
+    d.LspDiagnosticsUnderlineWarning = {link = "WarningText"}
+    d.LspDiagnosticsUnderlineInformation = {link = "InfoText"}
+    d.LspDiagnosticsUnderlineHint = {link = "HintText"}
+    d.LspDiagnosticsSignError = {link = "RedSign"}
+    d.LspDiagnosticsSignWarning = {link = "YellowSign"}
+    d.LspDiagnosticsSignInformation = {link = "BlueSign"}
+    d.LspDiagnosticsSignHint = {link = "AquaSign"}
+    d.LspReferenceText = {link = "CurrentWord"}
+    d.LspReferenceRead = {link = "CurrentWord"}
+    d.LspReferenceWrite = {link = "CurrentWord"}
+    d.TermCursor = {link = "Cursor"}
+    d.FloatBorder = {link = "Grey"}
+    d.healthError = {link = "Red"}
+    d.healthSuccess = {link = "Green"}
+    d.healthWarning = {link = "Yellow"}
+    -- UI: End
 
-        -- ####### Plugins: Start
-        -- nvim-treesitter/nvim-treesitter
-        TSAnnotation = {link = "Purple"},
-        TSAttribute = {link = "Purple"},
-        TSBoolean = {link = "Purple"},
-        TSCharacter = {link = "Yellow"},
-        TSComment = {link = "Grey"},
-        TSConditional = {link = "Red"},
-        TSConstBuiltin = {link = "PurpleItalic"},
-        TSConstMacro = {link = "Purple"},
-        TSConstant = {link = "PurpleItalic"},
-        TSConstructor = {link = "Fg"},
-        TSError = {link = "ErrorText"},
-        TSException = {link = "Red"},
-        TSField = {link = "Green"},
-        TSFloat = {link = "Purple"},
-        TSFuncBuiltin = {link = "Green"},
-        TSFuncMacro = {link = "Green"},
-        TSFunction = {link = "Green"},
-        TSInclude = {link = "PurpleItalic"},
-        TSKeyword = {link = "Red"},
-        TSKeywordFunction = {link = "Red"},
-        TSLabel = {link = "Orange"},
-        TSMethod = {link = "Green"},
-        TSNamespace = {link = "BlueItalic"},
-        TSNumber = {link = "Purple"},
-        TSOperator = {link = "Orange"},
-        TSParameter = {link = "Fg"},
-        TSParameterReference = {link = "Fg"},
-        TSProperty = {link = "Green"},
-        TSPunctBracket = {link = "Fg"},
-        TSPunctDelimiter = {link = "Grey"},
-        TSPunctSpecial = {link = "Fg"},
-        TSRepeat = {link = "Red"},
-        TSString = {link = "Yellow"},
-        TSStringEscape = {link = "Green"},
-        TSStringRegex = {link = "Green"},
-        TSStructure = {link = "Orange"},
-        TSTag = {link = "Orange"},
-        TSTagDelimiter = {link = "Green"},
-        TSText = {link = "Green"},
-        TSEmphasis = {fg = colors.none, bg = colors.none, bold = true},
-        TSUnderline = {fg = colors.none, bg = colors.none, underline = true},
-        TSType = {link = "Aqua"},
-        TSTypeBuiltin = {link = "BlueItalic"},
-        TSURI = {link = "markdownUrl"},
-        TSVariable = {link = "Fg"},
-        TSVariableBuiltin = {link = "PurpleItalic"},
-        -- neoclide/coc.nvim
-        CocHoverRange = {fg = colors.none, bg = colors.none, bold = true, underline = true},
-        CocErrorFloat = {link = "ErrorFloat"},
-        CocWarningFloat = {link = "WarningFloat"},
-        CocInfoFloat = {link = "InfoFloat"},
-        CocHintFloat = {link = "HintFloat"},
-        CocErrorHighlight = {link = "ErrorText"},
-        CocWarningHighlight = {link = "WarningText"},
-        CocInfoHighlight = {link = "InfoText"},
-        CocHintHighlight = {link = "HintText"},
-        CocHighlightText = {link = "CurrentWord"},
-        CocErrorSign = {link = "RedSign"},
-        CocWarningSign = {link = "YellowSign"},
-        CocInfoSign = {link = "BlueSign"},
-        CocHintSign = {link = "AquaSign"},
-        CocWarningVirtualText = {link = "Grey"},
-        CocErrorVirtualText = {link = "Grey"},
-        CocInfoVirtualText = {link = "Grey"},
-        CocHintVirtualText = {link = "Grey"},
-        CocErrorLine = {link = "ErrorLine"},
-        CocWarningLine = {link = "WarningLine"},
-        CocInfoLine = {link = "InfoLine"},
-        CocHintLine = {link = "HintLine"},
-        CocCodeLens = {link = "Grey"},
-        HighlightedyankRegion = {link = "Visual"},
-        CocGitAddedSign = {link = "GreenSign"},
-        CocGitChangeRemovedSign = {link = "PurpleSign"},
-        CocGitChangedSign = {link = "BlueSign"},
-        CocGitRemovedSign = {link = "RedSign"},
-        CocGitTopRemovedSign = {link = "RedSign"},
-        CocExplorerBufferRoot = {link = "Orange"},
-        CocExplorerBufferExpandIcon = {link = "Aqua"},
-        CocExplorerBufferBufnr = {link = "Purple"},
-        CocExplorerBufferModified = {link = "Yellow"},
-        CocExplorerBufferReadonly = {link = "Red"},
-        CocExplorerBufferBufname = {link = "Grey"},
-        CocExplorerBufferFullpath = {link = "Grey"},
-        CocExplorerFileRoot = {link = "Orange"},
-        CocExplorerFileRootName = {link = "Green"},
-        CocExplorerFileExpandIcon = {link = "Aqua"},
-        CocExplorerFileFullpath = {link = "Grey"},
-        CocExplorerFileDirectory = {link = "Green"},
-        CocExplorerFileGitStaged = {link = "Purple"},
-        CocExplorerFileGitUnstaged = {link = "Yellow"},
-        CocExplorerFileGitRootStaged = {link = "Purple"},
-        CocExplorerFileGitRootUnstaged = {link = "Yellow"},
-        CocExplorerGitPathChange = {link = "Fg"},
-        CocExplorerGitContentChange = {link = "Fg"},
-        CocExplorerGitRenamed = {link = "Purple"},
-        CocExplorerGitCopied = {link = "Fg"},
-        CocExplorerGitAdded = {link = "Green"},
-        CocExplorerGitUntracked = {link = "Blue"},
-        CocExplorerGitUnmodified = {link = "Fg"},
-        CocExplorerGitUnmerged = {link = "Orange"},
-        CocExplorerGitMixed = {link = "Aqua"},
-        CocExplorerGitModified = {link = "Yellow"},
-        CocExplorerGitDeleted = {link = "Red"},
-        CocExplorerGitIgnored = {link = "Grey"},
-        CocExplorerFileSize = {link = "Blue"},
-        CocExplorerTimeAccessed = {link = "Aqua"},
-        CocExplorerTimeCreated = {link = "Aqua"},
-        CocExplorerTimeModified = {link = "Aqua"},
-        CocExplorerIndentLine = {link = "Conceal"},
-        CocExplorerHelpDescription = {link = "Grey"},
-        CocExplorerHelpHint = {link = "Grey"},
-        -- nvim-telescope/telescope.nvim
-        TelescopeMatching = {link = "OrangeBold"},
-        TelescopeBorder = {link = "Grey"},
-        TelescopePromptPrefix = {link = "Normal"},
-        TelescopeSelection = {link = "Visual"},
-        -- airblade/vim-gitgutter
-        GitGutterAdd = {link = "GreenSign"},
-        GitGutterChange = {link = "BlueSign"},
-        GitGutterDelete = {link = "RedSign"},
-        GitGutterChangeDelete = {link = "PurpleSign"},
-        -- easymotion/vim-easymotion
-        EasyMotionTarget = {link = "Search"},
-        EasyMotionShade = {link = "Grey"},
-        -- preservim/nerdtree
-        NERDTreeDir = {link = "Green"},
-        NERDTreeDirSlash = {link = "Aqua"},
-        NERDTreeOpenable = {link = "Orange"},
-        NERDTreeClosable = {link = "Orange"},
-        NERDTreeFile = {link = "Fg"},
-        NERDTreeExecFile = {link = "Yellow"},
-        NERDTreeUp = {link = "Grey"},
-        NERDTreeCWD = {link = "Aqua"},
-        NERDTreeHelp = {link = "LightGrey"},
-        NERDTreeToggleOn = {link = "Green"},
-        NERDTreeToggleOff = {link = "Red"},
-        NERDTreeFlags = {link = "Orange"},
-        NERDTreeLinkFile = {link = "Grey"},
-        NERDTreeLinkTarget = {link = "Green"},
-        -- mhinz/vim-startify
-        StartifyBracket = {link = "Grey"},
-        StartifyFile = {link = "Fg"},
-        StartifyNumber = {link = "Red"},
-        StartifyPath = {link = "Green"},
-        StartifySlash = {link = "Green"},
-        StartifySection = {link = "Blue"},
-        StartifyHeader = {link = "Orange"},
-        StartifySpecial = {link = "Grey"},
-        StartifyFooter = {link = "Grey"},
-        -- phaazon/hop.nvim
-        HopNextKey = {reverse = true},
-        HopNextKey1 = {reverse = true},
-        HopNextKey2 = {reverse = true},
-        HopUnmatched = {fg = colors.bg5},
-        -- kyazdani42/nvim-tree.lua
-        NvimTreeFolderName = {link = "Normal"},
-        NvimTreeFolderIcon = {link = "Normal"},
-        NvimTreeIndentMarker = {link = "Comment"},
-        NvimTreeRootFolder = {fg = colors.grey1, bold = true},
-        -- TODO
-        -- lewis6991/gitsigns.nvim
-        -- hoob3rt/lualine.nvim
-        -- ####### Plugins: End
+    -- Syntax: Start
+    d.Boolean = {fg = colors.purple, bg = colors.none}
+    d.Number = {fg = colors.purple, bg = colors.none}
+    d.Float = {fg = colors.purple, bg = colors.none}
 
-        -- ####### Extended filetype: Start
-        -- netrw
-        netrwDir = {link = "Green"},
-        netrwClassify = {link = "Green"},
-        netrwLink = {link = "Grey"},
-        netrwSymLink = {link = "Fg"},
-        netrwExe = {link = "Yellow"},
-        netrwComment = {link = "Grey"},
-        netrwList = {link = "Aqua"},
-        netrwHelpCmd = {link = "Blue"},
-        netrwCmdSep = {link = "Grey"},
-        netrwVersion = {link = "Orange"},
-        -- markdown
-        markdownH1 = {fg = colors.red, bg = colors.none, bold = true},
-        markdownH2 = {fg = colors.orange, bg = colors.none, bold = true},
-        markdownH3 = {fg = colors.yellow, bg = colors.none, bold = true},
-        markdownH4 = {fg = colors.green, bg = colors.none, bold = true},
-        markdownH5 = {fg = colors.blue, bg = colors.none, bold = true},
-        markdownH6 = {fg = colors.purple, bg = colors.none, bold = true},
-        markdownUrl = {fg = colors.blue, bg = colors.none, underline = true},
-        markdownItalic = {fg = colors.none, bg = colors.none, italic = true},
-        markdownBold = {fg = colors.none, bg = colors.none, bold = true},
-        markdownItalicDelimiter = {fg = colors.grey1, bg = colors.none, italic = true},
-        markdownCode = {link = "Green"},
-        markdownCodeBlock = {link = "Aqua"},
-        markdownCodeDelimiter = {link = "Aqua"},
-        markdownBlockquote = {link = "Grey"},
-        markdownListMarker = {link = "Red"},
-        markdownOrderedListMarker = {link = "Red"},
-        markdownRule = {link = "Purple"},
-        markdownHeadingRule = {link = "Grey"},
-        markdownUrlDelimiter = {link = "Grey"},
-        markdownLinkDelimiter = {link = "Grey"},
-        markdownLinkTextDelimiter = {link = "Grey"},
-        markdownHeadingDelimiter = {link = "Grey"},
-        markdownLinkText = {link = "Purple"},
-        markdownUrlTitleDelimiter = {link = "Green"},
-        markdownIdDeclaration = {link = "markdownLinkText"},
-        markdownBoldDelimiter = {link = "Grey"},
-        markdownId = {link = "Yellow"},
-        -- html/markdown/javascriptreact/typescriptreact
-        htmlH1 = {fg = colors.red, bg = colors.none, bold = true},
-        htmlH2 = {fg = colors.orange, bg = colors.none, bold = true},
-        htmlH3 = {fg = colors.yellow, bg = colors.none, bold = true},
-        htmlH4 = {fg = colors.green, bg = colors.none, bold = true},
-        htmlH5 = {fg = colors.blue, bg = colors.none, bold = true},
-        htmlH6 = {fg = colors.purple, bg = colors.none, bold = true},
-        htmlLink = {fg = colors.none, bg = colors.none, underline = true},
-        htmlBold = {fg = colors.none, bg = colors.none, bold = true},
-        htmlBoldUnderline = {fg = colors.none, bg = colors.none, bold = true, underline = true},
-        htmlBoldItalic = {fg = colors.none, bg = colors.none, bold = true, italic = true},
-        htmlBoldUnderlineItalic = {fg = colors.none, bg = colors.none, bold = true, underline = true, italic = true},
-        htmlUnderline = {fg = colors.none, bg = colors.none, underline = true},
-        htmlUnderlineItalic = {fg = colors.none, bg = colors.none, underline = true, italic = true},
-        htmlItalic = {fg = colors.none, bg = colors.none, italic = true},
-        htmlTag = {link = "Green"},
-        htmlEndTag = {link = "Blue"},
-        htmlTagN = {link = "OrangeItalic"},
-        htmlTagName = {link = "OrangeItalic"},
-        htmlArg = {link = "Aqua"},
-        htmlScriptTag = {link = "Purple"},
-        htmlSpecialTagName = {link = "RedItalic"},
-        -- xml
-        xmlTag = {link = "Green"},
-        xmlEndTag = {link = "Blue"},
-        xmlTagName = {link = "OrangeItalic"},
-        xmlEqual = {link = "Orange"},
-        xmlAttrib = {link = "Aqua"},
-        xmlEntity = {link = "Red"},
-        xmlEntityPunct = {link = "Red"},
-        xmlDocTypeDecl = {link = "Grey"},
-        xmlDocTypeKeyword = {link = "PurpleItalic"},
-        xmlCdataStart = {link = "Grey"},
-        xmlCdataCdata = {link = "Purple"},
-        -- css/scss/sass/less
-        cssAttrComma = {link = "Fg"},
-        cssBraces = {link = "Fg"},
-        cssTagName = {link = "PurpleItalic"},
-        cssClassNameDot = {link = "Red"},
-        cssClassName = {link = "RedItalic"},
-        cssFunctionName = {link = "Yellow"},
-        cssAttr = {link = "Orange"},
-        cssProp = {link = "Aqua"},
-        cssCommonAttr = {link = "Yellow"},
-        cssPseudoClassId = {link = "Blue"},
-        cssPseudoClassFn = {link = "Green"},
-        cssPseudoClass = {link = "Purple"},
-        cssImportant = {link = "RedItalic"},
-        cssSelectorOp = {link = "Orange"},
-        cssSelectorOp2 = {link = "Orange"},
-        cssColor = {link = "Green"},
-        cssAttributeSelector = {link = "Aqua"},
-        cssUnitDecorators = {link = "Orange"},
-        cssValueLength = {link = "Green"},
-        cssValueInteger = {link = "Green"},
-        cssValueNumber = {link = "Green"},
-        cssValueAngle = {link = "Green"},
-        cssValueTime = {link = "Green"},
-        cssValueFrequency = {link = "Green"},
-        cssVendor = {link = "Grey"},
-        cssNoise = {link = "Grey"},
-        scssMixinName = {link = "Yellow"},
-        scssSelectorChar = {link = "Red"},
-        scssSelectorName = {link = "RedItalic"},
-        scssInterpolationDelimiter = {link = "Green"},
-        scssVariableValue = {link = "Green"},
-        scssNull = {link = "Purple"},
-        scssBoolean = {link = "Purple"},
-        scssVariableAssignment = {link = "Grey"},
-        scssForKeyword = {link = "PurpleItalic"},
-        scssAttribute = {link = "Orange"},
-        scssFunctionName = {link = "Yellow"},
-        sassProperty = {link = "Aqua"},
-        sassAmpersand = {link = "Orange"},
-        sassClass = {link = "RedItalic"},
-        sassClassChar = {link = "Red"},
-        sassMixing = {link = "PurpleItalic"},
-        sassMixinName = {link = "Orange"},
-        sassCssAttribute = {link = "Yellow"},
-        sassInterpolationDelimiter = {link = "Green"},
-        sassFunction = {link = "Yellow"},
-        sassControl = {link = "RedItalic"},
-        sassFor = {link = "RedItalic"},
-        sassFunctionName = {link = "GreenBold"},
-        -- less
-        lessMixinChar = {link = "Grey"},
-        lessClass = {link = "RedItalic"},
-        lessVariable = {link = "Blue"},
-        lessAmpersandChar = {link = "Orange"},
-        lessFunction = {link = "Yellow"},
-        -- javascript/javascriptreact
-        javaScriptNull = {link = "Aqua"},
-        javaScriptIdentifier = {link = "Orange"},
-        javaScriptParens = {link = "Fg"},
-        javaScriptBraces = {link = "Fg"},
-        javaScriptGlobal = {link = "Purple"},
-        javaScriptMessage = {link = "Yellow"},
-        javaScriptFunction = {link = "RedItalic"},
-        javaScriptOperator = {link = "Orange"},
-        javaScriptMember = {link = "Aqua"},
-        -- vim-javascript: https://github.com/pangloss/vim-javascript
-        jsThis = {link = "Purple"},
-        jsUndefined = {link = "Aqua"},
-        jsNull = {link = "Aqua"},
-        jsNan = {link = "Aqua"},
-        jsSuper = {link = "Purple"},
-        jsPrototype = {link = "Purple"},
-        jsFunction = {link = "RedItalic"},
-        jsGlobalNodeObjects = {link = "PurpleItalic"},
-        jsGlobalObjects = {link = "Yellow"},
-        jsArrowFunction = {link = "Purple"},
-        jsArrowFuncArgs = {link = "Blue"},
-        jsFuncArgs = {link = "Blue"},
-        jsObjectProp = {link = "Aqua"},
-        jsVariableDef = {link = "Blue"},
-        jsObjectKey = {link = "Aqua"},
-        jsParen = {link = "Blue"},
-        jsParenIfElse = {link = "Blue"},
-        jsParenRepeat = {link = "Blue"},
-        jsParenSwitch = {link = "Blue"},
-        jsParenCatch = {link = "Blue"},
-        jsBracket = {link = "Blue"},
-        jsBlockLabel = {link = "Aqua"},
-        jsFunctionKey = {link = "GreenBold"},
-        jsClassDefinition = {link = "Yellow"},
-        jsDot = {link = "Grey"},
-        jsDestructuringBlock = {link = "Blue"},
-        jsSpreadExpression = {link = "Purple"},
-        jsSpreadOperator = {link = "Green"},
-        jsModuleKeyword = {link = "Yellow"},
-        jsObjectValue = {link = "Blue"},
-        jsTemplateExpression = {link = "Yellow"},
-        jsTemplateBraces = {link = "Yellow"},
-        jsClassMethodType = {link = "Orange"},
-        -- yajs: https://github.com/othree/yajs.vim
-        javascriptEndColons = {link = "Fg"},
-        javascriptOpSymbol = {link = "Orange"},
-        javascriptOpSymbols = {link = "Orange"},
-        javascriptIdentifierName = {link = "Blue"},
-        javascriptVariable = {link = "Orange"},
-        javascriptObjectLabel = {link = "Aqua"},
-        javascriptObjectLabelColon = {link = "Grey"},
-        javascriptPropertyNameString = {link = "Aqua"},
-        javascriptFuncArg = {link = "Blue"},
-        javascriptIdentifier = {link = "Purple"},
-        javascriptArrowFunc = {link = "Purple"},
-        javascriptTemplate = {link = "Yellow"},
-        javascriptTemplateSubstitution = {link = "Yellow"},
-        javascriptTemplateSB = {link = "Yellow"},
-        javascriptNodeGlobal = {link = "PurpleItalic"},
-        javascriptDocTags = {link = "PurpleItalic"},
-        javascriptDocNotation = {link = "Purple"},
-        javascriptClassSuper = {link = "Purple"},
-        javascriptClassName = {link = "Yellow"},
-        javascriptClassSuperName = {link = "Yellow"},
-        javascriptBrackets = {link = "Fg"},
-        javascriptBraces = {link = "Fg"},
-        javascriptLabel = {link = "Purple"},
-        javascriptDotNotation = {link = "Grey"},
-        javascriptGlobalArrayDot = {link = "Grey"},
-        javascriptGlobalBigIntDot = {link = "Grey"},
-        javascriptGlobalDateDot = {link = "Grey"},
-        javascriptGlobalJSONDot = {link = "Grey"},
-        javascriptGlobalMathDot = {link = "Grey"},
-        javascriptGlobalNumberDot = {link = "Grey"},
-        javascriptGlobalObjectDot = {link = "Grey"},
-        javascriptGlobalPromiseDot = {link = "Grey"},
-        javascriptGlobalRegExpDot = {link = "Grey"},
-        javascriptGlobalStringDot = {link = "Grey"},
-        javascriptGlobalSymbolDot = {link = "Grey"},
-        javascriptGlobalURLDot = {link = "Grey"},
-        javascriptMethod = {link = "GreenBold"},
-        javascriptMethodName = {link = "GreenBold"},
-        javascriptObjectMethodName = {link = "GreenBold"},
-        javascriptGlobalMethod = {link = "GreenBold"},
-        javascriptDOMStorageMethod = {link = "GreenBold"},
-        javascriptFileMethod = {link = "GreenBold"},
-        javascriptFileReaderMethod = {link = "GreenBold"},
-        javascriptFileListMethod = {link = "GreenBold"},
-        javascriptBlobMethod = {link = "GreenBold"},
-        javascriptURLStaticMethod = {link = "GreenBold"},
-        javascriptNumberStaticMethod = {link = "GreenBold"},
-        javascriptNumberMethod = {link = "GreenBold"},
-        javascriptDOMNodeMethod = {link = "GreenBold"},
-        javascriptES6BigIntStaticMethod = {link = "GreenBold"},
-        javascriptBOMWindowMethod = {link = "GreenBold"},
-        javascriptHeadersMethod = {link = "GreenBold"},
-        javascriptRequestMethod = {link = "GreenBold"},
-        javascriptResponseMethod = {link = "GreenBold"},
-        javascriptES6SetMethod = {link = "GreenBold"},
-        javascriptReflectMethod = {link = "GreenBold"},
-        javascriptPaymentMethod = {link = "GreenBold"},
-        javascriptPaymentResponseMethod = {link = "GreenBold"},
-        javascriptTypedArrayStaticMethod = {link = "GreenBold"},
-        javascriptGeolocationMethod = {link = "GreenBold"},
-        javascriptES6MapMethod = {link = "GreenBold"},
-        javascriptServiceWorkerMethod = {link = "GreenBold"},
-        javascriptCacheMethod = {link = "GreenBold"},
-        javascriptFunctionMethod = {link = "GreenBold"},
-        javascriptXHRMethod = {link = "GreenBold"},
-        javascriptBOMNavigatorMethod = {link = "GreenBold"},
-        javascriptDOMEventTargetMethod = {link = "GreenBold"},
-        javascriptDOMEventMethod = {link = "GreenBold"},
-        javascriptIntlMethod = {link = "GreenBold"},
-        javascriptDOMDocMethod = {link = "GreenBold"},
-        javascriptStringStaticMethod = {link = "GreenBold"},
-        javascriptStringMethod = {link = "GreenBold"},
-        javascriptSymbolStaticMethod = {link = "GreenBold"},
-        javascriptRegExpMethod = {link = "GreenBold"},
-        javascriptObjectStaticMethod = {link = "GreenBold"},
-        javascriptObjectMethod = {link = "GreenBold"},
-        javascriptBOMLocationMethod = {link = "GreenBold"},
-        javascriptJSONStaticMethod = {link = "GreenBold"},
-        javascriptGeneratorMethod = {link = "GreenBold"},
-        javascriptEncodingMethod = {link = "GreenBold"},
-        javascriptPromiseStaticMethod = {link = "GreenBold"},
-        javascriptPromiseMethod = {link = "GreenBold"},
-        javascriptBOMHistoryMethod = {link = "GreenBold"},
-        javascriptDOMFormMethod = {link = "GreenBold"},
-        javascriptClipboardMethod = {link = "GreenBold"},
-        javascriptBroadcastMethod = {link = "GreenBold"},
-        javascriptDateStaticMethod = {link = "GreenBold"},
-        javascriptDateMethod = {link = "GreenBold"},
-        javascriptConsoleMethod = {link = "GreenBold"},
-        javascriptArrayStaticMethod = {link = "GreenBold"},
-        javascriptArrayMethod = {link = "GreenBold"},
-        javascriptMathStaticMethod = {link = "GreenBold"},
-        javascriptSubtleCryptoMethod = {link = "GreenBold"},
-        javascriptCryptoMethod = {link = "GreenBold"},
-        javascriptProp = {link = "Aqua"},
-        javascriptBOMWindowProp = {link = "Aqua"},
-        javascriptDOMStorageProp = {link = "Aqua"},
-        javascriptFileReaderProp = {link = "Aqua"},
-        javascriptURLUtilsProp = {link = "Aqua"},
-        javascriptNumberStaticProp = {link = "Aqua"},
-        javascriptDOMNodeProp = {link = "Aqua"},
-        javascriptRequestProp = {link = "Aqua"},
-        javascriptResponseProp = {link = "Aqua"},
-        javascriptES6SetProp = {link = "Aqua"},
-        javascriptPaymentProp = {link = "Aqua"},
-        javascriptPaymentResponseProp = {link = "Aqua"},
-        javascriptPaymentAddressProp = {link = "Aqua"},
-        javascriptPaymentShippingOptionProp = {link = "Aqua"},
-        javascriptTypedArrayStaticProp = {link = "Aqua"},
-        javascriptServiceWorkerProp = {link = "Aqua"},
-        javascriptES6MapProp = {link = "Aqua"},
-        javascriptRegExpStaticProp = {link = "Aqua"},
-        javascriptRegExpProp = {link = "Aqua"},
-        javascriptXHRProp = {link = "Aqua"},
-        javascriptBOMNavigatorProp = {link = "GreenBold"},
-        javascriptDOMEventProp = {link = "Aqua"},
-        javascriptBOMNetworkProp = {link = "Aqua"},
-        javascriptDOMDocProp = {link = "Aqua"},
-        javascriptSymbolStaticProp = {link = "Aqua"},
-        javascriptSymbolProp = {link = "Aqua"},
-        javascriptBOMLocationProp = {link = "Aqua"},
-        javascriptEncodingProp = {link = "Aqua"},
-        javascriptCryptoProp = {link = "Aqua"},
-        javascriptBOMHistoryProp = {link = "Aqua"},
-        javascriptDOMFormProp = {link = "Aqua"},
-        javascriptDataViewProp = {link = "Aqua"},
-        javascriptBroadcastProp = {link = "Aqua"},
-        javascriptMathStaticProp = {link = "Aqua"},
-        -- vim-jsx-pretty: https://github.com/maxmellon/vim-jsx-pretty
-        jsxTagName = {link = "OrangeItalic"},
-        jsxOpenPunct = {link = "Green"},
-        jsxClosePunct = {link = "Blue"},
-        jsxEscapeJs = {link = "Blue"},
-        jsxAttrib = {link = "Aqua"},
-        -- typescript/typescriptreact
-        -- vim-typescript: https://github.com/leafgarland/typescript-vim
-        typescriptSource = {link = "PurpleItalic"},
-        typescriptMessage = {link = "Yellow"},
-        typescriptGlobalObjects = {link = "Aqua"},
-        typescriptInterpolation = {link = "Yellow"},
-        typescriptInterpolationDelimiter = {link = "Yellow"},
-        typescriptBraces = {link = "Fg"},
-        typescriptParens = {link = "Fg"},
-        -- yats: https:github.com/HerringtonDarkholme/yats.vim
-        typescriptMethodAccessor = {link = "OrangeItalic"},
-        typescriptVariable = {link = "Orange"},
-        typescriptVariableDeclaration = {link = "Blue"},
-        typescriptTypeReference = {link = "Yellow"},
-        typescriptEnumKeyword = {link = "RedItalic"},
-        typescriptEnum = {link = "Yellow"},
-        typescriptIdentifierName = {link = "Aqua"},
-        typescriptProp = {link = "Aqua"},
-        typescriptCall = {link = "Blue"},
-        typescriptInterfaceName = {link = "Yellow"},
-        typescriptEndColons = {link = "Fg"},
-        typescriptMember = {link = "Aqua"},
-        typescriptMemberOptionality = {link = "Orange"},
-        typescriptObjectLabel = {link = "Aqua"},
-        typescriptArrowFunc = {link = "Purple"},
-        typescriptAbstract = {link = "Orange"},
-        typescriptObjectColon = {link = "Grey"},
-        typescriptTypeAnnotation = {link = "Grey"},
-        typescriptAssign = {link = "Orange"},
-        typescriptBinaryOp = {link = "Orange"},
-        typescriptUnaryOp = {link = "Orange"},
-        typescriptFuncComma = {link = "Fg"},
-        typescriptClassName = {link = "Yellow"},
-        typescriptClassHeritage = {link = "Yellow"},
-        typescriptInterfaceHeritage = {link = "Yellow"},
-        typescriptIdentifier = {link = "Purple"},
-        typescriptGlobal = {link = "Purple"},
-        typescriptOperator = {link = "RedItalic"},
-        typescriptNodeGlobal = {link = "PurpleItalic"},
-        typescriptExport = {link = "PurpleItalic"},
-        typescriptDefaultParam = {link = "Orange"},
-        typescriptImport = {link = "PurpleItalic"},
-        typescriptTypeParameter = {link = "Yellow"},
-        typescriptReadonlyModifier = {link = "Orange"},
-        typescriptAccessibilityModifier = {link = "Orange"},
-        typescriptAmbientDeclaration = {link = "RedItalic"},
-        typescriptTemplateSubstitution = {link = "Yellow"},
-        typescriptTemplateSB = {link = "Yellow"},
-        typescriptExceptions = {link = "RedItalic"},
-        typescriptCastKeyword = {link = "RedItalic"},
-        typescriptOptionalMark = {link = "Orange"},
-        typescriptNull = {link = "Aqua"},
-        typescriptMappedIn = {link = "RedItalic"},
-        typescriptFuncTypeArrow = {link = "Purple"},
-        typescriptTernaryOp = {link = "Orange"},
-        typescriptParenExp = {link = "Blue"},
-        typescriptIndexExpr = {link = "Blue"},
-        typescriptDotNotation = {link = "Grey"},
-        typescriptGlobalNumberDot = {link = "Grey"},
-        typescriptGlobalStringDot = {link = "Grey"},
-        typescriptGlobalArrayDot = {link = "Grey"},
-        typescriptGlobalObjectDot = {link = "Grey"},
-        typescriptGlobalSymbolDot = {link = "Grey"},
-        typescriptGlobalMathDot = {link = "Grey"},
-        typescriptGlobalDateDot = {link = "Grey"},
-        typescriptGlobalJSONDot = {link = "Grey"},
-        typescriptGlobalRegExpDot = {link = "Grey"},
-        typescriptGlobalPromiseDot = {link = "Grey"},
-        typescriptGlobalURLDot = {link = "Grey"},
-        typescriptGlobalMethod = {link = "GreenBold"},
-        typescriptDOMStorageMethod = {link = "GreenBold"},
-        typescriptFileMethod = {link = "GreenBold"},
-        typescriptFileReaderMethod = {link = "GreenBold"},
-        typescriptFileListMethod = {link = "GreenBold"},
-        typescriptBlobMethod = {link = "GreenBold"},
-        typescriptURLStaticMethod = {link = "GreenBold"},
-        typescriptNumberStaticMethod = {link = "GreenBold"},
-        typescriptNumberMethod = {link = "GreenBold"},
-        typescriptDOMNodeMethod = {link = "GreenBold"},
-        typescriptPaymentMethod = {link = "GreenBold"},
-        typescriptPaymentResponseMethod = {link = "GreenBold"},
-        typescriptHeadersMethod = {link = "GreenBold"},
-        typescriptRequestMethod = {link = "GreenBold"},
-        typescriptResponseMethod = {link = "GreenBold"},
-        typescriptES6SetMethod = {link = "GreenBold"},
-        typescriptReflectMethod = {link = "GreenBold"},
-        typescriptBOMWindowMethod = {link = "GreenBold"},
-        typescriptGeolocationMethod = {link = "GreenBold"},
-        typescriptServiceWorkerMethod = {link = "GreenBold"},
-        typescriptCacheMethod = {link = "GreenBold"},
-        typescriptES6MapMethod = {link = "GreenBold"},
-        typescriptFunctionMethod = {link = "GreenBold"},
-        typescriptRegExpMethod = {link = "GreenBold"},
-        typescriptXHRMethod = {link = "GreenBold"},
-        typescriptBOMNavigatorMethod = {link = "GreenBold"},
-        typescriptIntlMethod = {link = "GreenBold"},
-        typescriptDOMEventTargetMethod = {link = "GreenBold"},
-        typescriptDOMEventMethod = {link = "GreenBold"},
-        typescriptDOMDocMethod = {link = "GreenBold"},
-        typescriptStringStaticMethod = {link = "GreenBold"},
-        typescriptStringMethod = {link = "GreenBold"},
-        typescriptSymbolStaticMethod = {link = "GreenBold"},
-        typescriptObjectStaticMethod = {link = "GreenBold"},
-        typescriptObjectMethod = {link = "GreenBold"},
-        typescriptJSONStaticMethod = {link = "GreenBold"},
-        typescriptEncodingMethod = {link = "GreenBold"},
-        typescriptBOMLocationMethod = {link = "GreenBold"},
-        typescriptPromiseStaticMethod = {link = "GreenBold"},
-        typescriptPromiseMethod = {link = "GreenBold"},
-        typescriptSubtleCryptoMethod = {link = "GreenBold"},
-        typescriptCryptoMethod = {link = "GreenBold"},
-        typescriptBOMHistoryMethod = {link = "GreenBold"},
-        typescriptDOMFormMethod = {link = "GreenBold"},
-        typescriptConsoleMethod = {link = "GreenBold"},
-        typescriptDateStaticMethod = {link = "GreenBold"},
-        typescriptDateMethod = {link = "GreenBold"},
-        typescriptArrayStaticMethod = {link = "GreenBold"},
-        typescriptArrayMethod = {link = "GreenBold"},
-        typescriptMathStaticMethod = {link = "GreenBold"},
-        typescriptStringProperty = {link = "Aqua"},
-        typescriptDOMStorageProp = {link = "Aqua"},
-        typescriptFileReaderProp = {link = "Aqua"},
-        typescriptURLUtilsProp = {link = "Aqua"},
-        typescriptNumberStaticProp = {link = "Aqua"},
-        typescriptDOMNodeProp = {link = "Aqua"},
-        typescriptBOMWindowProp = {link = "Aqua"},
-        typescriptRequestProp = {link = "Aqua"},
-        typescriptResponseProp = {link = "Aqua"},
-        typescriptPaymentProp = {link = "Aqua"},
-        typescriptPaymentResponseProp = {link = "Aqua"},
-        typescriptPaymentAddressProp = {link = "Aqua"},
-        typescriptPaymentShippingOptionProp = {link = "Aqua"},
-        typescriptES6SetProp = {link = "Aqua"},
-        typescriptServiceWorkerProp = {link = "Aqua"},
-        typescriptES6MapProp = {link = "Aqua"},
-        typescriptRegExpStaticProp = {link = "Aqua"},
-        typescriptRegExpProp = {link = "Aqua"},
-        typescriptBOMNavigatorProp = {link = "GreenBold"},
-        typescriptXHRProp = {link = "Aqua"},
-        typescriptDOMEventProp = {link = "Aqua"},
-        typescriptDOMDocProp = {link = "Aqua"},
-        typescriptBOMNetworkProp = {link = "Aqua"},
-        typescriptSymbolStaticProp = {link = "Aqua"},
-        typescriptEncodingProp = {link = "Aqua"},
-        typescriptBOMLocationProp = {link = "Aqua"},
-        typescriptCryptoProp = {link = "Aqua"},
-        typescriptDOMFormProp = {link = "Aqua"},
-        typescriptBOMHistoryProp = {link = "Aqua"},
-        typescriptMathStaticProp = {link = "Aqua"},
-        -- dart
-        -- dart-lang: https://github.com/dart-lang/dart-vim-plugin
-        dartCoreClasses = {link = "Aqua"},
-        dartTypeName = {link = "Aqua"},
-        dartInterpolation = {link = "Blue"},
-        dartTypeDef = {link = "RedItalic"},
-        dartClassDecl = {link = "RedItalic"},
-        dartLibrary = {link = "PurpleItalic"},
-        dartMetadata = {link = "Blue"},
-        -- coffee
-        -- vim-coffee-script: https://github.com/kchmck/vim-coffee-script
-        coffeeExtendedOp = {link = "Orange"},
-        coffeeSpecialOp = {link = "Fg"},
-        coffeeDotAccess = {link = "Grey"},
-        coffeeCurly = {link = "Fg"},
-        coffeeParen = {link = "Fg"},
-        coffeeBracket = {link = "Fg"},
-        coffeeParens = {link = "Blue"},
-        coffeeBrackets = {link = "Blue"},
-        coffeeCurlies = {link = "Blue"},
-        coffeeOperator = {link = "RedItalic"},
-        coffeeStatement = {link = "Orange"},
-        coffeeSpecialIdent = {link = "Purple"},
-        coffeeObject = {link = "Purple"},
-        coffeeObjAssign = {link = "Aqua"},
-        -- purescript
-        -- purescript-vim: https://github.com/purescript-contrib/purescript-vim
-        purescriptModuleKeyword = {link = "PurpleItalic"},
-        purescriptModule = {link = "Aqua"},
-        purescriptModuleParams = {link = "Blue"},
-        purescriptAsKeyword = {link = "OrangeItalic"},
-        purescriptHidingKeyword = {link = "OrangeItalic"},
-        purescriptWhere = {link = "OrangeItalic"},
-        purescriptIdentifier = {link = "Blue"},
-        purescriptFunction = {link = "Yellow"},
-        purescriptType = {link = "Aqua"},
-        -- c/cpp/objc/objcpp
-        -- vim-cpp-enhanced-highlight: https://github.com/octol/vim-cpp-enhanced-highlight
-        cppSTLnamespace = {link = "Purple"},
-        cppSTLtype = {link = "Yellow"},
-        cppAccess = {link = "PurpleItalic"},
-        cppStructure = {link = "RedItalic"},
-        cppSTLios = {link = "Aqua"},
-        cppSTLiterator = {link = "PurpleItalic"},
-        cppSTLexception = {link = "Purple"},
-        -- vim-cpp-modern: https://github.com/bfrg/vim-cpp-modern
-        cppSTLVariable = {link = "Aqua"},
-        -- chromatica: https://github.com/arakashic/chromatica.nvim
-        Member = {link = "Aqua"},
-        Variable = {link = "Blue"},
-        Namespace = {link = "Purple"},
-        EnumConstant = {link = "Aqua"},
-        chromaticaException = {link = "RedItalic"},
-        chromaticaCast = {link = "Orange"},
-        OperatorOverload = {link = "Orange"},
-        AccessQual = {link = "Orange"},
-        Linkage = {link = "Orange"},
-        AutoType = {link = "Yellow"},
-        -- vim-lsp-cxx-highlight https://github.com/jackguo380/vim-lsp-cxx-highlight
-        LspCxxHlSkippedRegion = {link = "Grey"},
-        LspCxxHlSkippedRegionBeginEnd = {link = "PurpleItalic"},
-        LspCxxHlGroupEnumConstant = {link = "Aqua"},
-        LspCxxHlGroupNamespace = {link = "Purple"},
-        LspCxxHlGroupMemberVariable = {link = "Aqua"},
-        -- objc
-        objcModuleImport = {link = "PurpleItalic"},
-        objcException = {link = "RedItalic"},
-        objcProtocolList = {link = "Aqua"},
-        objcObjDef = {link = "PurpleItalic"},
-        objcDirective = {link = "RedItalic"},
-        objcPropertyAttribute = {link = "Orange"},
-        objcHiddenArgument = {link = "Aqua"},
-        -- cs
-        -- builtin: https://github.com/nickspoons/vim-cs
-        csUnspecifiedStatement = {link = "PurpleItalic"},
-        csStorage = {link = "RedItalic"},
-        csClass = {link = "RedItalic"},
-        csNewType = {link = "Aqua"},
-        csContextualStatement = {link = "PurpleItalic"},
-        csInterpolationDelimiter = {link = "Yellow"},
-        csInterpolation = {link = "Yellow"},
-        csEndColon = {link = "Fg"},
-        -- python
-        pythonBuiltin = {link = "Yellow"},
-        pythonExceptions = {link = "Purple"},
-        pythonDecoratorName = {link = "Blue"},
-        -- python-syntax: https://github.com/vim-python/python-syntax
-        pythonExClass = {link = "Purple"},
-        pythonBuiltinType = {link = "Yellow"},
-        pythonBuiltinObj = {link = "Blue"},
-        pythonDottedName = {link = "PurpleItalic"},
-        pythonBuiltinFunc = {link = "GreenBold"},
-        pythonFunction = {link = "AquaBold"},
-        pythonDecorator = {link = "Orange"},
-        pythonInclude = {link = "Include"},
-        pythonImport = {link = "PreProc"},
-        pythonRun = {link = "Blue"},
-        pythonCoding = {link = "Grey"},
-        pythonOperator = {link = "Orange"},
-        pythonConditional = {link = "RedItalic"},
-        pythonRepeat = {link = "RedItalic"},
-        pythonException = {link = "RedItalic"},
-        pythonNone = {link = "Aqua"},
-        pythonDot = {link = "Grey"},
-        -- semshi: https://github.com/numirias/semshi
-        semshiUnresolved = {fg = colors.yellow, bg = colors.none, undercurl = true},
-        semshiImported = {link = "Purple"},
-        semshiParameter = {link = "Blue"},
-        semshiParameterUnused = {link = "Grey"},
-        semshiSelf = {link = "PurpleItalic"},
-        semshiGlobal = {link = "Yellow"},
-        semshiBuiltin = {link = "Yellow"},
-        semshiAttribute = {link = "Aqua"},
-        semshiLocal = {link = "Red"},
-        semshiFree = {link = "Red"},
-        semshiSelected = {link = "CurrentWord"},
-        semshiErrorSign = {link = "RedSign"},
-        semshiErrorChar = {link = "RedSign"},
-        -- lua
-        luaFunc = {link = "Green"},
-        luaFunction = {link = "Aqua"},
-        luaTable = {link = "Fg"},
-        luaIn = {link = "RedItalic"},
-        -- " vim-lua: https://github.com/tbastos/vim-lua {{{
-        luaFuncCall = {link = "Green"},
-        luaLocal = {link = "Orange"},
-        luaSpecialValue = {link = "Green"},
-        luaBraces = {link = "Fg"},
-        luaBuiltIn = {link = "Purple"},
-        luaNoise = {link = "Grey"},
-        luaLabel = {link = "Purple"},
-        luaFuncTable = {link = "Yellow"},
-        luaFuncArgName = {link = "Blue"},
-        luaEllipsis = {link = "Orange"},
-        luaDocTag = {link = "Green"},
-        -- moon
-        -- moonscript-vim: https://github.com/leafo/moonscript-vim
-        moonInterpDelim = {link = "Yellow"},
-        moonInterp = {link = "Blue"},
-        moonFunction = {link = "Green"},
-        moonLuaFunc = {link = "AquaBold"},
-        moonSpecialVar = {link = "Purple"},
-        moonObject = {link = "Yellow"},
-        moonDotAccess = {link = "Grey"},
-        -- java
-        javaClassDecl = {link = "RedItalic"},
-        javaMethodDecl = {link = "RedItalic"},
-        javaVarArg = {link = "Green"},
-        javaAnnotation = {link = "Blue"},
-        javaUserLabel = {link = "Purple"},
-        javaTypedef = {link = "Aqua"},
-        javaParen = {link = "Fg"},
-        javaParen1 = {link = "Fg"},
-        javaParen2 = {link = "Fg"},
-        javaParen3 = {link = "Fg"},
-        javaParen4 = {link = "Fg"},
-        javaParen5 = {link = "Fg"},
-        -- kotlin
-        -- kotlin-vim: https://github.com/udalov/kotlin-vim
-        ktSimpleInterpolation = {link = "Yellow"},
-        ktComplexInterpolation = {link = "Yellow"},
-        ktComplexInterpolationBrace = {link = "Yellow"},
-        ktStructure = {link = "RedItalic"},
-        ktKeyword = {link = "Aqua"},
-        -- scala
-        scalaNameDefinition = {link = "Aqua"},
-        scalaInterpolationBoundary = {link = "Yellow"},
-        scalaInterpolation = {link = "Blue"},
-        scalaTypeOperator = {link = "Orange"},
-        scalaOperator = {link = "Orange"},
-        scalaKeywordModifier = {link = "Orange"},
-        -- go
-        goDirective = {link = "PurpleItalic"},
-        goConstants = {link = "Aqua"},
-        goDeclType = {link = "OrangeItalic"},
-        goPackage = {link = "PurpleItalic"},
-        goImport = {link = "PurpleItalic"},
-        goVarArgs = {link = "Blue"},
-        goBuiltins = {link = "GreenBold"},
-        goPredefinedIdentifiers = {link = "Aqua"},
-        goVar = {link = "Orange"},
-        -- rust
-        rustStructure = {link = "Orange"},
-        rustIdentifier = {link = "Purple"},
-        rustModPath = {link = "Orange"},
-        rustModPathSep = {link = "Grey"},
-        rustSelf = {link = "Blue"},
-        rustSuper = {link = "Blue"},
-        rustDeriveTrait = {link = "PurpleItalic"},
-        rustEnumVariant = {link = "Purple"},
-        rustMacroVariable = {link = "Blue"},
-        rustAssert = {link = "Aqua"},
-        rustPanic = {link = "Aqua"},
-        rustPubScopeCrate = {link = "PurpleItalic"},
-        -- swift
-        -- swift.vim: https://github.com/keith/swift.vim
-        swiftInterpolatedWrapper = {link = "Yellow"},
-        swiftInterpolatedString = {link = "Blue"},
-        swiftProperty = {link = "Aqua"},
-        swiftTypeDeclaration = {link = "Orange"},
-        swiftClosureArgument = {link = "Purple"},
-        -- php
-        phpVarSelector = {link = "Blue"},
-        phpDefine = {link = "OrangeItalic"},
-        phpStructure = {link = "RedItalic"},
-        phpSpecialFunction = {link = "GreenBold"},
-        phpInterpSimpleCurly = {link = "Yellow"},
-        phpComparison = {link = "Orange"},
-        phpMethodsVar = {link = "Aqua"},
-        phpMemberSelector = {link = "Green"},
-        -- php.vim: https://github.com/StanAngeloff/php.vim
-        phpParent = {link = "Fg"},
-        phpNowDoc = {link = "Green"},
-        phpFunction = {link = "GreenBold"},
-        phpMethod = {link = "GreenBold"},
-        phpClass = {link = "Orange"},
-        phpSuperglobals = {link = "Purple"},
-        -- ruby
-        rubyKeywordAsMethod = {link = "GreenBold"},
-        rubyInterpolation = {link = "Yellow"},
-        rubyInterpolationDelimiter = {link = "Yellow"},
-        rubyStringDelimiter = {link = "Green"},
-        rubyBlockParameterList = {link = "Blue"},
-        rubyDefine = {link = "RedItalic"},
-        rubyModuleName = {link = "Purple"},
-        rubyAccess = {link = "Orange"},
-        rubyAttribute = {link = "Yellow"},
-        rubyMacro = {link = "RedItalic"},
-        -- haskell
-        -- haskell-vim: https://github.com/neovimhaskell/haskell-vim
-        haskellBrackets = {link = "Blue"},
-        haskellIdentifier = {link = "Yellow"},
-        haskellAssocType = {link = "Aqua"},
-        haskellQuotedType = {link = "Aqua"},
-        haskellType = {link = "Aqua"},
-        haskellDeclKeyword = {link = "RedItalic"},
-        haskellWhere = {link = "RedItalic"},
-        haskellDeriving = {link = "PurpleItalic"},
-        haskellForeignKeywords = {link = "PurpleItalic"},
-        -- perl
-        perlStatementPackage = {link = "PurpleItalic"},
-        perlStatementInclude = {link = "PurpleItalic"},
-        perlStatementStorage = {link = "Orange"},
-        perlStatementList = {link = "Orange"},
-        perlMatchStartEnd = {link = "Orange"},
-        perlVarSimpleMemberName = {link = "Aqua"},
-        perlVarSimpleMember = {link = "Fg"},
-        perlMethod = {link = "GreenBold"},
-        podVerbatimLine = {link = "Green"},
-        podCmdText = {link = "Yellow"},
-        -- ocaml
-        ocamlArrow = {link = "Orange"},
-        ocamlEqual = {link = "Orange"},
-        ocamlOperator = {link = "Orange"},
-        ocamlKeyChar = {link = "Orange"},
-        ocamlModPath = {link = "Green"},
-        ocamlFullMod = {link = "Green"},
-        ocamlModule = {link = "Purple"},
-        ocamlConstructor = {link = "Aqua"},
-        ocamlFuncWith = {link = "Yellow"},
-        ocamlWith = {link = "Yellow"},
-        ocamlModParam = {link = "Fg"},
-        ocamlModParam1 = {link = "Fg"},
-        ocamlAnyVar = {link = "Blue"},
-        ocamlPpxEncl = {link = "Orange"},
-        ocamlPpxIdentifier = {link = "Blue"},
-        ocamlSigEncl = {link = "Orange"},
-        ocamlStructEncl = {link = "Aqua"},
-        -- ocamlModParam1 = {link = 'Blue'},
-        -- erlang
-        erlangAtom = {link = "Aqua"},
-        erlangLocalFuncRef = {link = "GreenBold"},
-        erlangLocalFuncCall = {link = "GreenBold"},
-        erlangGlobalFuncRef = {link = "GreenBold"},
-        erlangGlobalFuncCall = {link = "GreenBold"},
-        erlangAttribute = {link = "PurpleItalic"},
-        erlangPipe = {link = "Orange"},
-        -- elixir
-        -- vim-elixir: https://github.com/elixir-editors/vim-elixir
-        elixirStringDelimiter = {link = "Green"},
-        elixirKeyword = {link = "Orange"},
-        elixirInterpolation = {link = "Yellow"},
-        elixirInterpolationDelimiter = {link = "Yellow"},
-        elixirSelf = {link = "Purple"},
-        elixirPseudoVariable = {link = "Purple"},
-        elixirModuleDefine = {link = "PurpleItalic"},
-        elixirBlockDefinition = {link = "RedItalic"},
-        elixirDefine = {link = "RedItalic"},
-        elixirPrivateDefine = {link = "RedItalic"},
-        elixirGuard = {link = "RedItalic"},
-        elixirPrivateGuard = {link = "RedItalic"},
-        elixirProtocolDefine = {link = "RedItalic"},
-        elixirImplDefine = {link = "RedItalic"},
-        elixirRecordDefine = {link = "RedItalic"},
-        elixirPrivateRecordDefine = {link = "RedItalic"},
-        elixirMacroDefine = {link = "RedItalic"},
-        elixirPrivateMacroDefine = {link = "RedItalic"},
-        elixirDelegateDefine = {link = "RedItalic"},
-        elixirOverridableDefine = {link = "RedItalic"},
-        elixirExceptionDefine = {link = "RedItalic"},
-        elixirCallbackDefine = {link = "RedItalic"},
-        elixirStructDefine = {link = "RedItalic"},
-        elixirExUnitMacro = {link = "RedItalic"},
-        -- lisp
-        lispAtomMark = {link = "Green"},
-        lispKey = {link = "Aqua"},
-        lispFunc = {link = "OrangeItalic"},
-        -- closure
-        clojureMacro = {link = "PurpleItalic"},
-        clojureFunc = {link = "AquaBold"},
-        clojureConstant = {link = "Yellow"},
-        clojureSpecial = {link = "RedItalic"},
-        clojureDefine = {link = "RedItalic"},
-        clojureKeyword = {link = "Orange"},
-        clojureVariable = {link = "Blue"},
-        clojureMeta = {link = "Yellow"},
-        clojureDeref = {link = "Yellow"},
-        -- matlab
-        matlabSemicolon = {link = "Fg"},
-        matlabFunction = {link = "RedItalic"},
-        matlabImplicit = {link = "GreenBold"},
-        matlabDelimiter = {link = "Fg"},
-        matlabOperator = {link = "GreenBold"},
-        matlabArithmeticOperator = {link = "Orange"},
-        matlabRelationalOperator = {link = "Orange"},
-        matlabLogicalOperator = {link = "Orange"},
-        -- sh/zsh
-        shRange = {link = "Fg"},
-        shTestOpr = {link = "Orange"},
-        shOption = {link = "Aqua"},
-        bashStatement = {link = "Orange"},
-        shOperator = {link = "Orange"},
-        shQuote = {link = "Green"},
-        shSet = {link = "Orange"},
-        shSetList = {link = "Blue"},
-        shSnglCase = {link = "Orange"},
-        shVariable = {link = "Blue"},
-        shVarAssign = {link = "Orange"},
-        shCmdSubRegion = {link = "Green"},
-        shCommandSub = {link = "Orange"},
-        shFunctionOne = {link = "GreenBold"},
-        shFunctionKey = {link = "RedItalic"},
-        zshOptStart = {link = "PurpleItalic"},
-        zshOption = {link = "Blue"},
-        zshSubst = {link = "Yellow"},
-        zshFunction = {link = "GreenBold"},
-        zshDeref = {link = "Blue"},
-        zshTypes = {link = "Orange"},
-        zshVariableDef = {link = "Blue"},
-        -- fish
-        fishStatement = {link = "Orange"},
-        fishLabel = {link = "RedItalic"},
-        fishCommandSub = {link = "Yellow"},
-        -- ps1
-        ps1FunctionInvocation = {link = "AquaBold"},
-        ps1FunctionDeclaration = {link = "AquaBold"},
-        ps1InterpolationDelimiter = {link = "Yellow"},
-        ps1BuiltIn = {link = "Yellow"},
-        -- vim
-        vimCommentTitle = {fg = colors.grey1, bg = colors.none, bold = true},
-        vimLet = {link = "Orange"},
-        vimFunction = {link = "GreenBold"},
-        vimIsCommand = {link = "Fg"},
-        vimUserFunc = {link = "GreenBold"},
-        vimFuncName = {link = "GreenBold"},
-        vimMap = {link = "PurpleItalic"},
-        vimNotation = {link = "Aqua"},
-        vimMapLhs = {link = "Green"},
-        vimMapRhs = {link = "Green"},
-        vimSetEqual = {link = "Yellow"},
-        vimSetSep = {link = "Fg"},
-        vimOption = {link = "Aqua"},
-        vimUserAttrbKey = {link = "Yellow"},
-        vimUserAttrb = {link = "Green"},
-        vimAutoCmdSfxList = {link = "Aqua"},
-        vimSynType = {link = "Orange"},
-        vimHiBang = {link = "Orange"},
-        vimSet = {link = "Yellow"},
-        -- vimSetSep = {link = 'Grey'},
-        vimContinue = {link = "Grey"},
-        -- make
-        makeIdent = {link = "Aqua"},
-        makeSpecTarget = {link = "Yellow"},
-        makeTarget = {link = "Blue"},
-        makeCommands = {link = "Orange"},
-        -- cmake
-        cmakeCommand = {link = "Orange"},
-        cmakeKWconfigure_package_config_file = {link = "Yellow"},
-        cmakeKWwrite_basic_package_version_file = {link = "Yellow"},
-        cmakeKWExternalProject = {link = "Aqua"},
-        cmakeKWadd_compile_definitions = {link = "Aqua"},
-        cmakeKWadd_compile_options = {link = "Aqua"},
-        cmakeKWadd_custom_command = {link = "Aqua"},
-        cmakeKWadd_custom_target = {link = "Aqua"},
-        cmakeKWadd_definitions = {link = "Aqua"},
-        cmakeKWadd_dependencies = {link = "Aqua"},
-        cmakeKWadd_executable = {link = "Aqua"},
-        cmakeKWadd_library = {link = "Aqua"},
-        cmakeKWadd_link_options = {link = "Aqua"},
-        cmakeKWadd_subdirectory = {link = "Aqua"},
-        cmakeKWadd_test = {link = "Aqua"},
-        cmakeKWbuild_command = {link = "Aqua"},
-        cmakeKWcmake_host_system_information = {link = "Aqua"},
-        cmakeKWcmake_minimum_required = {link = "Aqua"},
-        cmakeKWcmake_parse_arguments = {link = "Aqua"},
-        cmakeKWcmake_policy = {link = "Aqua"},
-        cmakeKWconfigure_file = {link = "Aqua"},
-        cmakeKWcreate_test_sourcelist = {link = "Aqua"},
-        cmakeKWctest_build = {link = "Aqua"},
-        cmakeKWctest_configure = {link = "Aqua"},
-        cmakeKWctest_coverage = {link = "Aqua"},
-        cmakeKWctest_memcheck = {link = "Aqua"},
-        cmakeKWctest_run_script = {link = "Aqua"},
-        cmakeKWctest_start = {link = "Aqua"},
-        cmakeKWctest_submit = {link = "Aqua"},
-        cmakeKWctest_test = {link = "Aqua"},
-        cmakeKWctest_update = {link = "Aqua"},
-        cmakeKWctest_upload = {link = "Aqua"},
-        cmakeKWdefine_property = {link = "Aqua"},
-        cmakeKWdoxygen_add_docs = {link = "Aqua"},
-        cmakeKWenable_language = {link = "Aqua"},
-        cmakeKWenable_testing = {link = "Aqua"},
-        cmakeKWexec_program = {link = "Aqua"},
-        cmakeKWexecute_process = {link = "Aqua"},
-        cmakeKWexport = {link = "Aqua"},
-        cmakeKWexport_library_dependencies = {link = "Aqua"},
-        cmakeKWfile = {link = "Aqua"},
-        cmakeKWfind_file = {link = "Aqua"},
-        cmakeKWfind_library = {link = "Aqua"},
-        cmakeKWfind_package = {link = "Aqua"},
-        cmakeKWfind_path = {link = "Aqua"},
-        cmakeKWfind_program = {link = "Aqua"},
-        cmakeKWfltk_wrap_ui = {link = "Aqua"},
-        cmakeKWforeach = {link = "Aqua"},
-        cmakeKWfunction = {link = "Aqua"},
-        cmakeKWget_cmake_property = {link = "Aqua"},
-        cmakeKWget_directory_property = {link = "Aqua"},
-        cmakeKWget_filename_component = {link = "Aqua"},
-        cmakeKWget_property = {link = "Aqua"},
-        cmakeKWget_source_file_property = {link = "Aqua"},
-        cmakeKWget_target_property = {link = "Aqua"},
-        cmakeKWget_test_property = {link = "Aqua"},
-        cmakeKWif = {link = "Aqua"},
-        cmakeKWinclude = {link = "Aqua"},
-        cmakeKWinclude_directories = {link = "Aqua"},
-        cmakeKWinclude_external_msproject = {link = "Aqua"},
-        cmakeKWinclude_guard = {link = "Aqua"},
-        cmakeKWinstall = {link = "Aqua"},
-        cmakeKWinstall_files = {link = "Aqua"},
-        cmakeKWinstall_programs = {link = "Aqua"},
-        cmakeKWinstall_targets = {link = "Aqua"},
-        cmakeKWlink_directories = {link = "Aqua"},
-        cmakeKWlist = {link = "Aqua"},
-        cmakeKWload_cache = {link = "Aqua"},
-        cmakeKWload_command = {link = "Aqua"},
-        cmakeKWmacro = {link = "Aqua"},
-        cmakeKWmark_as_advanced = {link = "Aqua"},
-        cmakeKWmath = {link = "Aqua"},
-        cmakeKWmessage = {link = "Aqua"},
-        cmakeKWoption = {link = "Aqua"},
-        cmakeKWproject = {link = "Aqua"},
-        cmakeKWqt_wrap_cpp = {link = "Aqua"},
-        cmakeKWqt_wrap_ui = {link = "Aqua"},
-        cmakeKWremove = {link = "Aqua"},
-        cmakeKWseparate_arguments = {link = "Aqua"},
-        cmakeKWset = {link = "Aqua"},
-        cmakeKWset_directory_properties = {link = "Aqua"},
-        cmakeKWset_property = {link = "Aqua"},
-        cmakeKWset_source_files_properties = {link = "Aqua"},
-        cmakeKWset_target_properties = {link = "Aqua"},
-        cmakeKWset_tests_properties = {link = "Aqua"},
-        cmakeKWsource_group = {link = "Aqua"},
-        cmakeKWstring = {link = "Aqua"},
-        cmakeKWsubdirs = {link = "Aqua"},
-        cmakeKWtarget_compile_definitions = {link = "Aqua"},
-        cmakeKWtarget_compile_features = {link = "Aqua"},
-        cmakeKWtarget_compile_options = {link = "Aqua"},
-        cmakeKWtarget_include_directories = {link = "Aqua"},
-        cmakeKWtarget_link_directories = {link = "Aqua"},
-        cmakeKWtarget_link_libraries = {link = "Aqua"},
-        cmakeKWtarget_link_options = {link = "Aqua"},
-        cmakeKWtarget_precompile_headers = {link = "Aqua"},
-        cmakeKWtarget_sources = {link = "Aqua"},
-        cmakeKWtry_compile = {link = "Aqua"},
-        cmakeKWtry_run = {link = "Aqua"},
-        cmakeKWunset = {link = "Aqua"},
-        cmakeKWuse_mangled_mesa = {link = "Aqua"},
-        cmakeKWvariable_requires = {link = "Aqua"},
-        cmakeKWvariable_watch = {link = "Aqua"},
-        cmakeKWwrite_file = {link = "Aqua"},
-        -- json
-        jsonKeyword = {link = "Orange"},
-        jsonQuote = {link = "Grey"},
-        jsonBraces = {link = "Fg"},
-        -- yaml
-        yamlKey = {link = "Orange"},
-        yamlConstant = {link = "Purple"},
-        -- toml
-        tomlTable = {fg = colors.purple, bg = colors.none, bold = true},
-        tomlKey = {link = "Orange"},
-        tomlBoolean = {link = "Aqua"},
-        tomlTableArray = {link = "tomlTable"},
-        -- gicommit
-        gitcommitSummary = {link = "Red"},
-        gitcommitUntracked = {link = "Grey"},
-        gitcommitDiscarded = {link = "Grey"},
-        gitcommitSelected = {link = "Grey"},
-        gitcommitUnmerged = {link = "Grey"},
-        gitcommitOnBranch = {link = "Grey"},
-        gitcommitArrow = {link = "Grey"},
-        gitcommitFile = {link = "Green"},
-        -- dosini
-        dosiniHeader = {fg = colors.red, bg = colors.none, bold = true},
-        dosiniLabel = {link = "Yellow"},
-        dosiniValue = {link = "Green"},
-        dosiniNumber = {link = "Green"},
-        -- help
-        helpNote = {fg = colors.purple, bg = colors.none, bold = true},
-        helpHeadline = {fg = colors.red, bg = colors.none, bold = true},
-        helpHeader = {fg = colors.orange, bg = colors.none, bold = true},
-        helpURL = {fg = colors.green, bg = colors.none, underline = true},
-        helpHyperTextEntry = {fg = colors.yellow, bg = colors.none, bold = true},
-        helpHyperTextJump = {link = "Yellow"},
-        helpCommand = {link = "Aqua"},
-        helpExample = {link = "Green"},
-        helpSpecial = {link = "Blue"},
-        helpSectionDelim = {link = "Grey"}
-        -- ####### Extended: End
-    }
+    if opt.italic then
+        d.PreProc = {fg = colors.purple, bg = colors.none, italic = true}
+        d.PreCondit = {fg = colors.purple, bg = colors.none, italic = true}
+        d.Include = {fg = colors.purple, bg = colors.none, italic = true}
+        d.Define = {fg = colors.purple, bg = colors.none, italic = true}
+        d.Conditional = {fg = colors.red, bg = colors.none, italic = true}
+        d.Repeat = {fg = colors.red, bg = colors.none, italic = true}
+        d.Keyword = {fg = colors.red, bg = colors.none, italic = true}
+        d.Typedef = {fg = colors.red, bg = colors.none, italic = true}
+        d.Exception = {fg = colors.red, bg = colors.none, italic = true}
+        d.Statement = {fg = colors.red, bg = colors.none, italic = true}
+    else
+        d.PreProc = {fg = colors.purple, bg = colors.none}
+        d.PreCondit = {fg = colors.purple, bg = colors.none}
+        d.Include = {fg = colors.purple, bg = colors.none}
+        d.Define = {fg = colors.purple, bg = colors.none}
+        d.Conditional = {fg = colors.red, bg = colors.none}
+        d.Repeat = {fg = colors.red, bg = colors.none}
+        d.Keyword = {fg = colors.red, bg = colors.none}
+        d.Typedef = {fg = colors.red, bg = colors.none}
+        d.Exception = {fg = colors.red, bg = colors.none}
+        d.Statement = {fg = colors.red, bg = colors.none}
+    end
+
+    d.Error = {fg = colors.red, bg = colors.none}
+    d.StorageClass = {fg = colors.orange, bg = colors.none}
+    d.Tag = {fg = colors.orange, bg = colors.none}
+    d.Label = {fg = colors.orange, bg = colors.none}
+    d.Structure = {fg = colors.orange, bg = colors.none}
+    d.Operator = {fg = colors.orange, bg = colors.none}
+    d.Title = {fg = colors.orange, bg = colors.none, bold = true}
+    d.Special = {fg = colors.yellow, bg = colors.none}
+    d.SpecialChar = {fg = colors.yellow, bg = colors.none}
+    d.Type = {fg = colors.yellow, bg = colors.none}
+
+    if opt.bold then
+        d.Function = {fg = colors.green, bg = colors.none, bold = true}
+    else
+        d.Function = {fg = colors.green, bg = colors.none}
+    end
+
+    d.String = {fg = colors.green, bg = colors.none}
+    d.Character = {fg = colors.green, bg = colors.none}
+    d.Constant = {fg = colors.aqua, bg = colors.none}
+    d.Macro = {fg = colors.aqua, bg = colors.none}
+    d.Identifier = {fg = colors.blue, bg = colors.none}
+
+    if opt.italic_comment then
+        d.Comment = {fg = colors.grey1, bg = colors.none, italic = true}
+        d.SpecialComment = {fg = colors.grey1, bg = colors.none, italic = true}
+        d.Todo = {fg = colors.purple, bg = colors.none, italic = true}
+    else
+        d.Comment = {fg = colors.grey1, bg = colors.none}
+        d.SpecialComment = {fg = colors.grey1, bg = colors.none}
+        d.Todo = {fg = colors.purple, bg = colors.none}
+    end
+
+    d.Delimiter = {fg = colors.fg0, bg = colors.none}
+    d.Ignore = {fg = colors.grey1, bg = colors.none}
+    d.Underlined = {fg = colors.none, bg = colors.none, underline = true}
+    -- Syntax: End
+
+    -- Predefined: Start
+    d.Fg = {fg = colors.fg0, bg = colors.none}
+    d.Grey = {fg = colors.grey1, bg = colors.none}
+    d.Red = {fg = colors.red, bg = colors.none}
+    d.Orange = {fg = colors.orange, bg = colors.none}
+    d.Yellow = {fg = colors.yellow, bg = colors.none}
+    d.Green = {fg = colors.green, bg = colors.none}
+    d.Aqua = {fg = colors.aqua, bg = colors.none}
+    d.Blue = {fg = colors.blue, bg = colors.none}
+    d.Purple = {fg = colors.purple, bg = colors.none}
+    d.RedItalic = {fg = colors.red, bg = colors.none, italic = true}
+    d.OrangeItalic = {fg = colors.orange, bg = colors.none, italic = true}
+    d.YellowItalic = {fg = colors.yellow, bg = colors.none, italic = true}
+    d.GreenItalic = {fg = colors.green, bg = colors.none, italic = true}
+    d.AquaItalic = {fg = colors.aqua, bg = colors.none, italic = true}
+    d.BlueItalic = {fg = colors.blue, bg = colors.none, italic = true}
+    d.PurpleItalic = {fg = colors.purple, bg = colors.none, italic = true}
+    d.RedBold = {fg = colors.red, bg = colors.none, bold = true}
+    d.OrangeBold = {fg = colors.orange, bg = colors.none, bold = true}
+    d.YellowBold = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.GreenBold = {fg = colors.green, bg = colors.none, bold = true}
+    d.AquaBold = {fg = colors.aqua, bg = colors.none, bold = true}
+    d.BlueBold = {fg = colors.blue, bg = colors.none, bold = true}
+    d.PurpleBold = {fg = colors.purple, bg = colors.none, bold = true}
+    d.RedSign = {fg = colors.red, bg = colors.none}
+    d.OrangeSign = {fg = colors.orange, bg = colors.none}
+    d.YellowSign = {fg = colors.yellow, bg = colors.none}
+    d.GreenSign = {fg = colors.green, bg = colors.none}
+    d.AquaSign = {fg = colors.aqua, bg = colors.none}
+    d.BlueSign = {fg = colors.blue, bg = colors.none}
+    d.PurpleSign = {fg = colors.purple, bg = colors.none}
+
+    if opt.diagnostic_text_highlight then
+        d.ErrorText = {fg = colors.none, bg = colors.bg_visual_red, underline = true}
+        d.WarningText = {fg = colors.none, bg = colors.bg_visual_yellow, underline = true}
+        d.InfoText = {fg = colors.none, bg = colors.bg_visual_blue, underline = true}
+        d.HintText = {fg = colors.none, bg = colors.bg_visual_green, underline = true}
+    else
+        d.ErrorText = {fg = colors.none, bg = colors.none, underline = true}
+        d.WarningText = {fg = colors.none, bg = colors.none, underline = true}
+        d.InfoText = {fg = colors.none, bg = colors.none, underline = true}
+        d.HintText = {fg = colors.none, bg = colors.none, underline = true}
+    end
+
+    if opt.diagnostic_line_highlight then
+        d.ErrorLine = {fg = colors.none, bg = colors.bg_visual_red}
+        d.WarningLine = {fg = colors.none, bg = colors.bg_visual_yellow}
+        d.InfoLine = {fg = colors.none, bg = colors.bg_visual_blue}
+        d.HintLine = {fg = colors.none, bg = colors.bg_visual_green}
+    end
+
+    d.ErrorFloat = {fg = colors.red, bg = colors.bg3}
+    d.WarningFloat = {fg = colors.yellow, bg = colors.bg3}
+    d.InfoFloat = {fg = colors.blue, bg = colors.bg3}
+    d.HintFloat = {fg = colors.green, bg = colors.bg3}
+
+    if wo.diff then
+        d.CurrentWord = {fg = colors.bg0, bg = colors.bg_green}
+    else
+        d.CurrentWord = {fg = colors.none, bg = colors.bg_current_word}
+    end
+    -- Predefined: End
+    -- ####### Common: End
+
+    -- ####### Terminal: Start
+    -- if (has('termguicolors') && &termguicolors) || has('gui_running')
+    --   " Definition
+    --   let s:terminal = {
+    --         \ 'black':    &background ==# 'dark' ? s:palette.bg0 : s:palette.fg0,
+    --         \ 'red':      s:palette.red,
+    --         \ 'yellow':   s:palette.yellow,
+    --         \ 'green':    s:palette.green,
+    --         \ 'cyan':     s:palette.aqua,
+    --         \ 'blue':     s:palette.blue,
+    --         \ 'purple':   s:palette.purple,
+    --         \ 'white':    &background ==# 'dark' ? s:palette.fg0 : s:palette.bg0
+    --         \ }
+    --   " Implementation: {{{
+    --   if !has('nvim')
+    --     let g:terminal_ansi_colors = [s:terminal.black[0], s:terminal.red[0], s:terminal.green[0], s:terminal.yellow[0],
+    --           \ s:terminal.blue[0], s:terminal.purple[0], s:terminal.cyan[0], s:terminal.white[0], s:terminal.black[0], s:terminal.red[0],
+    --           \ s:terminal.green[0], s:terminal.yellow[0], s:terminal.blue[0], s:terminal.purple[0], s:terminal.cyan[0], s:terminal.white[0]]
+    --   else
+    --     let g:terminal_color_0 = s:terminal.black[0]
+    --     let g:terminal_color_1 = s:terminal.red[0]
+    --     let g:terminal_color_2 = s:terminal.green[0]
+    --     let g:terminal_color_3 = s:terminal.yellow[0]
+    --     let g:terminal_color_4 = s:terminal.blue[0]
+    --     let g:terminal_color_5 = s:terminal.purple[0]
+    --     let g:terminal_color_6 = s:terminal.cyan[0]
+    --     let g:terminal_color_7 = s:terminal.white[0]
+    --     let g:terminal_color_8 = s:terminal.black[0]
+    --     let g:terminal_color_9 = s:terminal.red[0]
+    --     let g:terminal_color_10 = s:terminal.green[0]
+    --     let g:terminal_color_11 = s:terminal.yellow[0]
+    --     let g:terminal_color_12 = s:terminal.blue[0]
+    --     let g:terminal_color_13 = s:terminal.purple[0]
+    --     let g:terminal_color_14 = s:terminal.cyan[0]
+    --     let g:terminal_color_15 = s:terminal.white[0]
+    --   endif
+    --   " }}}
+    -- endif
+    -- ####### Terminal: End
+
+    -- ####### Plugins: Start
+    -- nvim-treesitter/nvim-treesitter
+    if opt.plugins.treesitter then
+        d.TSAnnotation = {link = "Purple"}
+        d.TSAttribute = {link = "Purple"}
+        d.TSBoolean = {link = "Purple"}
+        d.TSCharacter = {link = "Yellow"}
+        d.TSComment = {link = "Grey"}
+        d.TSConditional = {link = "Red"}
+        d.TSConstBuiltin = {link = "PurpleItalic"}
+        d.TSConstMacro = {link = "Purple"}
+        d.TSConstant = {link = "PurpleItalic"}
+        d.TSConstructor = {link = "Fg"}
+        d.TSError = {link = "ErrorText"}
+        d.TSException = {link = "Red"}
+        d.TSField = {link = "Green"}
+        d.TSFloat = {link = "Purple"}
+        d.TSFuncBuiltin = {link = "Green"}
+        d.TSFuncMacro = {link = "Green"}
+        d.TSFunction = {link = "Green"}
+        d.TSInclude = {link = "PurpleItalic"}
+        d.TSKeyword = {link = "Red"}
+        d.TSKeywordFunction = {link = "Red"}
+        d.TSLabel = {link = "Orange"}
+        d.TSMethod = {link = "Green"}
+        d.TSNamespace = {link = "BlueItalic"}
+        d.TSNumber = {link = "Purple"}
+        d.TSOperator = {link = "Orange"}
+        d.TSParameter = {link = "Fg"}
+        d.TSParameterReference = {link = "Fg"}
+        d.TSProperty = {link = "Green"}
+        d.TSPunctBracket = {link = "Fg"}
+        d.TSPunctDelimiter = {link = "Grey"}
+        d.TSPunctSpecial = {link = "Fg"}
+        d.TSRepeat = {link = "Red"}
+        d.TSString = {link = "Yellow"}
+        d.TSStringEscape = {link = "Green"}
+        d.TSStringRegex = {link = "Green"}
+        d.TSStructure = {link = "Orange"}
+        d.TSTag = {link = "Orange"}
+        d.TSTagDelimiter = {link = "Green"}
+        d.TSText = {link = "Green"}
+        d.TSEmphasis = {fg = colors.none, bg = colors.none, bold = true}
+        d.TSUnderline = {fg = colors.none, bg = colors.none, underline = true}
+        d.TSType = {link = "Aqua"}
+        d.TSTypeBuiltin = {link = "BlueItalic"}
+        d.TSURI = {link = "markdownUrl"}
+        d.TSVariable = {link = "Fg"}
+        d.TSVariableBuiltin = {link = "PurpleItalic"}
+    end
+
+    -- neoclide/coc.nvim
+    if opt.plugins.coc then
+        d.CocHoverRange = {fg = colors.none, bg = colors.none, bold = true, underline = true}
+        d.CocErrorFloat = {link = "ErrorFloat"}
+        d.CocWarningFloat = {link = "WarningFloat"}
+        d.CocInfoFloat = {link = "InfoFloat"}
+        d.CocHintFloat = {link = "HintFloat"}
+        d.CocErrorHighlight = {link = "ErrorText"}
+        d.CocWarningHighlight = {link = "WarningText"}
+        d.CocInfoHighlight = {link = "InfoText"}
+        d.CocHintHighlight = {link = "HintText"}
+        d.CocHighlightText = {link = "CurrentWord"}
+        d.CocErrorSign = {link = "RedSign"}
+        d.CocWarningSign = {link = "YellowSign"}
+        d.CocInfoSign = {link = "BlueSign"}
+        d.CocHintSign = {link = "AquaSign"}
+        d.CocWarningVirtualText = {link = "Grey"}
+        d.CocErrorVirtualText = {link = "Grey"}
+        d.CocInfoVirtualText = {link = "Grey"}
+        d.CocHintVirtualText = {link = "Grey"}
+        d.CocErrorLine = {link = "ErrorLine"}
+        d.CocWarningLine = {link = "WarningLine"}
+        d.CocInfoLine = {link = "InfoLine"}
+        d.CocHintLine = {link = "HintLine"}
+        d.CocCodeLens = {link = "Grey"}
+        d.HighlightedyankRegion = {link = "Visual"}
+        d.CocGitAddedSign = {link = "GreenSign"}
+        d.CocGitChangeRemovedSign = {link = "PurpleSign"}
+        d.CocGitChangedSign = {link = "BlueSign"}
+        d.CocGitRemovedSign = {link = "RedSign"}
+        d.CocGitTopRemovedSign = {link = "RedSign"}
+        d.CocExplorerBufferRoot = {link = "Orange"}
+        d.CocExplorerBufferExpandIcon = {link = "Aqua"}
+        d.CocExplorerBufferBufnr = {link = "Purple"}
+        d.CocExplorerBufferModified = {link = "Yellow"}
+        d.CocExplorerBufferReadonly = {link = "Red"}
+        d.CocExplorerBufferBufname = {link = "Grey"}
+        d.CocExplorerBufferFullpath = {link = "Grey"}
+        d.CocExplorerFileRoot = {link = "Orange"}
+        d.CocExplorerFileRootName = {link = "Green"}
+        d.CocExplorerFileExpandIcon = {link = "Aqua"}
+        d.CocExplorerFileFullpath = {link = "Grey"}
+        d.CocExplorerFileDirectory = {link = "Green"}
+        d.CocExplorerFileGitStaged = {link = "Purple"}
+        d.CocExplorerFileGitUnstaged = {link = "Yellow"}
+        d.CocExplorerFileGitRootStaged = {link = "Purple"}
+        d.CocExplorerFileGitRootUnstaged = {link = "Yellow"}
+        d.CocExplorerGitPathChange = {link = "Fg"}
+        d.CocExplorerGitContentChange = {link = "Fg"}
+        d.CocExplorerGitRenamed = {link = "Purple"}
+        d.CocExplorerGitCopied = {link = "Fg"}
+        d.CocExplorerGitAdded = {link = "Green"}
+        d.CocExplorerGitUntracked = {link = "Blue"}
+        d.CocExplorerGitUnmodified = {link = "Fg"}
+        d.CocExplorerGitUnmerged = {link = "Orange"}
+        d.CocExplorerGitMixed = {link = "Aqua"}
+        d.CocExplorerGitModified = {link = "Yellow"}
+        d.CocExplorerGitDeleted = {link = "Red"}
+        d.CocExplorerGitIgnored = {link = "Grey"}
+        d.CocExplorerFileSize = {link = "Blue"}
+        d.CocExplorerTimeAccessed = {link = "Aqua"}
+        d.CocExplorerTimeCreated = {link = "Aqua"}
+        d.CocExplorerTimeModified = {link = "Aqua"}
+        d.CocExplorerIndentLine = {link = "Conceal"}
+        d.CocExplorerHelpDescription = {link = "Grey"}
+        d.CocExplorerHelpHint = {link = "Grey"}
+    end
+
+    -- prabirshrestha/vim-lsp
+    if opt.plugins["vim-lsp"] then
+        d.LspErrorVirtual = {link = "Grey"}
+        d.LspWarningVirtual = {link = "Grey"}
+        d.LspInformationVirtual = {link = "Grey"}
+        d.LspHintVirtual = {link = "Grey"}
+        d.LspErrorHighlight = {link = "ErrorText"}
+        d.LspWarningHighlight = {link = "WarningText"}
+        d.LspInformationHighlight = {link = "InfoText"}
+        d.LspHintHighlight = {link = "HintText"}
+        d.lspReference = {link = "CurrentWord"}
+    end
+
+    -- ycm-core/YouCompleteMe
+    if opt.plugins.ycm then
+        d.YcmErrorSign = {link = "RedSign"}
+        d.YcmWarningSign = {link = "YellowSign"}
+        d.YcmErrorLine = {link = "ErrorLine"}
+        d.YcmWarningLine = {link = "WarningLine"}
+        d.YcmErrorSection = {link = "ErrorText"}
+        d.YcmWarningSection = {link = "WarningText"}
+    end
+
+    -- dense-analysis/ale
+    if opt.plugins.ale then
+        d.ALEError = {link = "ErrorText"}
+        d.ALEWarning = {link = "WarningText"}
+        d.ALEInfo = {link = "InfoText"}
+        d.ALEErrorSign = {link = "RedSign"}
+        d.ALEWarningSign = {link = "YellowSign"}
+        d.ALEInfoSign = {link = "BlueSign"}
+        d.ALEErrorLine = {link = "ErrorLine"}
+        d.ALEWarningLine = {link = "WarningLine"}
+        d.ALEInfoLine = {link = "InfoLine"}
+        d.ALEVirtualTextError = {link = "Grey"}
+        d.ALEVirtualTextWarning = {link = "Grey"}
+        d.ALEVirtualTextInfo = {link = "Grey"}
+        d.ALEVirtualTextStyleError = {link = "Grey"}
+        d.ALEVirtualTextStyleWarning = {link = "Grey"}
+    end
+
+    -- nvim-telescope/telescope.nvim
+    if opt.plugins.telescope then
+        d.TelescopeMatching = {link = "OrangeBold"}
+        d.TelescopeBorder = {link = "Grey"}
+        d.TelescopePromptPrefix = {link = "Normal"}
+        d.TelescopeSelection = {link = "Visual"}
+    end
+
+    -- airblade/vim-gitgutter
+    if opt.plugins["git-gutter"] then
+        d.GitGutterAdd = {link = "GreenSign"}
+        d.GitGutterChange = {link = "BlueSign"}
+        d.GitGutterDelete = {link = "RedSign"}
+        d.GitGutterChangeDelete = {link = "PurpleSign"}
+    end
+
+    -- easymotion/vim-easymotion
+    if opt.plugins.easymotion then
+        d.EasyMotionTarget = {link = "Search"}
+        d.EasyMotionShade = {link = "Grey"}
+    end
+
+    -- justinmk/vim-sneak
+    if opt.plugins["vim-sneak"] then
+        d.SneakLabelMask = {fg = colors.bg_green, bg = colors.bg_green}
+        d.Sneak = {link = "Search"}
+        d.SneakLabel = {link = "Search"}
+        d.SneakScope = {link = "DiffText"}
+    end
+
+    -- vim-plug
+    if opt.plugins["vim-plug"] then
+        d.plug1 = {fg = colors.orange, bg = colors.none, "bold"}
+        d.plugNumber = {fg = colors.yellow, bg = colors.none, "bold"}
+        d.plug2 = {link = "Green"}
+        d.plugBracket = {link = "Grey"}
+        d.plugName = {link = "Aqua"}
+        d.plugDash = {link = "Orange"}
+        d.plugError = {link = "Red"}
+        d.plugNotLoaded = {link = "Grey"}
+        d.plugRelDate = {link = "Grey"}
+        d.plugH2 = {link = "Orange"}
+        d.plugMessage = {link = "Orange"}
+        d.plugStar = {link = "Red"}
+        d.plugUpdate = {link = "Blue"}
+        d.plugDeleted = {link = "Grey"}
+        d.plugEdge = {link = "Yellow"}
+        d.plugSha = {link = "Green"}
+    end
+
+    -- preservim/nerdtree
+    if opt.plugins.nerdtree then
+        d.NERDTreeDir = {link = "Green"}
+        d.NERDTreeDirSlash = {link = "Aqua"}
+        d.NERDTreeOpenable = {link = "Orange"}
+        d.NERDTreeClosable = {link = "Orange"}
+        d.NERDTreeFile = {link = "Fg"}
+        d.NERDTreeExecFile = {link = "Yellow"}
+        d.NERDTreeUp = {link = "Grey"}
+        d.NERDTreeCWD = {link = "Aqua"}
+        d.NERDTreeHelp = {link = "LightGrey"}
+        d.NERDTreeToggleOn = {link = "Green"}
+        d.NERDTreeToggleOff = {link = "Red"}
+        d.NERDTreeFlags = {link = "Orange"}
+        d.NERDTreeLinkFile = {link = "Grey"}
+        d.NERDTreeLinkTarget = {link = "Green"}
+    end
+
+    -- mhinz/vim-startify
+    if opt.plugins["vim-startify"] then
+        d.StartifyBracket = {link = "Grey"}
+        d.StartifyFile = {link = "Fg"}
+        d.StartifyNumber = {link = "Red"}
+        d.StartifyPath = {link = "Green"}
+        d.StartifySlash = {link = "Green"}
+        d.StartifySection = {link = "Blue"}
+        d.StartifyHeader = {link = "Orange"}
+        d.StartifySpecial = {link = "Grey"}
+        d.StartifyFooter = {link = "Grey"}
+    end
+
+    -- phaazon/hop.nvim
+    if opt.plugins["hop.nvim"] then
+        d.HopNextKey = {reverse = true}
+        d.HopNextKey1 = {reverse = true}
+        d.HopNextKey2 = {reverse = true}
+        d.HopUnmatched = {fg = colors.bg5}
+    end
+
+    -- kyazdani42/nvim-tree.lua
+    if opt.plugins["nvim-tree"] then
+        d.NvimTreeFolderName = {link = "Normal"}
+        d.NvimTreeFolderIcon = {link = "Normal"}
+        d.NvimTreeIndentMarker = {link = "Comment"}
+        d.NvimTreeRootFolder = {fg = colors.grey1, bold = true}
+    end
+
+    -- lewis6991/gitsigns.nvim
+    if opt.plugins.gitsigns then
+        d.GitSignsAdd = {link = "GreenSign"}
+        d.GitSignsChange = {link = "BlueSign"}
+        d.GitSignsDelete = {link = "RedSign"}
+    end
+
+    -- ####### Plugins: End
+
+    -- ####### Extended filetype: Start
+    -- diff
+    d.diffAdded = {link = "Green"}
+    d.diffRemoved = {link = "Red"}
+    d.diffChanged = {link = "Blue"}
+    d.diffOldFile = {link = "Yellow"}
+    d.diffNewFile = {link = "Orange"}
+    d.diffFile = {link = "Aqua"}
+    d.diffLine = {link = "Grey"}
+    d.diffIndexLine = {link = "Purple"}
+    -- netrw
+    d.netrwDir = {link = "Green"}
+    d.netrwClassify = {link = "Green"}
+    d.netrwLink = {link = "Grey"}
+    d.netrwSymLink = {link = "Fg"}
+    d.netrwExe = {link = "Yellow"}
+    d.netrwComment = {link = "Grey"}
+    d.netrwList = {link = "Aqua"}
+    d.netrwHelpCmd = {link = "Blue"}
+    d.netrwCmdSep = {link = "Grey"}
+    d.netrwVersion = {link = "Orange"}
+    -- markdown
+    d.markdownH1 = {fg = colors.red, bg = colors.none, bold = true}
+    d.markdownH2 = {fg = colors.orange, bg = colors.none, bold = true}
+    d.markdownH3 = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.markdownH4 = {fg = colors.green, bg = colors.none, bold = true}
+    d.markdownH5 = {fg = colors.blue, bg = colors.none, bold = true}
+    d.markdownH6 = {fg = colors.purple, bg = colors.none, bold = true}
+    d.markdownUrl = {fg = colors.blue, bg = colors.none, underline = true}
+    d.markdownItalic = {fg = colors.none, bg = colors.none, italic = true}
+    d.markdownBold = {fg = colors.none, bg = colors.none, bold = true}
+    d.markdownItalicDelimiter = {fg = colors.grey1, bg = colors.none, italic = true}
+    d.markdownCode = {link = "Green"}
+    d.markdownCodeBlock = {link = "Aqua"}
+    d.markdownCodeDelimiter = {link = "Aqua"}
+    d.markdownBlockquote = {link = "Grey"}
+    d.markdownListMarker = {link = "Red"}
+    d.markdownOrderedListMarker = {link = "Red"}
+    d.markdownRule = {link = "Purple"}
+    d.markdownHeadingRule = {link = "Grey"}
+    d.markdownUrlDelimiter = {link = "Grey"}
+    d.markdownLinkDelimiter = {link = "Grey"}
+    d.markdownLinkTextDelimiter = {link = "Grey"}
+    d.markdownHeadingDelimiter = {link = "Grey"}
+    d.markdownLinkText = {link = "Purple"}
+    d.markdownUrlTitleDelimiter = {link = "Green"}
+    d.markdownIdDeclaration = {link = "markdownLinkText"}
+    d.markdownBoldDelimiter = {link = "Grey"}
+    d.markdownId = {link = "Yellow"}
+    -- html/markdown/javascriptreact/typescriptreact
+    d.htmlH1 = {fg = colors.red, bg = colors.none, bold = true}
+    d.htmlH2 = {fg = colors.orange, bg = colors.none, bold = true}
+    d.htmlH3 = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.htmlH4 = {fg = colors.green, bg = colors.none, bold = true}
+    d.htmlH5 = {fg = colors.blue, bg = colors.none, bold = true}
+    d.htmlH6 = {fg = colors.purple, bg = colors.none, bold = true}
+    d.htmlLink = {fg = colors.none, bg = colors.none, underline = true}
+    d.htmlBold = {fg = colors.none, bg = colors.none, bold = true}
+    d.htmlBoldUnderline = {fg = colors.none, bg = colors.none, bold = true, underline = true}
+    d.htmlBoldItalic = {fg = colors.none, bg = colors.none, bold = true, italic = true}
+    d.htmlBoldUnderlineItalic = {fg = colors.none, bg = colors.none, bold = true, underline = true, italic = true}
+    d.htmlUnderline = {fg = colors.none, bg = colors.none, underline = true}
+    d.htmlUnderlineItalic = {fg = colors.none, bg = colors.none, underline = true, italic = true}
+    d.htmlItalic = {fg = colors.none, bg = colors.none, italic = true}
+    d.htmlTag = {link = "Green"}
+    d.htmlEndTag = {link = "Blue"}
+    d.htmlTagN = {link = "OrangeItalic"}
+    d.htmlTagName = {link = "OrangeItalic"}
+    d.htmlArg = {link = "Aqua"}
+    d.htmlScriptTag = {link = "Purple"}
+    d.htmlSpecialTagName = {link = "RedItalic"}
+    -- xml
+    d.xmlTag = {link = "Green"}
+    d.xmlEndTag = {link = "Blue"}
+    d.xmlTagName = {link = "OrangeItalic"}
+    d.xmlEqual = {link = "Orange"}
+    d.xmlAttrib = {link = "Aqua"}
+    d.xmlEntity = {link = "Red"}
+    d.xmlEntityPunct = {link = "Red"}
+    d.xmlDocTypeDecl = {link = "Grey"}
+    d.xmlDocTypeKeyword = {link = "PurpleItalic"}
+    d.xmlCdataStart = {link = "Grey"}
+    d.xmlCdataCdata = {link = "Purple"}
+    -- css/scss/sass/less
+    d.cssAttrComma = {link = "Fg"}
+    d.cssBraces = {link = "Fg"}
+    d.cssTagName = {link = "PurpleItalic"}
+    d.cssClassNameDot = {link = "Red"}
+    d.cssClassName = {link = "RedItalic"}
+    d.cssFunctionName = {link = "Yellow"}
+    d.cssAttr = {link = "Orange"}
+    d.cssProp = {link = "Aqua"}
+    d.cssCommonAttr = {link = "Yellow"}
+    d.cssPseudoClassId = {link = "Blue"}
+    d.cssPseudoClassFn = {link = "Green"}
+    d.cssPseudoClass = {link = "Purple"}
+    d.cssImportant = {link = "RedItalic"}
+    d.cssSelectorOp = {link = "Orange"}
+    d.cssSelectorOp2 = {link = "Orange"}
+    d.cssColor = {link = "Green"}
+    d.cssAttributeSelector = {link = "Aqua"}
+    d.cssUnitDecorators = {link = "Orange"}
+    d.cssValueLength = {link = "Green"}
+    d.cssValueInteger = {link = "Green"}
+    d.cssValueNumber = {link = "Green"}
+    d.cssValueAngle = {link = "Green"}
+    d.cssValueTime = {link = "Green"}
+    d.cssValueFrequency = {link = "Green"}
+    d.cssVendor = {link = "Grey"}
+    d.cssNoise = {link = "Grey"}
+    d.scssMixinName = {link = "Yellow"}
+    d.scssSelectorChar = {link = "Red"}
+    d.scssSelectorName = {link = "RedItalic"}
+    d.scssInterpolationDelimiter = {link = "Green"}
+    d.scssVariableValue = {link = "Green"}
+    d.scssNull = {link = "Purple"}
+    d.scssBoolean = {link = "Purple"}
+    d.scssVariableAssignment = {link = "Grey"}
+    d.scssForKeyword = {link = "PurpleItalic"}
+    d.scssAttribute = {link = "Orange"}
+    d.scssFunctionName = {link = "Yellow"}
+    d.sassProperty = {link = "Aqua"}
+    d.sassAmpersand = {link = "Orange"}
+    d.sassClass = {link = "RedItalic"}
+    d.sassClassChar = {link = "Red"}
+    d.sassMixing = {link = "PurpleItalic"}
+    d.sassMixinName = {link = "Orange"}
+    d.sassCssAttribute = {link = "Yellow"}
+    d.sassInterpolationDelimiter = {link = "Green"}
+    d.sassFunction = {link = "Yellow"}
+    d.sassControl = {link = "RedItalic"}
+    d.sassFor = {link = "RedItalic"}
+    d.sassFunctionName = {link = "GreenBold"}
+    -- less
+    d.lessMixinChar = {link = "Grey"}
+    d.lessClass = {link = "RedItalic"}
+    d.lessVariable = {link = "Blue"}
+    d.lessAmpersandChar = {link = "Orange"}
+    d.lessFunction = {link = "Yellow"}
+    -- javascript/javascriptreact
+    d.javaScriptNull = {link = "Aqua"}
+    d.javaScriptIdentifier = {link = "Orange"}
+    d.javaScriptParens = {link = "Fg"}
+    d.javaScriptBraces = {link = "Fg"}
+    d.javaScriptGlobal = {link = "Purple"}
+    d.javaScriptMessage = {link = "Yellow"}
+    d.javaScriptFunction = {link = "RedItalic"}
+    d.javaScriptOperator = {link = "Orange"}
+    d.javaScriptMember = {link = "Aqua"}
+    -- vim-javascript: https://github.com/pangloss/vim-javascript
+    d.jsThis = {link = "Purple"}
+    d.jsUndefined = {link = "Aqua"}
+    d.jsNull = {link = "Aqua"}
+    d.jsNan = {link = "Aqua"}
+    d.jsSuper = {link = "Purple"}
+    d.jsPrototype = {link = "Purple"}
+    d.jsFunction = {link = "RedItalic"}
+    d.jsGlobalNodeObjects = {link = "PurpleItalic"}
+    d.jsGlobalObjects = {link = "Yellow"}
+    d.jsArrowFunction = {link = "Purple"}
+    d.jsArrowFuncArgs = {link = "Blue"}
+    d.jsFuncArgs = {link = "Blue"}
+    d.jsObjectProp = {link = "Aqua"}
+    d.jsVariableDef = {link = "Blue"}
+    d.jsObjectKey = {link = "Aqua"}
+    d.jsParen = {link = "Blue"}
+    d.jsParenIfElse = {link = "Blue"}
+    d.jsParenRepeat = {link = "Blue"}
+    d.jsParenSwitch = {link = "Blue"}
+    d.jsParenCatch = {link = "Blue"}
+    d.jsBracket = {link = "Blue"}
+    d.jsBlockLabel = {link = "Aqua"}
+    d.jsFunctionKey = {link = "GreenBold"}
+    d.jsClassDefinition = {link = "Yellow"}
+    d.jsDot = {link = "Grey"}
+    d.jsDestructuringBlock = {link = "Blue"}
+    d.jsSpreadExpression = {link = "Purple"}
+    d.jsSpreadOperator = {link = "Green"}
+    d.jsModuleKeyword = {link = "Yellow"}
+    d.jsObjectValue = {link = "Blue"}
+    d.jsTemplateExpression = {link = "Yellow"}
+    d.jsTemplateBraces = {link = "Yellow"}
+    d.jsClassMethodType = {link = "Orange"}
+    -- yajs: https://github.com/othree/yajs.vim
+    d.javascriptEndColons = {link = "Fg"}
+    d.javascriptOpSymbol = {link = "Orange"}
+    d.javascriptOpSymbols = {link = "Orange"}
+    d.javascriptIdentifierName = {link = "Blue"}
+    d.javascriptVariable = {link = "Orange"}
+    d.javascriptObjectLabel = {link = "Aqua"}
+    d.javascriptObjectLabelColon = {link = "Grey"}
+    d.javascriptPropertyNameString = {link = "Aqua"}
+    d.javascriptFuncArg = {link = "Blue"}
+    d.javascriptIdentifier = {link = "Purple"}
+    d.javascriptArrowFunc = {link = "Purple"}
+    d.javascriptTemplate = {link = "Yellow"}
+    d.javascriptTemplateSubstitution = {link = "Yellow"}
+    d.javascriptTemplateSB = {link = "Yellow"}
+    d.javascriptNodeGlobal = {link = "PurpleItalic"}
+    d.javascriptDocTags = {link = "PurpleItalic"}
+    d.javascriptDocNotation = {link = "Purple"}
+    d.javascriptClassSuper = {link = "Purple"}
+    d.javascriptClassName = {link = "Yellow"}
+    d.javascriptClassSuperName = {link = "Yellow"}
+    d.javascriptBrackets = {link = "Fg"}
+    d.javascriptBraces = {link = "Fg"}
+    d.javascriptLabel = {link = "Purple"}
+    d.javascriptDotNotation = {link = "Grey"}
+    d.javascriptGlobalArrayDot = {link = "Grey"}
+    d.javascriptGlobalBigIntDot = {link = "Grey"}
+    d.javascriptGlobalDateDot = {link = "Grey"}
+    d.javascriptGlobalJSONDot = {link = "Grey"}
+    d.javascriptGlobalMathDot = {link = "Grey"}
+    d.javascriptGlobalNumberDot = {link = "Grey"}
+    d.javascriptGlobalObjectDot = {link = "Grey"}
+    d.javascriptGlobalPromiseDot = {link = "Grey"}
+    d.javascriptGlobalRegExpDot = {link = "Grey"}
+    d.javascriptGlobalStringDot = {link = "Grey"}
+    d.javascriptGlobalSymbolDot = {link = "Grey"}
+    d.javascriptGlobalURLDot = {link = "Grey"}
+    d.javascriptMethod = {link = "GreenBold"}
+    d.javascriptMethodName = {link = "GreenBold"}
+    d.javascriptObjectMethodName = {link = "GreenBold"}
+    d.javascriptGlobalMethod = {link = "GreenBold"}
+    d.javascriptDOMStorageMethod = {link = "GreenBold"}
+    d.javascriptFileMethod = {link = "GreenBold"}
+    d.javascriptFileReaderMethod = {link = "GreenBold"}
+    d.javascriptFileListMethod = {link = "GreenBold"}
+    d.javascriptBlobMethod = {link = "GreenBold"}
+    d.javascriptURLStaticMethod = {link = "GreenBold"}
+    d.javascriptNumberStaticMethod = {link = "GreenBold"}
+    d.javascriptNumberMethod = {link = "GreenBold"}
+    d.javascriptDOMNodeMethod = {link = "GreenBold"}
+    d.javascriptES6BigIntStaticMethod = {link = "GreenBold"}
+    d.javascriptBOMWindowMethod = {link = "GreenBold"}
+    d.javascriptHeadersMethod = {link = "GreenBold"}
+    d.javascriptRequestMethod = {link = "GreenBold"}
+    d.javascriptResponseMethod = {link = "GreenBold"}
+    d.javascriptES6SetMethod = {link = "GreenBold"}
+    d.javascriptReflectMethod = {link = "GreenBold"}
+    d.javascriptPaymentMethod = {link = "GreenBold"}
+    d.javascriptPaymentResponseMethod = {link = "GreenBold"}
+    d.javascriptTypedArrayStaticMethod = {link = "GreenBold"}
+    d.javascriptGeolocationMethod = {link = "GreenBold"}
+    d.javascriptES6MapMethod = {link = "GreenBold"}
+    d.javascriptServiceWorkerMethod = {link = "GreenBold"}
+    d.javascriptCacheMethod = {link = "GreenBold"}
+    d.javascriptFunctionMethod = {link = "GreenBold"}
+    d.javascriptXHRMethod = {link = "GreenBold"}
+    d.javascriptBOMNavigatorMethod = {link = "GreenBold"}
+    d.javascriptDOMEventTargetMethod = {link = "GreenBold"}
+    d.javascriptDOMEventMethod = {link = "GreenBold"}
+    d.javascriptIntlMethod = {link = "GreenBold"}
+    d.javascriptDOMDocMethod = {link = "GreenBold"}
+    d.javascriptStringStaticMethod = {link = "GreenBold"}
+    d.javascriptStringMethod = {link = "GreenBold"}
+    d.javascriptSymbolStaticMethod = {link = "GreenBold"}
+    d.javascriptRegExpMethod = {link = "GreenBold"}
+    d.javascriptObjectStaticMethod = {link = "GreenBold"}
+    d.javascriptObjectMethod = {link = "GreenBold"}
+    d.javascriptBOMLocationMethod = {link = "GreenBold"}
+    d.javascriptJSONStaticMethod = {link = "GreenBold"}
+    d.javascriptGeneratorMethod = {link = "GreenBold"}
+    d.javascriptEncodingMethod = {link = "GreenBold"}
+    d.javascriptPromiseStaticMethod = {link = "GreenBold"}
+    d.javascriptPromiseMethod = {link = "GreenBold"}
+    d.javascriptBOMHistoryMethod = {link = "GreenBold"}
+    d.javascriptDOMFormMethod = {link = "GreenBold"}
+    d.javascriptClipboardMethod = {link = "GreenBold"}
+    d.javascriptBroadcastMethod = {link = "GreenBold"}
+    d.javascriptDateStaticMethod = {link = "GreenBold"}
+    d.javascriptDateMethod = {link = "GreenBold"}
+    d.javascriptConsoleMethod = {link = "GreenBold"}
+    d.javascriptArrayStaticMethod = {link = "GreenBold"}
+    d.javascriptArrayMethod = {link = "GreenBold"}
+    d.javascriptMathStaticMethod = {link = "GreenBold"}
+    d.javascriptSubtleCryptoMethod = {link = "GreenBold"}
+    d.javascriptCryptoMethod = {link = "GreenBold"}
+    d.javascriptProp = {link = "Aqua"}
+    d.javascriptBOMWindowProp = {link = "Aqua"}
+    d.javascriptDOMStorageProp = {link = "Aqua"}
+    d.javascriptFileReaderProp = {link = "Aqua"}
+    d.javascriptURLUtilsProp = {link = "Aqua"}
+    d.javascriptNumberStaticProp = {link = "Aqua"}
+    d.javascriptDOMNodeProp = {link = "Aqua"}
+    d.javascriptRequestProp = {link = "Aqua"}
+    d.javascriptResponseProp = {link = "Aqua"}
+    d.javascriptES6SetProp = {link = "Aqua"}
+    d.javascriptPaymentProp = {link = "Aqua"}
+    d.javascriptPaymentResponseProp = {link = "Aqua"}
+    d.javascriptPaymentAddressProp = {link = "Aqua"}
+    d.javascriptPaymentShippingOptionProp = {link = "Aqua"}
+    d.javascriptTypedArrayStaticProp = {link = "Aqua"}
+    d.javascriptServiceWorkerProp = {link = "Aqua"}
+    d.javascriptES6MapProp = {link = "Aqua"}
+    d.javascriptRegExpStaticProp = {link = "Aqua"}
+    d.javascriptRegExpProp = {link = "Aqua"}
+    d.javascriptXHRProp = {link = "Aqua"}
+    d.javascriptBOMNavigatorProp = {link = "GreenBold"}
+    d.javascriptDOMEventProp = {link = "Aqua"}
+    d.javascriptBOMNetworkProp = {link = "Aqua"}
+    d.javascriptDOMDocProp = {link = "Aqua"}
+    d.javascriptSymbolStaticProp = {link = "Aqua"}
+    d.javascriptSymbolProp = {link = "Aqua"}
+    d.javascriptBOMLocationProp = {link = "Aqua"}
+    d.javascriptEncodingProp = {link = "Aqua"}
+    d.javascriptCryptoProp = {link = "Aqua"}
+    d.javascriptBOMHistoryProp = {link = "Aqua"}
+    d.javascriptDOMFormProp = {link = "Aqua"}
+    d.javascriptDataViewProp = {link = "Aqua"}
+    d.javascriptBroadcastProp = {link = "Aqua"}
+    d.javascriptMathStaticProp = {link = "Aqua"}
+    -- vim-jsx-pretty: https://github.com/maxmellon/vim-jsx-pretty
+    d.jsxTagName = {link = "OrangeItalic"}
+    d.jsxOpenPunct = {link = "Green"}
+    d.jsxClosePunct = {link = "Blue"}
+    d.jsxEscapeJs = {link = "Blue"}
+    d.jsxAttrib = {link = "Aqua"}
+    -- typescript/typescriptreact
+    -- vim-typescript: https://github.com/leafgarland/typescript-vim
+    d.typescriptSource = {link = "PurpleItalic"}
+    d.typescriptMessage = {link = "Yellow"}
+    d.typescriptGlobalObjects = {link = "Aqua"}
+    d.typescriptInterpolation = {link = "Yellow"}
+    d.typescriptInterpolationDelimiter = {link = "Yellow"}
+    d.typescriptBraces = {link = "Fg"}
+    d.typescriptParens = {link = "Fg"}
+    -- yats: https:github.com/HerringtonDarkholme/yats.vim
+    d.typescriptMethodAccessor = {link = "OrangeItalic"}
+    d.typescriptVariable = {link = "Orange"}
+    d.typescriptVariableDeclaration = {link = "Blue"}
+    d.typescriptTypeReference = {link = "Yellow"}
+    d.typescriptEnumKeyword = {link = "RedItalic"}
+    d.typescriptEnum = {link = "Yellow"}
+    d.typescriptIdentifierName = {link = "Aqua"}
+    d.typescriptProp = {link = "Aqua"}
+    d.typescriptCall = {link = "Blue"}
+    d.typescriptInterfaceName = {link = "Yellow"}
+    d.typescriptEndColons = {link = "Fg"}
+    d.typescriptMember = {link = "Aqua"}
+    d.typescriptMemberOptionality = {link = "Orange"}
+    d.typescriptObjectLabel = {link = "Aqua"}
+    d.typescriptArrowFunc = {link = "Purple"}
+    d.typescriptAbstract = {link = "Orange"}
+    d.typescriptObjectColon = {link = "Grey"}
+    d.typescriptTypeAnnotation = {link = "Grey"}
+    d.typescriptAssign = {link = "Orange"}
+    d.typescriptBinaryOp = {link = "Orange"}
+    d.typescriptUnaryOp = {link = "Orange"}
+    d.typescriptFuncComma = {link = "Fg"}
+    d.typescriptClassName = {link = "Yellow"}
+    d.typescriptClassHeritage = {link = "Yellow"}
+    d.typescriptInterfaceHeritage = {link = "Yellow"}
+    d.typescriptIdentifier = {link = "Purple"}
+    d.typescriptGlobal = {link = "Purple"}
+    d.typescriptOperator = {link = "RedItalic"}
+    d.typescriptNodeGlobal = {link = "PurpleItalic"}
+    d.typescriptExport = {link = "PurpleItalic"}
+    d.typescriptDefaultParam = {link = "Orange"}
+    d.typescriptImport = {link = "PurpleItalic"}
+    d.typescriptTypeParameter = {link = "Yellow"}
+    d.typescriptReadonlyModifier = {link = "Orange"}
+    d.typescriptAccessibilityModifier = {link = "Orange"}
+    d.typescriptAmbientDeclaration = {link = "RedItalic"}
+    d.typescriptTemplateSubstitution = {link = "Yellow"}
+    d.typescriptTemplateSB = {link = "Yellow"}
+    d.typescriptExceptions = {link = "RedItalic"}
+    d.typescriptCastKeyword = {link = "RedItalic"}
+    d.typescriptOptionalMark = {link = "Orange"}
+    d.typescriptNull = {link = "Aqua"}
+    d.typescriptMappedIn = {link = "RedItalic"}
+    d.typescriptFuncTypeArrow = {link = "Purple"}
+    d.typescriptTernaryOp = {link = "Orange"}
+    d.typescriptParenExp = {link = "Blue"}
+    d.typescriptIndexExpr = {link = "Blue"}
+    d.typescriptDotNotation = {link = "Grey"}
+    d.typescriptGlobalNumberDot = {link = "Grey"}
+    d.typescriptGlobalStringDot = {link = "Grey"}
+    d.typescriptGlobalArrayDot = {link = "Grey"}
+    d.typescriptGlobalObjectDot = {link = "Grey"}
+    d.typescriptGlobalSymbolDot = {link = "Grey"}
+    d.typescriptGlobalMathDot = {link = "Grey"}
+    d.typescriptGlobalDateDot = {link = "Grey"}
+    d.typescriptGlobalJSONDot = {link = "Grey"}
+    d.typescriptGlobalRegExpDot = {link = "Grey"}
+    d.typescriptGlobalPromiseDot = {link = "Grey"}
+    d.typescriptGlobalURLDot = {link = "Grey"}
+    d.typescriptGlobalMethod = {link = "GreenBold"}
+    d.typescriptDOMStorageMethod = {link = "GreenBold"}
+    d.typescriptFileMethod = {link = "GreenBold"}
+    d.typescriptFileReaderMethod = {link = "GreenBold"}
+    d.typescriptFileListMethod = {link = "GreenBold"}
+    d.typescriptBlobMethod = {link = "GreenBold"}
+    d.typescriptURLStaticMethod = {link = "GreenBold"}
+    d.typescriptNumberStaticMethod = {link = "GreenBold"}
+    d.typescriptNumberMethod = {link = "GreenBold"}
+    d.typescriptDOMNodeMethod = {link = "GreenBold"}
+    d.typescriptPaymentMethod = {link = "GreenBold"}
+    d.typescriptPaymentResponseMethod = {link = "GreenBold"}
+    d.typescriptHeadersMethod = {link = "GreenBold"}
+    d.typescriptRequestMethod = {link = "GreenBold"}
+    d.typescriptResponseMethod = {link = "GreenBold"}
+    d.typescriptES6SetMethod = {link = "GreenBold"}
+    d.typescriptReflectMethod = {link = "GreenBold"}
+    d.typescriptBOMWindowMethod = {link = "GreenBold"}
+    d.typescriptGeolocationMethod = {link = "GreenBold"}
+    d.typescriptServiceWorkerMethod = {link = "GreenBold"}
+    d.typescriptCacheMethod = {link = "GreenBold"}
+    d.typescriptES6MapMethod = {link = "GreenBold"}
+    d.typescriptFunctionMethod = {link = "GreenBold"}
+    d.typescriptRegExpMethod = {link = "GreenBold"}
+    d.typescriptXHRMethod = {link = "GreenBold"}
+    d.typescriptBOMNavigatorMethod = {link = "GreenBold"}
+    d.typescriptIntlMethod = {link = "GreenBold"}
+    d.typescriptDOMEventTargetMethod = {link = "GreenBold"}
+    d.typescriptDOMEventMethod = {link = "GreenBold"}
+    d.typescriptDOMDocMethod = {link = "GreenBold"}
+    d.typescriptStringStaticMethod = {link = "GreenBold"}
+    d.typescriptStringMethod = {link = "GreenBold"}
+    d.typescriptSymbolStaticMethod = {link = "GreenBold"}
+    d.typescriptObjectStaticMethod = {link = "GreenBold"}
+    d.typescriptObjectMethod = {link = "GreenBold"}
+    d.typescriptJSONStaticMethod = {link = "GreenBold"}
+    d.typescriptEncodingMethod = {link = "GreenBold"}
+    d.typescriptBOMLocationMethod = {link = "GreenBold"}
+    d.typescriptPromiseStaticMethod = {link = "GreenBold"}
+    d.typescriptPromiseMethod = {link = "GreenBold"}
+    d.typescriptSubtleCryptoMethod = {link = "GreenBold"}
+    d.typescriptCryptoMethod = {link = "GreenBold"}
+    d.typescriptBOMHistoryMethod = {link = "GreenBold"}
+    d.typescriptDOMFormMethod = {link = "GreenBold"}
+    d.typescriptConsoleMethod = {link = "GreenBold"}
+    d.typescriptDateStaticMethod = {link = "GreenBold"}
+    d.typescriptDateMethod = {link = "GreenBold"}
+    d.typescriptArrayStaticMethod = {link = "GreenBold"}
+    d.typescriptArrayMethod = {link = "GreenBold"}
+    d.typescriptMathStaticMethod = {link = "GreenBold"}
+    d.typescriptStringProperty = {link = "Aqua"}
+    d.typescriptDOMStorageProp = {link = "Aqua"}
+    d.typescriptFileReaderProp = {link = "Aqua"}
+    d.typescriptURLUtilsProp = {link = "Aqua"}
+    d.typescriptNumberStaticProp = {link = "Aqua"}
+    d.typescriptDOMNodeProp = {link = "Aqua"}
+    d.typescriptBOMWindowProp = {link = "Aqua"}
+    d.typescriptRequestProp = {link = "Aqua"}
+    d.typescriptResponseProp = {link = "Aqua"}
+    d.typescriptPaymentProp = {link = "Aqua"}
+    d.typescriptPaymentResponseProp = {link = "Aqua"}
+    d.typescriptPaymentAddressProp = {link = "Aqua"}
+    d.typescriptPaymentShippingOptionProp = {link = "Aqua"}
+    d.typescriptES6SetProp = {link = "Aqua"}
+    d.typescriptServiceWorkerProp = {link = "Aqua"}
+    d.typescriptES6MapProp = {link = "Aqua"}
+    d.typescriptRegExpStaticProp = {link = "Aqua"}
+    d.typescriptRegExpProp = {link = "Aqua"}
+    d.typescriptBOMNavigatorProp = {link = "GreenBold"}
+    d.typescriptXHRProp = {link = "Aqua"}
+    d.typescriptDOMEventProp = {link = "Aqua"}
+    d.typescriptDOMDocProp = {link = "Aqua"}
+    d.typescriptBOMNetworkProp = {link = "Aqua"}
+    d.typescriptSymbolStaticProp = {link = "Aqua"}
+    d.typescriptEncodingProp = {link = "Aqua"}
+    d.typescriptBOMLocationProp = {link = "Aqua"}
+    d.typescriptCryptoProp = {link = "Aqua"}
+    d.typescriptDOMFormProp = {link = "Aqua"}
+    d.typescriptBOMHistoryProp = {link = "Aqua"}
+    d.typescriptMathStaticProp = {link = "Aqua"}
+    -- dart
+    -- dart-lang: https://github.com/dart-lang/dart-vim-plugin
+    d.dartCoreClasses = {link = "Aqua"}
+    d.dartTypeName = {link = "Aqua"}
+    d.dartInterpolation = {link = "Blue"}
+    d.dartTypeDef = {link = "RedItalic"}
+    d.dartClassDecl = {link = "RedItalic"}
+    d.dartLibrary = {link = "PurpleItalic"}
+    d.dartMetadata = {link = "Blue"}
+    -- coffee
+    -- vim-coffee-script: https://github.com/kchmck/vim-coffee-script
+    d.coffeeExtendedOp = {link = "Orange"}
+    d.coffeeSpecialOp = {link = "Fg"}
+    d.coffeeDotAccess = {link = "Grey"}
+    d.coffeeCurly = {link = "Fg"}
+    d.coffeeParen = {link = "Fg"}
+    d.coffeeBracket = {link = "Fg"}
+    d.coffeeParens = {link = "Blue"}
+    d.coffeeBrackets = {link = "Blue"}
+    d.coffeeCurlies = {link = "Blue"}
+    d.coffeeOperator = {link = "RedItalic"}
+    d.coffeeStatement = {link = "Orange"}
+    d.coffeeSpecialIdent = {link = "Purple"}
+    d.coffeeObject = {link = "Purple"}
+    d.coffeeObjAssign = {link = "Aqua"}
+    -- purescript
+    -- purescript-vim: https://github.com/purescript-contrib/purescript-vim
+    d.purescriptModuleKeyword = {link = "PurpleItalic"}
+    d.purescriptModule = {link = "Aqua"}
+    d.purescriptModuleParams = {link = "Blue"}
+    d.purescriptAsKeyword = {link = "OrangeItalic"}
+    d.purescriptHidingKeyword = {link = "OrangeItalic"}
+    d.purescriptWhere = {link = "OrangeItalic"}
+    d.purescriptIdentifier = {link = "Blue"}
+    d.purescriptFunction = {link = "Yellow"}
+    d.purescriptType = {link = "Aqua"}
+    -- c/cpp/objc/objcpp
+    -- vim-cpp-enhanced-highlight: https://github.com/octol/vim-cpp-enhanced-highlight
+    d.cppSTLnamespace = {link = "Purple"}
+    d.cppSTLtype = {link = "Yellow"}
+    d.cppAccess = {link = "PurpleItalic"}
+    d.cppStructure = {link = "RedItalic"}
+    d.cppSTLios = {link = "Aqua"}
+    d.cppSTLiterator = {link = "PurpleItalic"}
+    d.cppSTLexception = {link = "Purple"}
+    d.cppSTLVariable = {link = "Aqua"}
+    -- chromatica: https://github.com/arakashic/chromatica.nvim
+    d.Member = {link = "Aqua"}
+    d.Variable = {link = "Blue"}
+    d.Namespace = {link = "Purple"}
+    d.EnumConstant = {link = "Aqua"}
+    d.chromaticaException = {link = "RedItalic"}
+    d.chromaticaCast = {link = "Orange"}
+    d.OperatorOverload = {link = "Orange"}
+    d.AccessQual = {link = "Orange"}
+    d.Linkage = {link = "Orange"}
+    d.AutoType = {link = "Yellow"}
+    -- vim-lsp-cxx-highlight https://github.com/jackguo380/vim-lsp-cxx-highlight
+    d.LspCxxHlSkippedRegion = {link = "Grey"}
+    d.LspCxxHlSkippedRegionBeginEnd = {link = "PurpleItalic"}
+    d.LspCxxHlGroupEnumConstant = {link = "Aqua"}
+    d.LspCxxHlGroupNamespace = {link = "Purple"}
+    d.LspCxxHlGroupMemberVariable = {link = "Aqua"}
+    -- objc
+    d.objcModuleImport = {link = "PurpleItalic"}
+    d.objcException = {link = "RedItalic"}
+    d.objcProtocolList = {link = "Aqua"}
+    d.objcObjDef = {link = "PurpleItalic"}
+    d.objcDirective = {link = "RedItalic"}
+    d.objcPropertyAttribute = {link = "Orange"}
+    d.objcHiddenArgument = {link = "Aqua"}
+    -- cs
+    -- builtin: https://github.com/nickspoons/vim-cs
+    d.csUnspecifiedStatement = {link = "PurpleItalic"}
+    d.csStorage = {link = "RedItalic"}
+    d.csClass = {link = "RedItalic"}
+    d.csNewType = {link = "Aqua"}
+    d.csContextualStatement = {link = "PurpleItalic"}
+    d.csInterpolationDelimiter = {link = "Yellow"}
+    d.csInterpolation = {link = "Yellow"}
+    d.csEndColon = {link = "Fg"}
+    -- python
+    d.pythonBuiltin = {link = "Yellow"}
+    d.pythonExceptions = {link = "Purple"}
+    d.pythonDecoratorName = {link = "Blue"}
+    -- python-syntax: https://github.com/vim-python/python-syntax
+    d.pythonExClass = {link = "Purple"}
+    d.pythonBuiltinType = {link = "Yellow"}
+    d.pythonBuiltinObj = {link = "Blue"}
+    d.pythonDottedName = {link = "PurpleItalic"}
+    d.pythonBuiltinFunc = {link = "GreenBold"}
+    d.pythonFunction = {link = "AquaBold"}
+    d.pythonDecorator = {link = "Orange"}
+    d.pythonInclude = {link = "Include"}
+    d.pythonImport = {link = "PreProc"}
+    d.pythonRun = {link = "Blue"}
+    d.pythonCoding = {link = "Grey"}
+    d.pythonOperator = {link = "Orange"}
+    d.pythonConditional = {link = "RedItalic"}
+    d.pythonRepeat = {link = "RedItalic"}
+    d.pythonException = {link = "RedItalic"}
+    d.pythonNone = {link = "Aqua"}
+    d.pythonDot = {link = "Grey"}
+    -- semshi: https://github.com/numirias/semshi
+    d.semshiUnresolved = {fg = colors.yellow, bg = colors.none, undercurl = true}
+    d.semshiImported = {link = "Purple"}
+    d.semshiParameter = {link = "Blue"}
+    d.semshiParameterUnused = {link = "Grey"}
+    d.semshiSelf = {link = "PurpleItalic"}
+    d.semshiGlobal = {link = "Yellow"}
+    d.semshiBuiltin = {link = "Yellow"}
+    d.semshiAttribute = {link = "Aqua"}
+    d.semshiLocal = {link = "Red"}
+    d.semshiFree = {link = "Red"}
+    d.semshiSelected = {link = "CurrentWord"}
+    d.semshiErrorSign = {link = "RedSign"}
+    d.semshiErrorChar = {link = "RedSign"}
+    -- lua
+    d.luaFunc = {link = "Green"}
+    d.luaFunction = {link = "Aqua"}
+    d.luaTable = {link = "Fg"}
+    d.luaIn = {link = "RedItalic"}
+    -- " vim-lua: https://github.com/tbastos/vim-lua {{{
+    d.luaFuncCall = {link = "Green"}
+    d.luaLocal = {link = "Orange"}
+    d.luaSpecialValue = {link = "Green"}
+    d.luaBraces = {link = "Fg"}
+    d.luaBuiltIn = {link = "Purple"}
+    d.luaNoise = {link = "Grey"}
+    d.luaLabel = {link = "Purple"}
+    d.luaFuncTable = {link = "Yellow"}
+    d.luaFuncArgName = {link = "Blue"}
+    d.luaEllipsis = {link = "Orange"}
+    d.luaDocTag = {link = "Green"}
+    -- moon
+    -- moonscript-vim: https://github.com/leafo/moonscript-vim
+    d.moonInterpDelim = {link = "Yellow"}
+    d.moonInterp = {link = "Blue"}
+    d.moonFunction = {link = "Green"}
+    d.moonLuaFunc = {link = "AquaBold"}
+    d.moonSpecialVar = {link = "Purple"}
+    d.moonObject = {link = "Yellow"}
+    d.moonDotAccess = {link = "Grey"}
+    -- java
+    d.javaClassDecl = {link = "RedItalic"}
+    d.javaMethodDecl = {link = "RedItalic"}
+    d.javaVarArg = {link = "Green"}
+    d.javaAnnotation = {link = "Blue"}
+    d.javaUserLabel = {link = "Purple"}
+    d.javaTypedef = {link = "Aqua"}
+    d.javaParen = {link = "Fg"}
+    d.javaParen1 = {link = "Fg"}
+    d.javaParen2 = {link = "Fg"}
+    d.javaParen3 = {link = "Fg"}
+    d.javaParen4 = {link = "Fg"}
+    d.javaParen5 = {link = "Fg"}
+    -- kotlin
+    -- kotlin-vim: https://github.com/udalov/kotlin-vim
+    d.ktSimpleInterpolation = {link = "Yellow"}
+    d.ktComplexInterpolation = {link = "Yellow"}
+    d.ktComplexInterpolationBrace = {link = "Yellow"}
+    d.ktStructure = {link = "RedItalic"}
+    d.ktKeyword = {link = "Aqua"}
+    -- scala
+    d.scalaNameDefinition = {link = "Aqua"}
+    d.scalaInterpolationBoundary = {link = "Yellow"}
+    d.scalaInterpolation = {link = "Blue"}
+    d.scalaTypeOperator = {link = "Orange"}
+    d.scalaOperator = {link = "Orange"}
+    d.scalaKeywordModifier = {link = "Orange"}
+    -- go
+    d.goDirective = {link = "PurpleItalic"}
+    d.goConstants = {link = "Aqua"}
+    d.goDeclType = {link = "OrangeItalic"}
+    d.goPackage = {link = "PurpleItalic"}
+    d.goImport = {link = "PurpleItalic"}
+    d.goVarArgs = {link = "Blue"}
+    d.goBuiltins = {link = "GreenBold"}
+    d.goPredefinedIdentifiers = {link = "Aqua"}
+    d.goVar = {link = "Orange"}
+    -- rust
+    d.rustStructure = {link = "Orange"}
+    d.rustIdentifier = {link = "Purple"}
+    d.rustModPath = {link = "Orange"}
+    d.rustModPathSep = {link = "Grey"}
+    d.rustSelf = {link = "Blue"}
+    d.rustSuper = {link = "Blue"}
+    d.rustDeriveTrait = {link = "PurpleItalic"}
+    d.rustEnumVariant = {link = "Purple"}
+    d.rustMacroVariable = {link = "Blue"}
+    d.rustAssert = {link = "Aqua"}
+    d.rustPanic = {link = "Aqua"}
+    d.rustPubScopeCrate = {link = "PurpleItalic"}
+    -- swift
+    -- swift.vim: https://github.com/keith/swift.vim
+    d.swiftInterpolatedWrapper = {link = "Yellow"}
+    d.swiftInterpolatedString = {link = "Blue"}
+    d.swiftProperty = {link = "Aqua"}
+    d.swiftTypeDeclaration = {link = "Orange"}
+    d.swiftClosureArgument = {link = "Purple"}
+    d.phpVarSelector = {link = "Blue"}
+    -- php
+    d.phpDefine = {link = "OrangeItalic"}
+    d.phpStructure = {link = "RedItalic"}
+    d.phpSpecialFunction = {link = "GreenBold"}
+    d.phpInterpSimpleCurly = {link = "Yellow"}
+    d.phpComparison = {link = "Orange"}
+    d.phpMethodsVar = {link = "Aqua"}
+    d.phpMemberSelector = {link = "Green"}
+    d.phpParent = {link = "Fg"}
+    -- php.vim: https://github.com/StanAngeloff/php.vim
+    d.phpNowDoc = {link = "Green"}
+    d.phpFunction = {link = "GreenBold"}
+    d.phpMethod = {link = "GreenBold"}
+    d.phpClass = {link = "Orange"}
+    d.phpSuperglobals = {link = "Purple"}
+    d.rubyKeywordAsMethod = {link = "GreenBold"}
+    -- ruby
+    d.rubyInterpolation = {link = "Yellow"}
+    d.rubyInterpolationDelimiter = {link = "Yellow"}
+    d.rubyStringDelimiter = {link = "Green"}
+    d.rubyBlockParameterList = {link = "Blue"}
+    d.rubyDefine = {link = "RedItalic"}
+    d.rubyModuleName = {link = "Purple"}
+    d.rubyAccess = {link = "Orange"}
+    d.rubyAttribute = {link = "Yellow"}
+    d.rubyMacro = {link = "RedItalic"}
+    d.haskellBrackets = {link = "Blue"}
+    -- haskell
+    -- haskell-vim: https://github.com/neovimhaskell/haskell-vim
+    d.haskellIdentifier = {link = "Yellow"}
+    d.haskellAssocType = {link = "Aqua"}
+    d.haskellQuotedType = {link = "Aqua"}
+    d.haskellType = {link = "Aqua"}
+    d.haskellDeclKeyword = {link = "RedItalic"}
+    d.haskellWhere = {link = "RedItalic"}
+    d.haskellDeriving = {link = "PurpleItalic"}
+    d.haskellForeignKeywords = {link = "PurpleItalic"}
+    d.perlStatementPackage = {link = "PurpleItalic"}
+    -- perl
+    d.perlStatementInclude = {link = "PurpleItalic"}
+    d.perlStatementStorage = {link = "Orange"}
+    d.perlStatementList = {link = "Orange"}
+    d.perlMatchStartEnd = {link = "Orange"}
+    d.perlVarSimpleMemberName = {link = "Aqua"}
+    d.perlVarSimpleMember = {link = "Fg"}
+    d.perlMethod = {link = "GreenBold"}
+    d.podVerbatimLine = {link = "Green"}
+    d.podCmdText = {link = "Yellow"}
+    d.ocamlArrow = {link = "Orange"}
+    -- ocaml
+    d.ocamlEqual = {link = "Orange"}
+    d.ocamlOperator = {link = "Orange"}
+    d.ocamlKeyChar = {link = "Orange"}
+    d.ocamlModPath = {link = "Green"}
+    d.ocamlFullMod = {link = "Green"}
+    d.ocamlModule = {link = "Purple"}
+    d.ocamlConstructor = {link = "Aqua"}
+    d.ocamlFuncWith = {link = "Yellow"}
+    d.ocamlWith = {link = "Yellow"}
+    d.ocamlModParam = {link = "Fg"}
+    d.ocamlModParam1 = {link = "Fg"}
+    d.ocamlAnyVar = {link = "Blue"}
+    d.ocamlPpxEncl = {link = "Orange"}
+    d.ocamlPpxIdentifier = {link = "Blue"}
+    d.ocamlSigEncl = {link = "Orange"}
+    d.ocamlStructEncl = {link = "Aqua"}
+    d.erlangAtom = {link = "Aqua"}
+    -- erlang
+    d.erlangLocalFuncRef = {link = "GreenBold"}
+    d.erlangLocalFuncCall = {link = "GreenBold"}
+    d.erlangGlobalFuncRef = {link = "GreenBold"}
+    d.erlangGlobalFuncCall = {link = "GreenBold"}
+    d.erlangAttribute = {link = "PurpleItalic"}
+    d.erlangPipe = {link = "Orange"}
+    d.elixirStringDelimiter = {link = "Green"}
+    -- elixir
+    -- vim-elixir: https://github.com/elixir-editors/vim-elixir
+    d.elixirKeyword = {link = "Orange"}
+    d.elixirInterpolation = {link = "Yellow"}
+    d.elixirInterpolationDelimiter = {link = "Yellow"}
+    d.elixirSelf = {link = "Purple"}
+    d.elixirPseudoVariable = {link = "Purple"}
+    d.elixirModuleDefine = {link = "PurpleItalic"}
+    d.elixirBlockDefinition = {link = "RedItalic"}
+    d.elixirDefine = {link = "RedItalic"}
+    d.elixirPrivateDefine = {link = "RedItalic"}
+    d.elixirGuard = {link = "RedItalic"}
+    d.elixirPrivateGuard = {link = "RedItalic"}
+    d.elixirProtocolDefine = {link = "RedItalic"}
+    d.elixirImplDefine = {link = "RedItalic"}
+    d.elixirRecordDefine = {link = "RedItalic"}
+    d.elixirPrivateRecordDefine = {link = "RedItalic"}
+    d.elixirMacroDefine = {link = "RedItalic"}
+    d.elixirPrivateMacroDefine = {link = "RedItalic"}
+    d.elixirDelegateDefine = {link = "RedItalic"}
+    d.elixirOverridableDefine = {link = "RedItalic"}
+    d.elixirExceptionDefine = {link = "RedItalic"}
+    d.elixirCallbackDefine = {link = "RedItalic"}
+    d.elixirStructDefine = {link = "RedItalic"}
+    d.elixirExUnitMacro = {link = "RedItalic"}
+    d.lispAtomMark = {link = "Green"}
+    -- lisp
+    d.lispKey = {link = "Aqua"}
+    d.lispFunc = {link = "OrangeItalic"}
+    d.clojureMacro = {link = "PurpleItalic"}
+    -- closure
+    d.clojureFunc = {link = "AquaBold"}
+    d.clojureConstant = {link = "Yellow"}
+    d.clojureSpecial = {link = "RedItalic"}
+    d.clojureDefine = {link = "RedItalic"}
+    d.clojureKeyword = {link = "Orange"}
+    d.clojureVariable = {link = "Blue"}
+    d.clojureMeta = {link = "Yellow"}
+    d.clojureDeref = {link = "Yellow"}
+    d.matlabSemicolon = {link = "Fg"}
+    -- matlab
+    d.matlabFunction = {link = "RedItalic"}
+    d.matlabImplicit = {link = "GreenBold"}
+    d.matlabDelimiter = {link = "Fg"}
+    d.matlabOperator = {link = "GreenBold"}
+    d.matlabArithmeticOperator = {link = "Orange"}
+    d.matlabRelationalOperator = {link = "Orange"}
+    d.matlabLogicalOperator = {link = "Orange"}
+    d.shRange = {link = "Fg"}
+    -- sh/zsh
+    d.shTestOpr = {link = "Orange"}
+    d.shOption = {link = "Aqua"}
+    d.bashStatement = {link = "Orange"}
+    d.shOperator = {link = "Orange"}
+    d.shQuote = {link = "Green"}
+    d.shSet = {link = "Orange"}
+    d.shSetList = {link = "Blue"}
+    d.shSnglCase = {link = "Orange"}
+    d.shVariable = {link = "Blue"}
+    d.shVarAssign = {link = "Orange"}
+    d.shCmdSubRegion = {link = "Green"}
+    d.shCommandSub = {link = "Orange"}
+    d.shFunctionOne = {link = "GreenBold"}
+    d.shFunctionKey = {link = "RedItalic"}
+    d.zshOptStart = {link = "PurpleItalic"}
+    d.zshOption = {link = "Blue"}
+    d.zshSubst = {link = "Yellow"}
+    d.zshFunction = {link = "GreenBold"}
+    d.zshDeref = {link = "Blue"}
+    d.zshTypes = {link = "Orange"}
+    d.zshVariableDef = {link = "Blue"}
+    d.fishStatement = {link = "Orange"}
+    -- fish
+    d.fishLabel = {link = "RedItalic"}
+    d.fishCommandSub = {link = "Yellow"}
+    d.ps1FunctionInvocation = {link = "AquaBold"}
+    -- ps1
+    d.ps1FunctionDeclaration = {link = "AquaBold"}
+    d.ps1InterpolationDelimiter = {link = "Yellow"}
+    d.ps1BuiltIn = {link = "Yellow"}
+    d.vimCommentTitle = {fg = colors.grey1, bg = colors.none, bold = true}
+    -- vim
+    d.vimLet = {link = "Orange"}
+    d.vimFunction = {link = "GreenBold"}
+    d.vimIsCommand = {link = "Fg"}
+    d.vimUserFunc = {link = "GreenBold"}
+    d.vimFuncName = {link = "GreenBold"}
+    d.vimMap = {link = "PurpleItalic"}
+    d.vimNotation = {link = "Aqua"}
+    d.vimMapLhs = {link = "Green"}
+    d.vimMapRhs = {link = "Green"}
+    d.vimSetEqual = {link = "Yellow"}
+    d.vimSetSep = {link = "Fg"}
+    d.vimOption = {link = "Aqua"}
+    d.vimUserAttrbKey = {link = "Yellow"}
+    d.vimUserAttrb = {link = "Green"}
+    d.vimAutoCmdSfxList = {link = "Aqua"}
+    d.vimSynType = {link = "Orange"}
+    d.vimHiBang = {link = "Orange"}
+    d.vimSet = {link = "Yellow"}
+    d.vimContinue = {link = "Grey"}
+    -- make
+    d.makeIdent = {link = "Aqua"}
+    d.makeSpecTarget = {link = "Yellow"}
+    d.makeTarget = {link = "Blue"}
+    d.makeCommands = {link = "Orange"}
+    d.cmakeCommand = {link = "Orange"}
+    -- cmake
+    -- d.cmakeKWconfigure_package_config_file = {link = "Yellow"}
+    -- d.cmakeKWwrite_basic_package_version_file = {link = "Yellow"}
+    -- d.cmakeKWExternalProject = {link = "Aqua"}
+    -- d.cmakeKWadd_compile_definitions = {link = "Aqua"}
+    -- d.cmakeKWadd_compile_options = {link = "Aqua"}
+    -- d.cmakeKWadd_custom_command = {link = "Aqua"}
+    -- d.cmakeKWadd_custom_target = {link = "Aqua"}
+    -- d.cmakeKWadd_definitions = {link = "Aqua"}
+    -- d.cmakeKWadd_dependencies = {link = "Aqua"}
+    -- d.cmakeKWadd_executable = {link = "Aqua"}
+    -- d.cmakeKWadd_library = {link = "Aqua"}
+    -- d.cmakeKWadd_link_options = {link = "Aqua"}
+    -- d.cmakeKWadd_subdirectory = {link = "Aqua"}
+    -- d.cmakeKWadd_test = {link = "Aqua"}
+    -- d.cmakeKWbuild_command = {link = "Aqua"}
+    -- d.cmakeKWcmake_host_system_information = {link = "Aqua"}
+    -- d.cmakeKWcmake_minimum_required = {link = "Aqua"}
+    -- d.cmakeKWcmake_parse_arguments = {link = "Aqua"}
+    -- d.cmakeKWcmake_policy = {link = "Aqua"}
+    -- d.cmakeKWconfigure_file = {link = "Aqua"}
+    -- d.cmakeKWcreate_test_sourcelist = {link = "Aqua"}
+    -- d.cmakeKWctest_build = {link = "Aqua"}
+    -- d.cmakeKWctest_configure = {link = "Aqua"}
+    -- d.cmakeKWctest_coverage = {link = "Aqua"}
+    -- d.cmakeKWctest_memcheck = {link = "Aqua"}
+    -- d.cmakeKWctest_run_script = {link = "Aqua"}
+    -- d.cmakeKWctest_start = {link = "Aqua"}
+    -- d.cmakeKWctest_submit = {link = "Aqua"}
+    -- d.cmakeKWctest_test = {link = "Aqua"}
+    -- d.cmakeKWctest_update = {link = "Aqua"}
+    -- d.cmakeKWctest_upload = {link = "Aqua"}
+    -- d.cmakeKWdefine_property = {link = "Aqua"}
+    -- d.cmakeKWdoxygen_add_docs = {link = "Aqua"}
+    -- d.cmakeKWenable_language = {link = "Aqua"}
+    -- d.cmakeKWenable_testing = {link = "Aqua"}
+    -- d.cmakeKWexec_program = {link = "Aqua"}
+    -- d.cmakeKWexecute_process = {link = "Aqua"}
+    -- d.cmakeKWexport = {link = "Aqua"}
+    -- d.cmakeKWexport_library_dependencies = {link = "Aqua"}
+    -- d.cmakeKWfile = {link = "Aqua"}
+    -- d.cmakeKWfind_file = {link = "Aqua"}
+    -- d.cmakeKWfind_library = {link = "Aqua"}
+    -- d.cmakeKWfind_package = {link = "Aqua"}
+    -- d.cmakeKWfind_path = {link = "Aqua"}
+    -- d.cmakeKWfind_program = {link = "Aqua"}
+    -- d.cmakeKWfltk_wrap_ui = {link = "Aqua"}
+    -- d.cmakeKWforeach = {link = "Aqua"}
+    -- d.cmakeKWfunction = {link = "Aqua"}
+    -- d.cmakeKWget_cmake_property = {link = "Aqua"}
+    -- d.cmakeKWget_directory_property = {link = "Aqua"}
+    -- d.cmakeKWget_filename_component = {link = "Aqua"}
+    -- d.cmakeKWget_property = {link = "Aqua"}
+    -- d.cmakeKWget_source_file_property = {link = "Aqua"}
+    -- d.cmakeKWget_target_property = {link = "Aqua"}
+    -- d.cmakeKWget_test_property = {link = "Aqua"}
+    -- d.cmakeKWif = {link = "Aqua"}
+    -- d.cmakeKWinclude = {link = "Aqua"}
+    -- d.cmakeKWinclude_directories = {link = "Aqua"}
+    -- d.cmakeKWinclude_external_msproject = {link = "Aqua"}
+    -- d.cmakeKWinclude_guard = {link = "Aqua"}
+    -- d.cmakeKWinstall = {link = "Aqua"}
+    -- d.cmakeKWinstall_files = {link = "Aqua"}
+    -- d.cmakeKWinstall_programs = {link = "Aqua"}
+    -- d.cmakeKWinstall_targets = {link = "Aqua"}
+    -- d.cmakeKWlink_directories = {link = "Aqua"}
+    -- d.cmakeKWlist = {link = "Aqua"}
+    -- d.cmakeKWload_cache = {link = "Aqua"}
+    -- d.cmakeKWload_command = {link = "Aqua"}
+    -- d.cmakeKWmacro = {link = "Aqua"}
+    -- d.cmakeKWmark_as_advanced = {link = "Aqua"}
+    -- d.cmakeKWmath = {link = "Aqua"}
+    -- d.cmakeKWmessage = {link = "Aqua"}
+    -- d.cmakeKWoption = {link = "Aqua"}
+    -- d.cmakeKWproject = {link = "Aqua"}
+    -- d.cmakeKWqt_wrap_cpp = {link = "Aqua"}
+    -- d.cmakeKWqt_wrap_ui = {link = "Aqua"}
+    -- d.cmakeKWremove = {link = "Aqua"}
+    -- d.cmakeKWseparate_arguments = {link = "Aqua"}
+    -- d.cmakeKWset = {link = "Aqua"}
+    -- d.cmakeKWset_directory_properties = {link = "Aqua"}
+    -- d.cmakeKWset_property = {link = "Aqua"}
+    -- d.cmakeKWset_source_files_properties = {link = "Aqua"}
+    -- d.cmakeKWset_target_properties = {link = "Aqua"}
+    -- d.cmakeKWset_tests_properties = {link = "Aqua"}
+    -- d.cmakeKWsource_group = {link = "Aqua"}
+    -- d.cmakeKWstring = {link = "Aqua"}
+    -- d.cmakeKWsubdirs = {link = "Aqua"}
+    -- d.cmakeKWtarget_compile_definitions = {link = "Aqua"}
+    -- d.cmakeKWtarget_compile_features = {link = "Aqua"}
+    -- d.cmakeKWtarget_compile_options = {link = "Aqua"}
+    -- d.cmakeKWtarget_include_directories = {link = "Aqua"}
+    -- d.cmakeKWtarget_link_directories = {link = "Aqua"}
+    -- d.cmakeKWtarget_link_libraries = {link = "Aqua"}
+    -- d.cmakeKWtarget_link_options = {link = "Aqua"}
+    -- d.cmakeKWtarget_precompile_headers = {link = "Aqua"}
+    -- d.cmakeKWtarget_sources = {link = "Aqua"}
+    -- d.cmakeKWtry_compile = {link = "Aqua"}
+    -- d.cmakeKWtry_run = {link = "Aqua"}
+    -- d.cmakeKWunset = {link = "Aqua"}
+    -- d.cmakeKWuse_mangled_mesa = {link = "Aqua"}
+    -- d.cmakeKWvariable_requires = {link = "Aqua"}
+    -- d.cmakeKWvariable_watch = {link = "Aqua"}
+    -- d.cmakeKWwrite_file = {link = "Aqua"}
+    -- json
+    d.jsonKeyword = {link = "Orange"}
+    d.jsonQuote = {link = "Grey"}
+    d.jsonBraces = {link = "Fg"}
+    d.yamlKey = {link = "Orange"}
+    -- yaml
+    d.yamlConstant = {link = "Purple"}
+    -- toml
+    d.tomlTable = {fg = colors.purple, bg = colors.none, bold = true}
+    d.tomlKey = {link = "Orange"}
+    d.tomlBoolean = {link = "Aqua"}
+    d.tomlTableArray = {link = "tomlTable"}
+    -- gicommit
+    d.gitcommitSummary = {link = "Red"}
+    d.gitcommitUntracked = {link = "Grey"}
+    d.gitcommitDiscarded = {link = "Grey"}
+    d.gitcommitSelected = {link = "Grey"}
+    d.gitcommitUnmerged = {link = "Grey"}
+    d.gitcommitOnBranch = {link = "Grey"}
+    d.gitcommitArrow = {link = "Grey"}
+    d.gitcommitFile = {link = "Green"}
+    d.dosiniHeader = {fg = colors.red, bg = colors.none, bold = true}
+    -- dosini
+    d.dosiniLabel = {link = "Yellow"}
+    d.dosiniValue = {link = "Green"}
+    d.dosiniNumber = {link = "Green"}
+    d.helpNote = {fg = colors.purple, bg = colors.none, bold = true}
+    -- help
+    d.helpHeadline = {fg = colors.red, bg = colors.none, bold = true}
+    d.helpHeader = {fg = colors.orange, bg = colors.none, bold = true}
+    d.helpURL = {fg = colors.green, bg = colors.none, underline = true}
+    d.helpHyperTextEntry = {fg = colors.yellow, bg = colors.none, bold = true}
+    d.helpHyperTextJump = {link = "Yellow"}
+    d.helpCommand = {link = "Aqua"}
+    d.helpExample = {link = "Green"}
+    d.helpSpecial = {link = "Blue"}
+    d.helpSectionDelim = {link = "Grey"}
+    -- ####### Extended: End
+
+    return d
 end
 
 return definitions
