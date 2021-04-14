@@ -170,12 +170,12 @@ function definitions.get_definitions(opt)
     d.Identifier = {fg = colors.blue, bg = colors.none}
 
     if opt.italic_comment then
-        d.Comment = {fg = colors.grey1, bg = colors.none, italic = true}
-        d.SpecialComment = {fg = colors.grey1, bg = colors.none, italic = true}
+        d.Comment = {fg = colors.grey0, bg = colors.none, italic = true}
+        d.SpecialComment = {fg = colors.grey0, bg = colors.none, italic = true}
         d.Todo = {fg = colors.purple, bg = colors.none, italic = true}
     else
-        d.Comment = {fg = colors.grey1, bg = colors.none}
-        d.SpecialComment = {fg = colors.grey1, bg = colors.none}
+        d.Comment = {fg = colors.grey0, bg = colors.none}
+        d.SpecialComment = {fg = colors.grey0, bg = colors.none}
         d.Todo = {fg = colors.purple, bg = colors.none}
     end
 
