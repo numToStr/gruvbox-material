@@ -26,7 +26,7 @@ function definitions.get_definitions(opt)
         d.FoldColumn = {fg = colors.grey0, bg = colors.none}
     end
 
-    d.MsgArea = {link = "Normal"}
+    d.MsgArea = {link = "Fg"}
     d.IncSearch = {fg = colors.bg0, bg = colors.bg_red}
     d.Search = {fg = colors.bg0, bg = colors.bg_green}
     d.ColorColumn = {fg = colors.none, bg = colors.bg2}
@@ -476,7 +476,7 @@ function definitions.get_definitions(opt)
     if opt.plugins.telescope then
         d.TelescopeMatching = {fg = colors.orange, bold = true}
         d.TelescopeBorder = {link = "Grey"}
-        d.TelescopePromptPrefix = {link = "Normal"}
+        d.TelescopePromptPrefix = {link = "Fg"}
         d.TelescopeSelection = {link = "Visual"}
         d.TelescopeResultsDiffAdd = {link = "GreenSign"}
         d.TelescopeResultsDiffChange = {link = "BlueSign"}
