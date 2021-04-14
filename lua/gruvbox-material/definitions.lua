@@ -477,6 +477,10 @@ function definitions.get_definitions(opt)
         d.TelescopeBorder = {link = "Grey"}
         d.TelescopePromptPrefix = {link = "Normal"}
         d.TelescopeSelection = {link = "Visual"}
+        d.TelescopeResultsDiffAdd = {link = "GreenSign"}
+        d.TelescopeResultsDiffChange = {link = "BlueSign"}
+        d.TelescopeResultsDiffDelete = {link = "RedSign"}
+        d.TelescopeResultsDiffUntracked = {link = "YellowSign"}
     end
 
     -- airblade/vim-gitgutter
