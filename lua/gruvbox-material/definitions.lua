@@ -186,6 +186,7 @@ function definitions.get_definitions(opt)
 
     -- Predefined: Start
     d.Fg = {fg = colors.fg0, bg = colors.none}
+    d.FgBold = {fg = colors.fg0, bg = colors.none, bold = true}
     d.Grey = {fg = colors.grey1, bg = colors.none}
     d.Red = {fg = colors.red, bg = colors.none}
     d.Orange = {fg = colors.orange, bg = colors.none}
@@ -566,10 +567,13 @@ function definitions.get_definitions(opt)
 
     -- kyazdani42/nvim-tree.lua
     if opt.plugins["nvim-tree"] then
-        d.NvimTreeFolderName = {link = "Normal"}
-        d.NvimTreeFolderIcon = {link = "Normal"}
-        d.NvimTreeIndentMarker = {link = "Comment"}
+        d.NvimTreeFolderName = {link = "Fg"}
+        d.NvimTreeFolderIcon = {link = "Fg"}
+        d.NvimTreeIndentMarker = {link = "Fg"}
+        d.NvimTreeOpenedFile = {link = "Fg"}
+        d.NvimTreeOpenedFolderName = {link = "Fg"}
         d.NvimTreeRootFolder = {fg = colors.grey1, bold = true}
+        d.NvimTreeExecFile = {link = "FgBold"}
     end
 
     -- lewis6991/gitsigns.nvim
