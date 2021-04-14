@@ -194,20 +194,43 @@ function definitions.get_definitions(opt)
     d.Aqua = {fg = colors.aqua, bg = colors.none}
     d.Blue = {fg = colors.blue, bg = colors.none}
     d.Purple = {fg = colors.purple, bg = colors.none}
-    d.RedItalic = {fg = colors.red, bg = colors.none, italic = true}
-    d.OrangeItalic = {fg = colors.orange, bg = colors.none, italic = true}
-    d.YellowItalic = {fg = colors.yellow, bg = colors.none, italic = true}
-    d.GreenItalic = {fg = colors.green, bg = colors.none, italic = true}
-    d.AquaItalic = {fg = colors.aqua, bg = colors.none, italic = true}
-    d.BlueItalic = {fg = colors.blue, bg = colors.none, italic = true}
-    d.PurpleItalic = {fg = colors.purple, bg = colors.none, italic = true}
-    d.RedBold = {fg = colors.red, bg = colors.none, bold = true}
-    d.OrangeBold = {fg = colors.orange, bg = colors.none, bold = true}
-    d.YellowBold = {fg = colors.yellow, bg = colors.none, bold = true}
-    d.GreenBold = {fg = colors.green, bg = colors.none, bold = true}
-    d.AquaBold = {fg = colors.aqua, bg = colors.none, bold = true}
-    d.BlueBold = {fg = colors.blue, bg = colors.none, bold = true}
-    d.PurpleBold = {fg = colors.purple, bg = colors.none, bold = true}
+
+    if opt.italic then
+        d.RedItalic = {fg = colors.red, bg = colors.none, italic = true}
+        d.OrangeItalic = {fg = colors.orange, bg = colors.none, italic = true}
+        d.YellowItalic = {fg = colors.yellow, bg = colors.none, italic = true}
+        d.GreenItalic = {fg = colors.green, bg = colors.none, italic = true}
+        d.AquaItalic = {fg = colors.aqua, bg = colors.none, italic = true}
+        d.BlueItalic = {fg = colors.blue, bg = colors.none, italic = true}
+        d.PurpleItalic = {fg = colors.purple, bg = colors.none, italic = true}
+    else
+        d.RedItalic = {fg = colors.red, bg = colors.none}
+        d.OrangeItalic = {fg = colors.orange, bg = colors.none}
+        d.YellowItalic = {fg = colors.yellow, bg = colors.none}
+        d.GreenItalic = {fg = colors.green, bg = colors.none}
+        d.AquaItalic = {fg = colors.aqua, bg = colors.none}
+        d.BlueItalic = {fg = colors.blue, bg = colors.none}
+        d.PurpleItalic = {fg = colors.purple, bg = colors.none}
+    end
+
+    if opt.bold then
+        d.RedBold = {fg = colors.red, bg = colors.none, bold = true}
+        d.OrangeBold = {fg = colors.orange, bg = colors.none, bold = true}
+        d.YellowBold = {fg = colors.yellow, bg = colors.none, bold = true}
+        d.GreenBold = {fg = colors.green, bg = colors.none, bold = true}
+        d.AquaBold = {fg = colors.aqua, bg = colors.none, bold = true}
+        d.BlueBold = {fg = colors.blue, bg = colors.none, bold = true}
+        d.PurpleBold = {fg = colors.purple, bg = colors.none, bold = true}
+    else
+        d.RedBold = {fg = colors.red, bg = colors.none}
+        d.OrangeBold = {fg = colors.orange, bg = colors.none}
+        d.YellowBold = {fg = colors.yellow, bg = colors.none}
+        d.GreenBold = {fg = colors.green, bg = colors.none}
+        d.AquaBold = {fg = colors.aqua, bg = colors.none}
+        d.BlueBold = {fg = colors.blue, bg = colors.none}
+        d.PurpleBold = {fg = colors.purple, bg = colors.none}
+    end
+
     d.RedSign = {fg = colors.red, bg = colors.none}
     d.OrangeSign = {fg = colors.orange, bg = colors.none}
     d.YellowSign = {fg = colors.yellow, bg = colors.none}
@@ -450,7 +473,7 @@ function definitions.get_definitions(opt)
 
     -- nvim-telescope/telescope.nvim
     if opt.plugins.telescope then
-        d.TelescopeMatching = {link = "OrangeBold"}
+        d.TelescopeMatching = {fg = colors.orange, bold = true}
         d.TelescopeBorder = {link = "Grey"}
         d.TelescopePromptPrefix = {link = "Normal"}
         d.TelescopeSelection = {link = "Visual"}

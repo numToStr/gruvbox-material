@@ -17,15 +17,15 @@ local defaults = {
 }
 
 local attr_list = {
-    "bold",
-    "underline",
-    "undercurl",
-    "strikethrough",
-    "reverse",
-    "inverse",
-    "italic",
-    "standout",
-    "nocombine"
+    bold = true,
+    underline = true,
+    undercurl = true,
+    strikethrough = true,
+    reverse = true,
+    inverse = true,
+    italic = true,
+    standout = true,
+    nocombine = true
 }
 
 local function hi_link(name, link)
@@ -47,7 +47,7 @@ function utils.highlight(name, param)
             table.insert(options, string.format("guibg=%s ctermbg=%s", v[1], v[2]))
         elseif k == "default" then
             table.insert(options, 2, "default")
-        elseif vim.tbl_contains(attr_list, k) then
+        elseif attr_list[k] then
             table.insert(special, k)
         end
     end
