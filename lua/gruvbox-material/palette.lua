@@ -246,4 +246,6 @@ function palette.get_palette(gruvbox_bg, gruvbox_palette)
     return p
 end
 
+palette.is_dark = is_dark
+
 return palette
