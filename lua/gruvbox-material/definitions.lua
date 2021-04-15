@@ -1268,8 +1268,8 @@ function definitions.get_definitions(opt)
     d.phpMethod = {link = "GreenBold"}
     d.phpClass = {link = "Orange"}
     d.phpSuperglobals = {link = "Purple"}
-    d.rubyKeywordAsMethod = {link = "GreenBold"}
     -- ruby
+    d.rubyKeywordAsMethod = {link = "GreenBold"}
     d.rubyInterpolation = {link = "Yellow"}
     d.rubyInterpolationDelimiter = {link = "Yellow"}
     d.rubyStringDelimiter = {link = "Green"}
@@ -1279,9 +1279,9 @@ function definitions.get_definitions(opt)
     d.rubyAccess = {link = "Orange"}
     d.rubyAttribute = {link = "Yellow"}
     d.rubyMacro = {link = "RedItalic"}
-    d.haskellBrackets = {link = "Blue"}
     -- haskell
     -- haskell-vim: https://github.com/neovimhaskell/haskell-vim
+    d.haskellBrackets = {link = "Blue"}
     d.haskellIdentifier = {link = "Yellow"}
     d.haskellAssocType = {link = "Aqua"}
     d.haskellQuotedType = {link = "Aqua"}
@@ -1290,8 +1290,8 @@ function definitions.get_definitions(opt)
     d.haskellWhere = {link = "RedItalic"}
     d.haskellDeriving = {link = "PurpleItalic"}
     d.haskellForeignKeywords = {link = "PurpleItalic"}
-    d.perlStatementPackage = {link = "PurpleItalic"}
     -- perl
+    d.perlStatementPackage = {link = "PurpleItalic"}
     d.perlStatementInclude = {link = "PurpleItalic"}
     d.perlStatementStorage = {link = "Orange"}
     d.perlStatementList = {link = "Orange"}
@@ -1301,8 +1301,8 @@ function definitions.get_definitions(opt)
     d.perlMethod = {link = "GreenBold"}
     d.podVerbatimLine = {link = "Green"}
     d.podCmdText = {link = "Yellow"}
-    d.ocamlArrow = {link = "Orange"}
     -- ocaml
+    d.ocamlArrow = {link = "Orange"}
     d.ocamlEqual = {link = "Orange"}
     d.ocamlOperator = {link = "Orange"}
     d.ocamlKeyChar = {link = "Orange"}
@@ -1319,17 +1319,17 @@ function definitions.get_definitions(opt)
     d.ocamlPpxIdentifier = {link = "Blue"}
     d.ocamlSigEncl = {link = "Orange"}
     d.ocamlStructEncl = {link = "Aqua"}
-    d.erlangAtom = {link = "Aqua"}
     -- erlang
+    d.erlangAtom = {link = "Aqua"}
     d.erlangLocalFuncRef = {link = "GreenBold"}
     d.erlangLocalFuncCall = {link = "GreenBold"}
     d.erlangGlobalFuncRef = {link = "GreenBold"}
     d.erlangGlobalFuncCall = {link = "GreenBold"}
     d.erlangAttribute = {link = "PurpleItalic"}
     d.erlangPipe = {link = "Orange"}
-    d.elixirStringDelimiter = {link = "Green"}
     -- elixir
     -- vim-elixir: https://github.com/elixir-editors/vim-elixir
+    d.elixirStringDelimiter = {link = "Green"}
     d.elixirKeyword = {link = "Orange"}
     d.elixirInterpolation = {link = "Yellow"}
     d.elixirInterpolationDelimiter = {link = "Yellow"}
@@ -1353,12 +1353,12 @@ function definitions.get_definitions(opt)
     d.elixirCallbackDefine = {link = "RedItalic"}
     d.elixirStructDefine = {link = "RedItalic"}
     d.elixirExUnitMacro = {link = "RedItalic"}
-    d.lispAtomMark = {link = "Green"}
     -- lisp
+    d.lispAtomMark = {link = "Green"}
     d.lispKey = {link = "Aqua"}
     d.lispFunc = {link = "OrangeItalic"}
-    d.clojureMacro = {link = "PurpleItalic"}
     -- closure
+    d.clojureMacro = {link = "PurpleItalic"}
     d.clojureFunc = {link = "AquaBold"}
     d.clojureConstant = {link = "Yellow"}
     d.clojureSpecial = {link = "RedItalic"}
@@ -1367,8 +1367,8 @@ function definitions.get_definitions(opt)
     d.clojureVariable = {link = "Blue"}
     d.clojureMeta = {link = "Yellow"}
     d.clojureDeref = {link = "Yellow"}
-    d.matlabSemicolon = {link = "Fg"}
     -- matlab
+    d.matlabSemicolon = {link = "Fg"}
     d.matlabFunction = {link = "RedItalic"}
     d.matlabImplicit = {link = "GreenBold"}
     d.matlabDelimiter = {link = "Fg"}
@@ -1376,8 +1376,8 @@ function definitions.get_definitions(opt)
     d.matlabArithmeticOperator = {link = "Orange"}
     d.matlabRelationalOperator = {link = "Orange"}
     d.matlabLogicalOperator = {link = "Orange"}
-    d.shRange = {link = "Fg"}
     -- sh/zsh
+    d.shRange = {link = "Fg"}
     d.shTestOpr = {link = "Orange"}
     d.shOption = {link = "Aqua"}
     d.bashStatement = {link = "Orange"}
@@ -1399,17 +1399,17 @@ function definitions.get_definitions(opt)
     d.zshDeref = {link = "Blue"}
     d.zshTypes = {link = "Orange"}
     d.zshVariableDef = {link = "Blue"}
-    d.fishStatement = {link = "Orange"}
     -- fish
+    d.fishStatement = {link = "Orange"}
     d.fishLabel = {link = "RedItalic"}
     d.fishCommandSub = {link = "Yellow"}
-    d.ps1FunctionInvocation = {link = "AquaBold"}
     -- ps1
+    d.ps1FunctionInvocation = {link = "AquaBold"}
     d.ps1FunctionDeclaration = {link = "AquaBold"}
     d.ps1InterpolationDelimiter = {link = "Yellow"}
     d.ps1BuiltIn = {link = "Yellow"}
-    d.vimCommentTitle = {fg = colors.grey1, bg = colors.none, bold = true}
     -- vim
+    d.vimCommentTitle = {fg = colors.grey1, bg = colors.none, bold = true}
     d.vimLet = {link = "Orange"}
     d.vimFunction = {link = "GreenBold"}
     d.vimIsCommand = {link = "Fg"}
@@ -1434,8 +1434,8 @@ function definitions.get_definitions(opt)
     d.makeSpecTarget = {link = "Yellow"}
     d.makeTarget = {link = "Blue"}
     d.makeCommands = {link = "Orange"}
-    d.cmakeCommand = {link = "Orange"}
     -- cmake
+    -- d.cmakeCommand = {link = "Orange"}
     -- d.cmakeKWconfigure_package_config_file = {link = "Yellow"}
     -- d.cmakeKWwrite_basic_package_version_file = {link = "Yellow"}
     -- d.cmakeKWExternalProject = {link = "Aqua"}
@@ -1543,8 +1543,8 @@ function definitions.get_definitions(opt)
     d.jsonKeyword = {link = "Orange"}
     d.jsonQuote = {link = "Grey"}
     d.jsonBraces = {link = "Fg"}
-    d.yamlKey = {link = "Orange"}
     -- yaml
+    d.yamlKey = {link = "Orange"}
     d.yamlConstant = {link = "Purple"}
     -- toml
     d.tomlTable = {fg = colors.purple, bg = colors.none, bold = true}
@@ -1560,8 +1560,8 @@ function definitions.get_definitions(opt)
     d.gitcommitOnBranch = {link = "Grey"}
     d.gitcommitArrow = {link = "Grey"}
     d.gitcommitFile = {link = "Green"}
-    d.dosiniHeader = {fg = colors.red, bg = colors.none, bold = true}
     -- dosini
+    d.dosiniHeader = {fg = colors.red, bg = colors.none, bold = true}
     d.dosiniLabel = {link = "Yellow"}
     d.dosiniValue = {link = "Green"}
     d.dosiniNumber = {link = "Green"}
