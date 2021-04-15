@@ -16,17 +16,17 @@ local defaults = {
     plugins = {}
 }
 
-local attr_list = {
-    bold = true,
-    underline = true,
-    undercurl = true,
-    strikethrough = true,
-    reverse = true,
-    inverse = true,
-    italic = true,
-    standout = true,
-    nocombine = true
-}
+-- local attr_list = {
+--     bold = true,
+--     underline = true,
+--     undercurl = true,
+--     strikethrough = true,
+--     reverse = true,
+--     inverse = true,
+--     italic = true,
+--     standout = true,
+--     nocombine = true
+-- }
 
 local function hi_link(name, link)
     cmd(string.format("hi link %s %s", name, link))
@@ -37,29 +37,22 @@ function utils.highlight(name, param)
         return hi_link(name, param.link)
     end
 
-    local options = {"highlight", name}
-    local special = {}
+    local fg = param.fg or {"NONE", "NONE"}
+    local bg = param.bg or {"NONE", "NONE"}
+    local gui = param.gui or "NONE"
 
-    for k, v in pairs(param) do
-        if k == "fg" then
-            table.insert(options, string.format("guifg=%s ctermfg=%s", v[1], v[2]))
-        elseif k == "bg" then
-            table.insert(options, string.format("guibg=%s ctermbg=%s", v[1], v[2]))
-        elseif k == "default" then
-            table.insert(options, 2, "default")
-        elseif attr_list[k] then
-            table.insert(special, k)
-        end
-    end
+    local exec =
+        string.format(
+        "highlight! %s guifg=%s ctermfg=%s guibg=%s ctermbg=%s gui=%s",
+        name,
+        fg[1],
+        fg[2],
+        bg[1],
+        bg[2],
+        gui
+    )
 
-    local special_str = table.concat(special, ",")
-    if #special_str > 0 then
-        table.insert(options, string.format("gui=%s cterm=%s", special_str, special_str))
-    else
-        table.insert(options, string.format("gui=%s cterm=%s", "NONE", "NONE"))
-    end
-
-    cmd(table.concat(options, " "))
+    cmd(exec)
 end
 
 function utils.configure(opts)
