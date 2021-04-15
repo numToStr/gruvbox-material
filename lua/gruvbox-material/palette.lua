@@ -220,8 +220,6 @@ local function palette_grey(p)
         p.grey1 = {"#928374", "245"}
         p.grey2 = {"#7c6f64", "243"}
     end
-
-    p.none = {"NONE", "NONE"}
 end
 
 function palette.get_palette(gruvbox_bg, gruvbox_palette)

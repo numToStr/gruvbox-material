@@ -9,68 +9,68 @@ function definitions.get_definitions(opt)
     -- ####### Common: Start
     -- UI: Start
     if opt.transparent_bg then
-        d.Normal = {fg = colors.fg0, bg = colors.none}
-        d.Terminal = {fg = colors.fg0, bg = colors.none}
-        d.EndOfBuffer = {fg = colors.bg0, bg = colors.none}
-        d.FoldColumn = {fg = colors.grey0, bg = colors.none}
-        d.Folded = {fg = colors.grey1, bg = colors.none}
-        d.SignColumn = {fg = colors.fg0, bg = colors.none}
-        d.ToolbarLine = {fg = colors.fg0, bg = colors.none}
+        d.Normal = {fg = colors.fg0}
+        d.Terminal = {fg = colors.fg0}
+        d.EndOfBuffer = {fg = colors.bg0}
+        d.FoldColumn = {fg = colors.grey0}
+        d.Folded = {fg = colors.grey1}
+        d.SignColumn = {fg = colors.fg0}
+        d.ToolbarLine = {fg = colors.fg0}
     else
         d.Normal = {fg = colors.fg0, bg = colors.bg0}
         d.Terminal = {fg = colors.fg0, bg = colors.bg0}
         d.EndOfBuffer = {fg = colors.bg0, bg = colors.bg0}
         d.Folded = {fg = colors.grey1, bg = colors.bg2}
         d.ToolbarLine = {fg = colors.fg1, bg = colors.bg3}
-        d.SignColumn = {fg = colors.fg0, bg = colors.none}
-        d.FoldColumn = {fg = colors.grey0, bg = colors.none}
+        d.SignColumn = {fg = colors.fg0}
+        d.FoldColumn = {fg = colors.grey0}
     end
 
     d.MsgArea = {link = "Fg"}
     d.IncSearch = {fg = colors.bg0, bg = colors.bg_red}
     d.Search = {fg = colors.bg0, bg = colors.bg_green}
-    d.ColorColumn = {fg = colors.none, bg = colors.bg2}
-    d.Conceal = {fg = colors.grey0, bg = colors.none}
-    d.Cursor = {fg = colors.none, bg = colors.none, gui = "reverse"}
+    d.ColorColumn = {bg = colors.bg2}
+    d.Conceal = {fg = colors.grey0}
+    d.Cursor = {gui = "reverse"}
     d.vCursor = {link = "Cursor"}
     d.iCursor = {link = "Cursor"}
     d.lCursor = {link = "Cursor"}
     d.CursorIM = {link = "Cursor"}
 
     if wo.diff then
-        d.CursorLine = {fg = colors.none, bg = colors.none, gui = "underline"}
-        d.CursorColumn = {fg = colors.none, bg = colors.none, gui = "bold"}
+        d.CursorLine = {gui = "underline"}
+        d.CursorColumn = {gui = "bold"}
     else
-        d.CursorLine = {fg = colors.none, bg = colors.bg1}
-        d.CursorColumn = {fg = colors.none, bg = colors.bg1}
+        d.CursorLine = {bg = colors.bg1}
+        d.CursorColumn = {bg = colors.bg1}
     end
 
-    d.CursorLineNr = {fg = colors.grey2, bg = colors.none}
-    d.LineNr = {fg = colors.grey0, bg = colors.none}
-    d.DiffAdd = {fg = colors.none, bg = colors.bg_diff_green}
-    d.DiffChange = {fg = colors.none, bg = colors.bg_diff_blue}
-    d.DiffDelete = {fg = colors.none, bg = colors.bg_diff_red}
+    d.CursorLineNr = {fg = colors.grey2}
+    d.LineNr = {fg = colors.grey0}
+    d.DiffAdd = {bg = colors.bg_diff_green}
+    d.DiffChange = {bg = colors.bg_diff_blue}
+    d.DiffDelete = {bg = colors.bg_diff_red}
     d.DiffText = {fg = colors.bg0, bg = colors.fg0}
-    d.Directory = {fg = colors.green, bg = colors.none}
-    d.ErrorMsg = {fg = colors.red, bg = colors.none, gui = "bold,underline"}
-    d.WarningMsg = {fg = colors.yellow, bg = colors.none, gui = "bold"}
-    d.ModeMsg = {fg = colors.fg0, bg = colors.none, gui = "bold"}
-    d.MoreMsg = {fg = colors.yellow, bg = colors.none, gui = "bold"}
-    d.MatchParen = {fg = colors.none, bg = colors.bg4}
-    d.NonText = {fg = colors.bg5, bg = colors.none}
-    d.Whitespace = {fg = colors.bg5, bg = colors.none}
-    d.SpecialKey = {fg = colors.bg5, bg = colors.none}
+    d.Directory = {fg = colors.green}
+    d.ErrorMsg = {fg = colors.red, gui = "bold,underline"}
+    d.WarningMsg = {fg = colors.yellow, gui = "bold"}
+    d.ModeMsg = {fg = colors.fg0, gui = "bold"}
+    d.MoreMsg = {fg = colors.yellow, gui = "bold"}
+    d.MatchParen = {bg = colors.bg4}
+    d.NonText = {fg = colors.bg5}
+    d.Whitespace = {fg = colors.bg5}
+    d.SpecialKey = {fg = colors.bg5}
     d.Pmenu = {fg = colors.fg1, bg = colors.bg3}
-    d.PmenuSbar = {fg = colors.none, bg = colors.bg3}
+    d.PmenuSbar = {bg = colors.bg3}
     d.PmenuSel = {fg = colors.bg3, bg = colors.grey2}
     d.WildMenu = {link = "PmenuSel"}
-    d.PmenuThumb = {fg = colors.none, bg = colors.grey0}
+    d.PmenuThumb = {bg = colors.grey0}
     d.NormalFloat = {fg = colors.fg1, bg = colors.bg3}
-    d.Question = {fg = colors.yellow, bg = colors.none}
-    d.SpellBad = {fg = colors.red, bg = colors.none, gui = "undercurl"}
-    d.SpellCap = {fg = colors.blue, bg = colors.none, gui = "undercurl"}
-    d.SpellLocal = {fg = colors.aqua, bg = colors.none, gui = "undercurl"}
-    d.SpellRare = {fg = colors.purple, bg = colors.none, gui = "undercurl"}
+    d.Question = {fg = colors.yellow}
+    d.SpellBad = {fg = colors.red, gui = "undercurl"}
+    d.SpellCap = {fg = colors.blue, gui = "undercurl"}
+    d.SpellLocal = {fg = colors.aqua, gui = "undercurl"}
+    d.SpellRare = {fg = colors.purple, gui = "undercurl"}
     d.StatusLine = {fg = colors.fg1, bg = colors.bg_statusline2}
     d.StatusLineTerm = {fg = colors.fg1, bg = colors.bg_statusline2}
     d.StatusLineNC = {fg = colors.grey2, bg = colors.bg_statusline2}
@@ -78,11 +78,11 @@ function definitions.get_definitions(opt)
     d.TabLine = {fg = colors.fg1, bg = colors.bg4}
     d.TabLineFill = {fg = colors.fg0, bg = colors.bg0}
     d.TabLineSel = {fg = colors.bg0, bg = colors.grey2}
-    d.VertSplit = {fg = colors.bg5, bg = colors.none}
-    d.Visual = {fg = colors.none, bg = colors.bg3}
-    d.VisualNOS = {fg = colors.none, bg = colors.bg3}
-    d.QuickFixLine = {fg = colors.purple, bg = colors.none, gui = "bold"}
-    d.Debug = {fg = colors.orange, bg = colors.none}
+    d.VertSplit = {fg = colors.bg5}
+    d.Visual = {bg = colors.bg3}
+    d.VisualNOS = {bg = colors.bg3}
+    d.QuickFixLine = {fg = colors.purple, gui = "bold"}
+    d.Debug = {fg = colors.orange}
     d.debugPC = {fg = colors.bg0, bg = colors.green}
     d.debugBreakpoint = {fg = colors.bg0, bg = colors.red}
     d.ToolbarButton = {fg = colors.bg0, bg = colors.grey2}
@@ -118,145 +118,145 @@ function definitions.get_definitions(opt)
     -- UI: End
 
     -- Syntax: Start
-    d.Boolean = {fg = colors.purple, bg = colors.none}
-    d.Number = {fg = colors.purple, bg = colors.none}
-    d.Float = {fg = colors.purple, bg = colors.none}
+    d.Boolean = {fg = colors.purple}
+    d.Number = {fg = colors.purple}
+    d.Float = {fg = colors.purple}
 
     if opt.italic then
-        d.PreProc = {fg = colors.purple, bg = colors.none, gui = "italic"}
-        d.PreCondit = {fg = colors.purple, bg = colors.none, gui = "italic"}
-        d.Include = {fg = colors.purple, bg = colors.none, gui = "italic"}
-        d.Define = {fg = colors.purple, bg = colors.none, gui = "italic"}
-        d.Conditional = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.Repeat = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.Keyword = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.Typedef = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.Exception = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.Statement = {fg = colors.red, bg = colors.none, gui = "italic"}
+        d.PreProc = {fg = colors.purple, gui = "italic"}
+        d.PreCondit = {fg = colors.purple, gui = "italic"}
+        d.Include = {fg = colors.purple, gui = "italic"}
+        d.Define = {fg = colors.purple, gui = "italic"}
+        d.Conditional = {fg = colors.red, gui = "italic"}
+        d.Repeat = {fg = colors.red, gui = "italic"}
+        d.Keyword = {fg = colors.red, gui = "italic"}
+        d.Typedef = {fg = colors.red, gui = "italic"}
+        d.Exception = {fg = colors.red, gui = "italic"}
+        d.Statement = {fg = colors.red, gui = "italic"}
     else
-        d.PreProc = {fg = colors.purple, bg = colors.none}
-        d.PreCondit = {fg = colors.purple, bg = colors.none}
-        d.Include = {fg = colors.purple, bg = colors.none}
-        d.Define = {fg = colors.purple, bg = colors.none}
-        d.Conditional = {fg = colors.red, bg = colors.none}
-        d.Repeat = {fg = colors.red, bg = colors.none}
-        d.Keyword = {fg = colors.red, bg = colors.none}
-        d.Typedef = {fg = colors.red, bg = colors.none}
-        d.Exception = {fg = colors.red, bg = colors.none}
-        d.Statement = {fg = colors.red, bg = colors.none}
+        d.PreProc = {fg = colors.purple}
+        d.PreCondit = {fg = colors.purple}
+        d.Include = {fg = colors.purple}
+        d.Define = {fg = colors.purple}
+        d.Conditional = {fg = colors.red}
+        d.Repeat = {fg = colors.red}
+        d.Keyword = {fg = colors.red}
+        d.Typedef = {fg = colors.red}
+        d.Exception = {fg = colors.red}
+        d.Statement = {fg = colors.red}
     end
 
-    d.Error = {fg = colors.red, bg = colors.none}
-    d.StorageClass = {fg = colors.orange, bg = colors.none}
-    d.Tag = {fg = colors.orange, bg = colors.none}
-    d.Label = {fg = colors.orange, bg = colors.none}
-    d.Structure = {fg = colors.orange, bg = colors.none}
-    d.Operator = {fg = colors.orange, bg = colors.none}
-    d.Title = {fg = colors.orange, bg = colors.none, gui = "bold"}
-    d.Special = {fg = colors.yellow, bg = colors.none}
-    d.SpecialChar = {fg = colors.yellow, bg = colors.none}
-    d.Type = {fg = colors.yellow, bg = colors.none}
+    d.Error = {fg = colors.red}
+    d.StorageClass = {fg = colors.orange}
+    d.Tag = {fg = colors.orange}
+    d.Label = {fg = colors.orange}
+    d.Structure = {fg = colors.orange}
+    d.Operator = {fg = colors.orange}
+    d.Title = {fg = colors.orange, gui = "bold"}
+    d.Special = {fg = colors.yellow}
+    d.SpecialChar = {fg = colors.yellow}
+    d.Type = {fg = colors.yellow}
 
     if opt.bold then
-        d.Function = {fg = colors.green, bg = colors.none, gui = "bold"}
+        d.Function = {fg = colors.green, gui = "bold"}
     else
-        d.Function = {fg = colors.green, bg = colors.none}
+        d.Function = {fg = colors.green}
     end
 
-    d.String = {fg = colors.green, bg = colors.none}
-    d.Character = {fg = colors.green, bg = colors.none}
-    d.Constant = {fg = colors.aqua, bg = colors.none}
-    d.Macro = {fg = colors.aqua, bg = colors.none}
-    d.Identifier = {fg = colors.blue, bg = colors.none}
+    d.String = {fg = colors.green}
+    d.Character = {fg = colors.green}
+    d.Constant = {fg = colors.aqua}
+    d.Macro = {fg = colors.aqua}
+    d.Identifier = {fg = colors.blue}
 
     if opt.italic_comment then
-        d.Comment = {fg = colors.grey0, bg = colors.none, gui = "italic"}
-        d.SpecialComment = {fg = colors.grey0, bg = colors.none, gui = "italic"}
-        d.Todo = {fg = colors.purple, bg = colors.none, gui = "italic"}
+        d.Comment = {fg = colors.grey0, gui = "italic"}
+        d.SpecialComment = {fg = colors.grey0, gui = "italic"}
+        d.Todo = {fg = colors.purple, gui = "italic"}
     else
-        d.Comment = {fg = colors.grey0, bg = colors.none}
-        d.SpecialComment = {fg = colors.grey0, bg = colors.none}
-        d.Todo = {fg = colors.purple, bg = colors.none}
+        d.Comment = {fg = colors.grey0}
+        d.SpecialComment = {fg = colors.grey0}
+        d.Todo = {fg = colors.purple}
     end
 
-    d.Delimiter = {fg = colors.fg0, bg = colors.none}
-    d.Ignore = {fg = colors.grey1, bg = colors.none}
-    d.Underlined = {fg = colors.none, bg = colors.none, gui = "underline"}
+    d.Delimiter = {fg = colors.fg0}
+    d.Ignore = {fg = colors.grey1}
+    d.Underlined = {gui = "underline"}
     -- Syntax: End
 
     -- Predefined: Start
-    d.Fg = {fg = colors.fg0, bg = colors.none}
-    d.FgBold = {fg = colors.fg0, bg = colors.none, gui = "bold"}
-    d.Grey = {fg = colors.grey1, bg = colors.none}
-    d.Red = {fg = colors.red, bg = colors.none}
-    d.Orange = {fg = colors.orange, bg = colors.none}
-    d.Yellow = {fg = colors.yellow, bg = colors.none}
-    d.Green = {fg = colors.green, bg = colors.none}
-    d.Aqua = {fg = colors.aqua, bg = colors.none}
-    d.Blue = {fg = colors.blue, bg = colors.none}
-    d.Purple = {fg = colors.purple, bg = colors.none}
+    d.Fg = {fg = colors.fg0}
+    d.FgBold = {fg = colors.fg0, gui = "bold"}
+    d.Grey = {fg = colors.grey1}
+    d.Red = {fg = colors.red}
+    d.Orange = {fg = colors.orange}
+    d.Yellow = {fg = colors.yellow}
+    d.Green = {fg = colors.green}
+    d.Aqua = {fg = colors.aqua}
+    d.Blue = {fg = colors.blue}
+    d.Purple = {fg = colors.purple}
 
     if opt.italic then
-        d.RedItalic = {fg = colors.red, bg = colors.none, gui = "italic"}
-        d.OrangeItalic = {fg = colors.orange, bg = colors.none, gui = "italic"}
-        d.YellowItalic = {fg = colors.yellow, bg = colors.none, gui = "italic"}
-        d.GreenItalic = {fg = colors.green, bg = colors.none, gui = "italic"}
-        d.AquaItalic = {fg = colors.aqua, bg = colors.none, gui = "italic"}
-        d.BlueItalic = {fg = colors.blue, bg = colors.none, gui = "italic"}
-        d.PurpleItalic = {fg = colors.purple, bg = colors.none, gui = "italic"}
+        d.RedItalic = {fg = colors.red, gui = "italic"}
+        d.OrangeItalic = {fg = colors.orange, gui = "italic"}
+        d.YellowItalic = {fg = colors.yellow, gui = "italic"}
+        d.GreenItalic = {fg = colors.green, gui = "italic"}
+        d.AquaItalic = {fg = colors.aqua, gui = "italic"}
+        d.BlueItalic = {fg = colors.blue, gui = "italic"}
+        d.PurpleItalic = {fg = colors.purple, gui = "italic"}
     else
-        d.RedItalic = {fg = colors.red, bg = colors.none}
-        d.OrangeItalic = {fg = colors.orange, bg = colors.none}
-        d.YellowItalic = {fg = colors.yellow, bg = colors.none}
-        d.GreenItalic = {fg = colors.green, bg = colors.none}
-        d.AquaItalic = {fg = colors.aqua, bg = colors.none}
-        d.BlueItalic = {fg = colors.blue, bg = colors.none}
-        d.PurpleItalic = {fg = colors.purple, bg = colors.none}
+        d.RedItalic = {fg = colors.red}
+        d.OrangeItalic = {fg = colors.orange}
+        d.YellowItalic = {fg = colors.yellow}
+        d.GreenItalic = {fg = colors.green}
+        d.AquaItalic = {fg = colors.aqua}
+        d.BlueItalic = {fg = colors.blue}
+        d.PurpleItalic = {fg = colors.purple}
     end
 
     if opt.bold then
-        d.RedBold = {fg = colors.red, bg = colors.none, gui = "bold"}
-        d.OrangeBold = {fg = colors.orange, bg = colors.none, gui = "bold"}
-        d.YellowBold = {fg = colors.yellow, bg = colors.none, gui = "bold"}
-        d.GreenBold = {fg = colors.green, bg = colors.none, gui = "bold"}
-        d.AquaBold = {fg = colors.aqua, bg = colors.none, gui = "bold"}
-        d.BlueBold = {fg = colors.blue, bg = colors.none, gui = "bold"}
-        d.PurpleBold = {fg = colors.purple, bg = colors.none, gui = "bold"}
+        d.RedBold = {fg = colors.red, gui = "bold"}
+        d.OrangeBold = {fg = colors.orange, gui = "bold"}
+        d.YellowBold = {fg = colors.yellow, gui = "bold"}
+        d.GreenBold = {fg = colors.green, gui = "bold"}
+        d.AquaBold = {fg = colors.aqua, gui = "bold"}
+        d.BlueBold = {fg = colors.blue, gui = "bold"}
+        d.PurpleBold = {fg = colors.purple, gui = "bold"}
     else
-        d.RedBold = {fg = colors.red, bg = colors.none}
-        d.OrangeBold = {fg = colors.orange, bg = colors.none}
-        d.YellowBold = {fg = colors.yellow, bg = colors.none}
-        d.GreenBold = {fg = colors.green, bg = colors.none}
-        d.AquaBold = {fg = colors.aqua, bg = colors.none}
-        d.BlueBold = {fg = colors.blue, bg = colors.none}
-        d.PurpleBold = {fg = colors.purple, bg = colors.none}
+        d.RedBold = {fg = colors.red}
+        d.OrangeBold = {fg = colors.orange}
+        d.YellowBold = {fg = colors.yellow}
+        d.GreenBold = {fg = colors.green}
+        d.AquaBold = {fg = colors.aqua}
+        d.BlueBold = {fg = colors.blue}
+        d.PurpleBold = {fg = colors.purple}
     end
 
-    d.RedSign = {fg = colors.red, bg = colors.none}
-    d.OrangeSign = {fg = colors.orange, bg = colors.none}
-    d.YellowSign = {fg = colors.yellow, bg = colors.none}
-    d.GreenSign = {fg = colors.green, bg = colors.none}
-    d.AquaSign = {fg = colors.aqua, bg = colors.none}
-    d.BlueSign = {fg = colors.blue, bg = colors.none}
-    d.PurpleSign = {fg = colors.purple, bg = colors.none}
+    d.RedSign = {fg = colors.red}
+    d.OrangeSign = {fg = colors.orange}
+    d.YellowSign = {fg = colors.yellow}
+    d.GreenSign = {fg = colors.green}
+    d.AquaSign = {fg = colors.aqua}
+    d.BlueSign = {fg = colors.blue}
+    d.PurpleSign = {fg = colors.purple}
 
     if opt.diagnostic_text_highlight then
-        d.ErrorText = {fg = colors.none, bg = colors.bg_visual_red, gui = "underline"}
-        d.WarningText = {fg = colors.none, bg = colors.bg_visual_yellow, gui = "underline"}
-        d.InfoText = {fg = colors.none, bg = colors.bg_visual_blue, gui = "underline"}
-        d.HintText = {fg = colors.none, bg = colors.bg_visual_green, gui = "underline"}
+        d.ErrorText = {bg = colors.bg_visual_red, gui = "underline"}
+        d.WarningText = {bg = colors.bg_visual_yellow, gui = "underline"}
+        d.InfoText = {bg = colors.bg_visual_blue, gui = "underline"}
+        d.HintText = {bg = colors.bg_visual_green, gui = "underline"}
     else
-        d.ErrorText = {fg = colors.none, bg = colors.none, gui = "underline"}
-        d.WarningText = {fg = colors.none, bg = colors.none, gui = "underline"}
-        d.InfoText = {fg = colors.none, bg = colors.none, gui = "underline"}
-        d.HintText = {fg = colors.none, bg = colors.none, gui = "underline"}
+        d.ErrorText = {gui = "underline"}
+        d.WarningText = {gui = "underline"}
+        d.InfoText = {gui = "underline"}
+        d.HintText = {gui = "underline"}
     end
 
     if opt.diagnostic_line_highlight then
-        d.ErrorLine = {fg = colors.none, bg = colors.bg_visual_red}
-        d.WarningLine = {fg = colors.none, bg = colors.bg_visual_yellow}
-        d.InfoLine = {fg = colors.none, bg = colors.bg_visual_blue}
-        d.HintLine = {fg = colors.none, bg = colors.bg_visual_green}
+        d.ErrorLine = {bg = colors.bg_visual_red}
+        d.WarningLine = {bg = colors.bg_visual_yellow}
+        d.InfoLine = {bg = colors.bg_visual_blue}
+        d.HintLine = {bg = colors.bg_visual_green}
     end
 
     d.ErrorFloat = {fg = colors.red, bg = colors.bg3}
@@ -267,7 +267,7 @@ function definitions.get_definitions(opt)
     if wo.diff then
         d.CurrentWord = {fg = colors.bg0, bg = colors.bg_green}
     else
-        d.CurrentWord = {fg = colors.none, bg = colors.bg_current_word}
+        d.CurrentWord = {bg = colors.bg_current_word}
     end
     -- Predefined: End
     -- ####### Common: End
@@ -354,8 +354,8 @@ function definitions.get_definitions(opt)
         d.TSTag = {link = "Orange"}
         d.TSTagDelimiter = {link = "Green"}
         d.TSText = {link = "Green"}
-        d.TSEmphasis = {fg = colors.none, bg = colors.none, gui = "bold"}
-        d.TSUnderline = {fg = colors.none, bg = colors.none, gui = "underline"}
+        d.TSEmphasis = {gui = "bold"}
+        d.TSUnderline = {gui = "underline"}
         d.TSType = {link = "Aqua"}
         d.TSTypeBuiltin = {link = "BlueItalic"}
         d.TSURI = {link = "markdownUrl"}
@@ -365,7 +365,7 @@ function definitions.get_definitions(opt)
 
     -- neoclide/coc.nvim
     if opt.plugins.coc then
-        d.CocHoverRange = {fg = colors.none, bg = colors.none, gui = "bold,underline"}
+        d.CocHoverRange = {gui = "bold,underline"}
         d.CocErrorFloat = {link = "ErrorFloat"}
         d.CocWarningFloat = {link = "WarningFloat"}
         d.CocInfoFloat = {link = "InfoFloat"}
@@ -508,8 +508,8 @@ function definitions.get_definitions(opt)
 
     -- vim-plug
     if opt.plugins["vim-plug"] then
-        d.plug1 = {fg = colors.orange, bg = colors.none, "bold"}
-        d.plugNumber = {fg = colors.yellow, bg = colors.none, "bold"}
+        d.plug1 = {fg = colors.orange, gui = "bold"}
+        d.plugNumber = {fg = colors.yellow, gui = "bold"}
         d.plug2 = {link = "Green"}
         d.plugBracket = {link = "Grey"}
         d.plugName = {link = "Aqua"}
@@ -607,16 +607,16 @@ function definitions.get_definitions(opt)
     d.netrwCmdSep = {link = "Grey"}
     d.netrwVersion = {link = "Orange"}
     -- markdown
-    d.markdownH1 = {fg = colors.red, bg = colors.none, gui = "bold"}
-    d.markdownH2 = {fg = colors.orange, bg = colors.none, gui = "bold"}
-    d.markdownH3 = {fg = colors.yellow, bg = colors.none, gui = "bold"}
-    d.markdownH4 = {fg = colors.green, bg = colors.none, gui = "bold"}
-    d.markdownH5 = {fg = colors.blue, bg = colors.none, gui = "bold"}
-    d.markdownH6 = {fg = colors.purple, bg = colors.none, gui = "bold"}
-    d.markdownUrl = {fg = colors.blue, bg = colors.none, gui = "underline"}
-    d.markdownItalic = {fg = colors.none, bg = colors.none, gui = "italic"}
-    d.markdownBold = {fg = colors.none, bg = colors.none, gui = "bold"}
-    d.markdownItalicDelimiter = {fg = colors.grey1, bg = colors.none, gui = "italic"}
+    d.markdownH1 = {fg = colors.red, gui = "bold"}
+    d.markdownH2 = {fg = colors.orange, gui = "bold"}
+    d.markdownH3 = {fg = colors.yellow, gui = "bold"}
+    d.markdownH4 = {fg = colors.green, gui = "bold"}
+    d.markdownH5 = {fg = colors.blue, gui = "bold"}
+    d.markdownH6 = {fg = colors.purple, gui = "bold"}
+    d.markdownUrl = {fg = colors.blue, gui = "underline"}
+    d.markdownItalic = {gui = "italic"}
+    d.markdownBold = {gui = "bold"}
+    d.markdownItalicDelimiter = {fg = colors.grey1, gui = "italic"}
     d.markdownCode = {link = "Green"}
     d.markdownCodeBlock = {link = "Aqua"}
     d.markdownCodeDelimiter = {link = "Aqua"}
@@ -635,20 +635,20 @@ function definitions.get_definitions(opt)
     d.markdownBoldDelimiter = {link = "Grey"}
     d.markdownId = {link = "Yellow"}
     -- html/markdown/javascriptreact/typescriptreact
-    d.htmlH1 = {fg = colors.red, bg = colors.none, gui = "bold"}
-    d.htmlH2 = {fg = colors.orange, bg = colors.none, gui = "bold"}
-    d.htmlH3 = {fg = colors.yellow, bg = colors.none, gui = "bold"}
-    d.htmlH4 = {fg = colors.green, bg = colors.none, gui = "bold"}
-    d.htmlH5 = {fg = colors.blue, bg = colors.none, gui = "bold"}
-    d.htmlH6 = {fg = colors.purple, bg = colors.none, gui = "bold"}
-    d.htmlLink = {fg = colors.none, bg = colors.none, gui = "underline"}
-    d.htmlBold = {fg = colors.none, bg = colors.none, gui = "bold"}
-    d.htmlBoldUnderline = {fg = colors.none, bg = colors.none, gui = "bold,underline"}
-    d.htmlBoldItalic = {fg = colors.none, bg = colors.none, gui = "bold,italic"}
-    d.htmlBoldUnderlineItalic = {fg = colors.none, bg = colors.none, gui = "bold,underline,italic"}
-    d.htmlUnderline = {fg = colors.none, bg = colors.none, gui = "underline"}
-    d.htmlUnderlineItalic = {fg = colors.none, bg = colors.none, gui = "underline,italic"}
-    d.htmlItalic = {fg = colors.none, bg = colors.none, gui = "italic"}
+    d.htmlH1 = {fg = colors.red, gui = "bold"}
+    d.htmlH2 = {fg = colors.orange, gui = "bold"}
+    d.htmlH3 = {fg = colors.yellow, gui = "bold"}
+    d.htmlH4 = {fg = colors.green, gui = "bold"}
+    d.htmlH5 = {fg = colors.blue, gui = "bold"}
+    d.htmlH6 = {fg = colors.purple, gui = "bold"}
+    d.htmlLink = {gui = "underline"}
+    d.htmlBold = {gui = "bold"}
+    d.htmlBoldUnderline = {gui = "bold,underline"}
+    d.htmlBoldItalic = {gui = "bold,italic"}
+    d.htmlBoldUnderlineItalic = {gui = "bold,underline,italic"}
+    d.htmlUnderline = {gui = "underline"}
+    d.htmlUnderlineItalic = {gui = "underline,italic"}
+    d.htmlItalic = {gui = "italic"}
     d.htmlTag = {link = "Green"}
     d.htmlEndTag = {link = "Blue"}
     d.htmlTagN = {link = "OrangeItalic"}
@@ -1156,7 +1156,7 @@ function definitions.get_definitions(opt)
     d.pythonNone = {link = "Aqua"}
     d.pythonDot = {link = "Grey"}
     -- semshi: https://github.com/numirias/semshi
-    d.semshiUnresolved = {fg = colors.yellow, bg = colors.none, gui = "undercurl"}
+    d.semshiUnresolved = {fg = colors.yellow, gui = "undercurl"}
     d.semshiImported = {link = "Purple"}
     d.semshiParameter = {link = "Blue"}
     d.semshiParameterUnused = {link = "Grey"}
@@ -1409,7 +1409,7 @@ function definitions.get_definitions(opt)
     d.ps1InterpolationDelimiter = {link = "Yellow"}
     d.ps1BuiltIn = {link = "Yellow"}
     -- vim
-    d.vimCommentTitle = {fg = colors.grey1, bg = colors.none, gui = "bold"}
+    d.vimCommentTitle = {fg = colors.grey1, gui = "bold"}
     d.vimLet = {link = "Orange"}
     d.vimFunction = {link = "GreenBold"}
     d.vimIsCommand = {link = "Fg"}
@@ -1547,7 +1547,7 @@ function definitions.get_definitions(opt)
     d.yamlKey = {link = "Orange"}
     d.yamlConstant = {link = "Purple"}
     -- toml
-    d.tomlTable = {fg = colors.purple, bg = colors.none, gui = "bold"}
+    d.tomlTable = {fg = colors.purple, gui = "bold"}
     d.tomlKey = {link = "Orange"}
     d.tomlBoolean = {link = "Aqua"}
     d.tomlTableArray = {link = "tomlTable"}
@@ -1561,16 +1561,16 @@ function definitions.get_definitions(opt)
     d.gitcommitArrow = {link = "Grey"}
     d.gitcommitFile = {link = "Green"}
     -- dosini
-    d.dosiniHeader = {fg = colors.red, bg = colors.none, gui = "bold"}
+    d.dosiniHeader = {fg = colors.red, gui = "bold"}
     d.dosiniLabel = {link = "Yellow"}
     d.dosiniValue = {link = "Green"}
     d.dosiniNumber = {link = "Green"}
-    d.helpNote = {fg = colors.purple, bg = colors.none, gui = "bold"}
+    d.helpNote = {fg = colors.purple, gui = "bold"}
     -- help
-    d.helpHeadline = {fg = colors.red, bg = colors.none, gui = "bold"}
-    d.helpHeader = {fg = colors.orange, bg = colors.none, gui = "bold"}
-    d.helpURL = {fg = colors.green, bg = colors.none, gui = "underline"}
-    d.helpHyperTextEntry = {fg = colors.yellow, bg = colors.none, gui = "bold"}
+    d.helpHeadline = {fg = colors.red, gui = "bold"}
+    d.helpHeader = {fg = colors.orange, gui = "bold"}
+    d.helpURL = {fg = colors.green, gui = "underline"}
+    d.helpHyperTextEntry = {fg = colors.yellow, gui = "bold"}
     d.helpHyperTextJump = {link = "Yellow"}
     d.helpCommand = {link = "Aqua"}
     d.helpExample = {link = "Green"}
