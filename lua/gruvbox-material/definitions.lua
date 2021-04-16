@@ -323,6 +323,9 @@ function definitions.get_definitions(opt, colors)
 
         -- yaml
         d.yamlTSField = {link = "Blue"}
+
+        -- lua
+        d.luaTSField = {link = "Fg"}
     end
 
     -- neoclide/coc.nvim
