@@ -531,7 +531,7 @@ function definitions.get_definitions(opt, colors)
     if opt.plugins["nvim-tree"] then
         d.NvimTreeFolderName = {link = "Fg"}
         d.NvimTreeFolderIcon = {link = "Fg"}
-        d.NvimTreeIndentMarker = {link = "Grey"}
+        d.NvimTreeIndentMarker = {link = "Comment"}
         d.NvimTreeOpenedFile = {link = "Fg"}
         d.NvimTreeOpenedFolderName = {link = "Fg"}
         d.NvimTreeRootFolder = {fg = colors.grey1, gui = "bold"}
