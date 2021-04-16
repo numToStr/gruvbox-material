@@ -24,9 +24,10 @@ function definitions.get_definitions(opt, colors)
         d.FoldColumn = {fg = colors.grey0}
     end
 
+    d.NormalInverse = {fg = colors.bg0, bg = colors.fg0}
     d.MsgArea = {link = "Fg"}
     d.IncSearch = {fg = colors.bg0, bg = colors.bg_red}
-    d.Search = {fg = colors.bg0, bg = colors.bg_green}
+    d.Search = {fg = colors.bg0, bg = colors.bg_yellow}
     d.ColorColumn = {bg = colors.bg2}
     d.Conceal = {fg = colors.grey0}
     d.Cursor = {gui = "reverse"}
@@ -517,9 +518,9 @@ function definitions.get_definitions(opt, colors)
 
     -- phaazon/hop.nvim
     if opt.plugins["hop.nvim"] then
-        d.HopNextKey = {gui = "reverse"}
-        d.HopNextKey1 = {gui = "reverse"}
-        d.HopNextKey2 = {gui = "reverse"}
+        d.HopNextKey = {link = "NormalInverse"}
+        d.HopNextKey1 = {link = "NormalInverse"}
+        d.HopNextKey2 = {link = "NormalInverse"}
         d.HopUnmatched = {fg = colors.bg5}
     end
 
