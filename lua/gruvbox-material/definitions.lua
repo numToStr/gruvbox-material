@@ -693,168 +693,168 @@ function definitions.get_definitions(opt, colors)
     d.javaScriptOperator = {link = "Orange"}
     d.javaScriptMember = {link = "Aqua"}
     -- vim-javascript: https://github.com/pangloss/vim-javascript
-    d.jsThis = {link = "Purple"}
-    d.jsUndefined = {link = "Aqua"}
-    d.jsNull = {link = "Aqua"}
-    d.jsNan = {link = "Aqua"}
-    d.jsSuper = {link = "Purple"}
-    d.jsPrototype = {link = "Purple"}
-    d.jsFunction = {link = "RedItalic"}
-    d.jsGlobalNodeObjects = {link = "PurpleItalic"}
-    d.jsGlobalObjects = {link = "Yellow"}
-    d.jsArrowFunction = {link = "Purple"}
-    d.jsArrowFuncArgs = {link = "Blue"}
-    d.jsFuncArgs = {link = "Blue"}
-    d.jsObjectProp = {link = "Aqua"}
-    d.jsVariableDef = {link = "Blue"}
-    d.jsObjectKey = {link = "Aqua"}
-    d.jsParen = {link = "Blue"}
-    d.jsParenIfElse = {link = "Blue"}
-    d.jsParenRepeat = {link = "Blue"}
-    d.jsParenSwitch = {link = "Blue"}
-    d.jsParenCatch = {link = "Blue"}
-    d.jsBracket = {link = "Blue"}
-    d.jsBlockLabel = {link = "Aqua"}
-    d.jsFunctionKey = {link = "GreenBold"}
-    d.jsClassDefinition = {link = "Yellow"}
-    d.jsDot = {link = "Grey"}
-    d.jsDestructuringBlock = {link = "Blue"}
-    d.jsSpreadExpression = {link = "Purple"}
-    d.jsSpreadOperator = {link = "Green"}
-    d.jsModuleKeyword = {link = "Yellow"}
-    d.jsObjectValue = {link = "Blue"}
-    d.jsTemplateExpression = {link = "Yellow"}
-    d.jsTemplateBraces = {link = "Yellow"}
-    d.jsClassMethodType = {link = "Orange"}
+    -- d.jsThis = {link = "Purple"}
+    -- d.jsUndefined = {link = "Aqua"}
+    -- d.jsNull = {link = "Aqua"}
+    -- d.jsNan = {link = "Aqua"}
+    -- d.jsSuper = {link = "Purple"}
+    -- d.jsPrototype = {link = "Purple"}
+    -- d.jsFunction = {link = "RedItalic"}
+    -- d.jsGlobalNodeObjects = {link = "PurpleItalic"}
+    -- d.jsGlobalObjects = {link = "Yellow"}
+    -- d.jsArrowFunction = {link = "Purple"}
+    -- d.jsArrowFuncArgs = {link = "Blue"}
+    -- d.jsFuncArgs = {link = "Blue"}
+    -- d.jsObjectProp = {link = "Aqua"}
+    -- d.jsVariableDef = {link = "Blue"}
+    -- d.jsObjectKey = {link = "Aqua"}
+    -- d.jsParen = {link = "Blue"}
+    -- d.jsParenIfElse = {link = "Blue"}
+    -- d.jsParenRepeat = {link = "Blue"}
+    -- d.jsParenSwitch = {link = "Blue"}
+    -- d.jsParenCatch = {link = "Blue"}
+    -- d.jsBracket = {link = "Blue"}
+    -- d.jsBlockLabel = {link = "Aqua"}
+    -- d.jsFunctionKey = {link = "GreenBold"}
+    -- d.jsClassDefinition = {link = "Yellow"}
+    -- d.jsDot = {link = "Grey"}
+    -- d.jsDestructuringBlock = {link = "Blue"}
+    -- d.jsSpreadExpression = {link = "Purple"}
+    -- d.jsSpreadOperator = {link = "Green"}
+    -- d.jsModuleKeyword = {link = "Yellow"}
+    -- d.jsObjectValue = {link = "Blue"}
+    -- d.jsTemplateExpression = {link = "Yellow"}
+    -- d.jsTemplateBraces = {link = "Yellow"}
+    -- d.jsClassMethodType = {link = "Orange"}
     -- yajs: https://github.com/othree/yajs.vim
-    d.javascriptEndColons = {link = "Fg"}
-    d.javascriptOpSymbol = {link = "Orange"}
-    d.javascriptOpSymbols = {link = "Orange"}
-    d.javascriptIdentifierName = {link = "Blue"}
-    d.javascriptVariable = {link = "Orange"}
-    d.javascriptObjectLabel = {link = "Aqua"}
-    d.javascriptObjectLabelColon = {link = "Grey"}
-    d.javascriptPropertyNameString = {link = "Aqua"}
-    d.javascriptFuncArg = {link = "Blue"}
-    d.javascriptIdentifier = {link = "Purple"}
-    d.javascriptArrowFunc = {link = "Purple"}
-    d.javascriptTemplate = {link = "Yellow"}
-    d.javascriptTemplateSubstitution = {link = "Yellow"}
-    d.javascriptTemplateSB = {link = "Yellow"}
-    d.javascriptNodeGlobal = {link = "PurpleItalic"}
-    d.javascriptDocTags = {link = "PurpleItalic"}
-    d.javascriptDocNotation = {link = "Purple"}
-    d.javascriptClassSuper = {link = "Purple"}
-    d.javascriptClassName = {link = "Yellow"}
-    d.javascriptClassSuperName = {link = "Yellow"}
-    d.javascriptBrackets = {link = "Fg"}
-    d.javascriptBraces = {link = "Fg"}
-    d.javascriptLabel = {link = "Purple"}
-    d.javascriptDotNotation = {link = "Grey"}
-    d.javascriptGlobalArrayDot = {link = "Grey"}
-    d.javascriptGlobalBigIntDot = {link = "Grey"}
-    d.javascriptGlobalDateDot = {link = "Grey"}
-    d.javascriptGlobalJSONDot = {link = "Grey"}
-    d.javascriptGlobalMathDot = {link = "Grey"}
-    d.javascriptGlobalNumberDot = {link = "Grey"}
-    d.javascriptGlobalObjectDot = {link = "Grey"}
-    d.javascriptGlobalPromiseDot = {link = "Grey"}
-    d.javascriptGlobalRegExpDot = {link = "Grey"}
-    d.javascriptGlobalStringDot = {link = "Grey"}
-    d.javascriptGlobalSymbolDot = {link = "Grey"}
-    d.javascriptGlobalURLDot = {link = "Grey"}
-    d.javascriptMethod = {link = "GreenBold"}
-    d.javascriptMethodName = {link = "GreenBold"}
-    d.javascriptObjectMethodName = {link = "GreenBold"}
-    d.javascriptGlobalMethod = {link = "GreenBold"}
-    d.javascriptDOMStorageMethod = {link = "GreenBold"}
-    d.javascriptFileMethod = {link = "GreenBold"}
-    d.javascriptFileReaderMethod = {link = "GreenBold"}
-    d.javascriptFileListMethod = {link = "GreenBold"}
-    d.javascriptBlobMethod = {link = "GreenBold"}
-    d.javascriptURLStaticMethod = {link = "GreenBold"}
-    d.javascriptNumberStaticMethod = {link = "GreenBold"}
-    d.javascriptNumberMethod = {link = "GreenBold"}
-    d.javascriptDOMNodeMethod = {link = "GreenBold"}
-    d.javascriptES6BigIntStaticMethod = {link = "GreenBold"}
-    d.javascriptBOMWindowMethod = {link = "GreenBold"}
-    d.javascriptHeadersMethod = {link = "GreenBold"}
-    d.javascriptRequestMethod = {link = "GreenBold"}
-    d.javascriptResponseMethod = {link = "GreenBold"}
-    d.javascriptES6SetMethod = {link = "GreenBold"}
-    d.javascriptReflectMethod = {link = "GreenBold"}
-    d.javascriptPaymentMethod = {link = "GreenBold"}
-    d.javascriptPaymentResponseMethod = {link = "GreenBold"}
-    d.javascriptTypedArrayStaticMethod = {link = "GreenBold"}
-    d.javascriptGeolocationMethod = {link = "GreenBold"}
-    d.javascriptES6MapMethod = {link = "GreenBold"}
-    d.javascriptServiceWorkerMethod = {link = "GreenBold"}
-    d.javascriptCacheMethod = {link = "GreenBold"}
-    d.javascriptFunctionMethod = {link = "GreenBold"}
-    d.javascriptXHRMethod = {link = "GreenBold"}
-    d.javascriptBOMNavigatorMethod = {link = "GreenBold"}
-    d.javascriptDOMEventTargetMethod = {link = "GreenBold"}
-    d.javascriptDOMEventMethod = {link = "GreenBold"}
-    d.javascriptIntlMethod = {link = "GreenBold"}
-    d.javascriptDOMDocMethod = {link = "GreenBold"}
-    d.javascriptStringStaticMethod = {link = "GreenBold"}
-    d.javascriptStringMethod = {link = "GreenBold"}
-    d.javascriptSymbolStaticMethod = {link = "GreenBold"}
-    d.javascriptRegExpMethod = {link = "GreenBold"}
-    d.javascriptObjectStaticMethod = {link = "GreenBold"}
-    d.javascriptObjectMethod = {link = "GreenBold"}
-    d.javascriptBOMLocationMethod = {link = "GreenBold"}
-    d.javascriptJSONStaticMethod = {link = "GreenBold"}
-    d.javascriptGeneratorMethod = {link = "GreenBold"}
-    d.javascriptEncodingMethod = {link = "GreenBold"}
-    d.javascriptPromiseStaticMethod = {link = "GreenBold"}
-    d.javascriptPromiseMethod = {link = "GreenBold"}
-    d.javascriptBOMHistoryMethod = {link = "GreenBold"}
-    d.javascriptDOMFormMethod = {link = "GreenBold"}
-    d.javascriptClipboardMethod = {link = "GreenBold"}
-    d.javascriptBroadcastMethod = {link = "GreenBold"}
-    d.javascriptDateStaticMethod = {link = "GreenBold"}
-    d.javascriptDateMethod = {link = "GreenBold"}
-    d.javascriptConsoleMethod = {link = "GreenBold"}
-    d.javascriptArrayStaticMethod = {link = "GreenBold"}
-    d.javascriptArrayMethod = {link = "GreenBold"}
-    d.javascriptMathStaticMethod = {link = "GreenBold"}
-    d.javascriptSubtleCryptoMethod = {link = "GreenBold"}
-    d.javascriptCryptoMethod = {link = "GreenBold"}
-    d.javascriptProp = {link = "Aqua"}
-    d.javascriptBOMWindowProp = {link = "Aqua"}
-    d.javascriptDOMStorageProp = {link = "Aqua"}
-    d.javascriptFileReaderProp = {link = "Aqua"}
-    d.javascriptURLUtilsProp = {link = "Aqua"}
-    d.javascriptNumberStaticProp = {link = "Aqua"}
-    d.javascriptDOMNodeProp = {link = "Aqua"}
-    d.javascriptRequestProp = {link = "Aqua"}
-    d.javascriptResponseProp = {link = "Aqua"}
-    d.javascriptES6SetProp = {link = "Aqua"}
-    d.javascriptPaymentProp = {link = "Aqua"}
-    d.javascriptPaymentResponseProp = {link = "Aqua"}
-    d.javascriptPaymentAddressProp = {link = "Aqua"}
-    d.javascriptPaymentShippingOptionProp = {link = "Aqua"}
-    d.javascriptTypedArrayStaticProp = {link = "Aqua"}
-    d.javascriptServiceWorkerProp = {link = "Aqua"}
-    d.javascriptES6MapProp = {link = "Aqua"}
-    d.javascriptRegExpStaticProp = {link = "Aqua"}
-    d.javascriptRegExpProp = {link = "Aqua"}
-    d.javascriptXHRProp = {link = "Aqua"}
-    d.javascriptBOMNavigatorProp = {link = "GreenBold"}
-    d.javascriptDOMEventProp = {link = "Aqua"}
-    d.javascriptBOMNetworkProp = {link = "Aqua"}
-    d.javascriptDOMDocProp = {link = "Aqua"}
-    d.javascriptSymbolStaticProp = {link = "Aqua"}
-    d.javascriptSymbolProp = {link = "Aqua"}
-    d.javascriptBOMLocationProp = {link = "Aqua"}
-    d.javascriptEncodingProp = {link = "Aqua"}
-    d.javascriptCryptoProp = {link = "Aqua"}
-    d.javascriptBOMHistoryProp = {link = "Aqua"}
-    d.javascriptDOMFormProp = {link = "Aqua"}
-    d.javascriptDataViewProp = {link = "Aqua"}
-    d.javascriptBroadcastProp = {link = "Aqua"}
-    d.javascriptMathStaticProp = {link = "Aqua"}
+    -- d.javascriptEndColons = {link = "Fg"}
+    -- d.javascriptOpSymbol = {link = "Orange"}
+    -- d.javascriptOpSymbols = {link = "Orange"}
+    -- d.javascriptIdentifierName = {link = "Blue"}
+    -- d.javascriptVariable = {link = "Orange"}
+    -- d.javascriptObjectLabel = {link = "Aqua"}
+    -- d.javascriptObjectLabelColon = {link = "Grey"}
+    -- d.javascriptPropertyNameString = {link = "Aqua"}
+    -- d.javascriptFuncArg = {link = "Blue"}
+    -- d.javascriptIdentifier = {link = "Purple"}
+    -- d.javascriptArrowFunc = {link = "Purple"}
+    -- d.javascriptTemplate = {link = "Yellow"}
+    -- d.javascriptTemplateSubstitution = {link = "Yellow"}
+    -- d.javascriptTemplateSB = {link = "Yellow"}
+    -- d.javascriptNodeGlobal = {link = "PurpleItalic"}
+    -- d.javascriptDocTags = {link = "PurpleItalic"}
+    -- d.javascriptDocNotation = {link = "Purple"}
+    -- d.javascriptClassSuper = {link = "Purple"}
+    -- d.javascriptClassName = {link = "Yellow"}
+    -- d.javascriptClassSuperName = {link = "Yellow"}
+    -- d.javascriptBrackets = {link = "Fg"}
+    -- d.javascriptBraces = {link = "Fg"}
+    -- d.javascriptLabel = {link = "Purple"}
+    -- d.javascriptDotNotation = {link = "Grey"}
+    -- d.javascriptGlobalArrayDot = {link = "Grey"}
+    -- d.javascriptGlobalBigIntDot = {link = "Grey"}
+    -- d.javascriptGlobalDateDot = {link = "Grey"}
+    -- d.javascriptGlobalJSONDot = {link = "Grey"}
+    -- d.javascriptGlobalMathDot = {link = "Grey"}
+    -- d.javascriptGlobalNumberDot = {link = "Grey"}
+    -- d.javascriptGlobalObjectDot = {link = "Grey"}
+    -- d.javascriptGlobalPromiseDot = {link = "Grey"}
+    -- d.javascriptGlobalRegExpDot = {link = "Grey"}
+    -- d.javascriptGlobalStringDot = {link = "Grey"}
+    -- d.javascriptGlobalSymbolDot = {link = "Grey"}
+    -- d.javascriptGlobalURLDot = {link = "Grey"}
+    -- d.javascriptMethod = {link = "GreenBold"}
+    -- d.javascriptMethodName = {link = "GreenBold"}
+    -- d.javascriptObjectMethodName = {link = "GreenBold"}
+    -- d.javascriptGlobalMethod = {link = "GreenBold"}
+    -- d.javascriptDOMStorageMethod = {link = "GreenBold"}
+    -- d.javascriptFileMethod = {link = "GreenBold"}
+    -- d.javascriptFileReaderMethod = {link = "GreenBold"}
+    -- d.javascriptFileListMethod = {link = "GreenBold"}
+    -- d.javascriptBlobMethod = {link = "GreenBold"}
+    -- d.javascriptURLStaticMethod = {link = "GreenBold"}
+    -- d.javascriptNumberStaticMethod = {link = "GreenBold"}
+    -- d.javascriptNumberMethod = {link = "GreenBold"}
+    -- d.javascriptDOMNodeMethod = {link = "GreenBold"}
+    -- d.javascriptES6BigIntStaticMethod = {link = "GreenBold"}
+    -- d.javascriptBOMWindowMethod = {link = "GreenBold"}
+    -- d.javascriptHeadersMethod = {link = "GreenBold"}
+    -- d.javascriptRequestMethod = {link = "GreenBold"}
+    -- d.javascriptResponseMethod = {link = "GreenBold"}
+    -- d.javascriptES6SetMethod = {link = "GreenBold"}
+    -- d.javascriptReflectMethod = {link = "GreenBold"}
+    -- d.javascriptPaymentMethod = {link = "GreenBold"}
+    -- d.javascriptPaymentResponseMethod = {link = "GreenBold"}
+    -- d.javascriptTypedArrayStaticMethod = {link = "GreenBold"}
+    -- d.javascriptGeolocationMethod = {link = "GreenBold"}
+    -- d.javascriptES6MapMethod = {link = "GreenBold"}
+    -- d.javascriptServiceWorkerMethod = {link = "GreenBold"}
+    -- d.javascriptCacheMethod = {link = "GreenBold"}
+    -- d.javascriptFunctionMethod = {link = "GreenBold"}
+    -- d.javascriptXHRMethod = {link = "GreenBold"}
+    -- d.javascriptBOMNavigatorMethod = {link = "GreenBold"}
+    -- d.javascriptDOMEventTargetMethod = {link = "GreenBold"}
+    -- d.javascriptDOMEventMethod = {link = "GreenBold"}
+    -- d.javascriptIntlMethod = {link = "GreenBold"}
+    -- d.javascriptDOMDocMethod = {link = "GreenBold"}
+    -- d.javascriptStringStaticMethod = {link = "GreenBold"}
+    -- d.javascriptStringMethod = {link = "GreenBold"}
+    -- d.javascriptSymbolStaticMethod = {link = "GreenBold"}
+    -- d.javascriptRegExpMethod = {link = "GreenBold"}
+    -- d.javascriptObjectStaticMethod = {link = "GreenBold"}
+    -- d.javascriptObjectMethod = {link = "GreenBold"}
+    -- d.javascriptBOMLocationMethod = {link = "GreenBold"}
+    -- d.javascriptJSONStaticMethod = {link = "GreenBold"}
+    -- d.javascriptGeneratorMethod = {link = "GreenBold"}
+    -- d.javascriptEncodingMethod = {link = "GreenBold"}
+    -- d.javascriptPromiseStaticMethod = {link = "GreenBold"}
+    -- d.javascriptPromiseMethod = {link = "GreenBold"}
+    -- d.javascriptBOMHistoryMethod = {link = "GreenBold"}
+    -- d.javascriptDOMFormMethod = {link = "GreenBold"}
+    -- d.javascriptClipboardMethod = {link = "GreenBold"}
+    -- d.javascriptBroadcastMethod = {link = "GreenBold"}
+    -- d.javascriptDateStaticMethod = {link = "GreenBold"}
+    -- d.javascriptDateMethod = {link = "GreenBold"}
+    -- d.javascriptConsoleMethod = {link = "GreenBold"}
+    -- d.javascriptArrayStaticMethod = {link = "GreenBold"}
+    -- d.javascriptArrayMethod = {link = "GreenBold"}
+    -- d.javascriptMathStaticMethod = {link = "GreenBold"}
+    -- d.javascriptSubtleCryptoMethod = {link = "GreenBold"}
+    -- d.javascriptCryptoMethod = {link = "GreenBold"}
+    -- d.javascriptProp = {link = "Aqua"}
+    -- d.javascriptBOMWindowProp = {link = "Aqua"}
+    -- d.javascriptDOMStorageProp = {link = "Aqua"}
+    -- d.javascriptFileReaderProp = {link = "Aqua"}
+    -- d.javascriptURLUtilsProp = {link = "Aqua"}
+    -- d.javascriptNumberStaticProp = {link = "Aqua"}
+    -- d.javascriptDOMNodeProp = {link = "Aqua"}
+    -- d.javascriptRequestProp = {link = "Aqua"}
+    -- d.javascriptResponseProp = {link = "Aqua"}
+    -- d.javascriptES6SetProp = {link = "Aqua"}
+    -- d.javascriptPaymentProp = {link = "Aqua"}
+    -- d.javascriptPaymentResponseProp = {link = "Aqua"}
+    -- d.javascriptPaymentAddressProp = {link = "Aqua"}
+    -- d.javascriptPaymentShippingOptionProp = {link = "Aqua"}
+    -- d.javascriptTypedArrayStaticProp = {link = "Aqua"}
+    -- d.javascriptServiceWorkerProp = {link = "Aqua"}
+    -- d.javascriptES6MapProp = {link = "Aqua"}
+    -- d.javascriptRegExpStaticProp = {link = "Aqua"}
+    -- d.javascriptRegExpProp = {link = "Aqua"}
+    -- d.javascriptXHRProp = {link = "Aqua"}
+    -- d.javascriptBOMNavigatorProp = {link = "GreenBold"}
+    -- d.javascriptDOMEventProp = {link = "Aqua"}
+    -- d.javascriptBOMNetworkProp = {link = "Aqua"}
+    -- d.javascriptDOMDocProp = {link = "Aqua"}
+    -- d.javascriptSymbolStaticProp = {link = "Aqua"}
+    -- d.javascriptSymbolProp = {link = "Aqua"}
+    -- d.javascriptBOMLocationProp = {link = "Aqua"}
+    -- d.javascriptEncodingProp = {link = "Aqua"}
+    -- d.javascriptCryptoProp = {link = "Aqua"}
+    -- d.javascriptBOMHistoryProp = {link = "Aqua"}
+    -- d.javascriptDOMFormProp = {link = "Aqua"}
+    -- d.javascriptDataViewProp = {link = "Aqua"}
+    -- d.javascriptBroadcastProp = {link = "Aqua"}
+    -- d.javascriptMathStaticProp = {link = "Aqua"}
     -- vim-jsx-pretty: https://github.com/maxmellon/vim-jsx-pretty
     d.jsxTagName = {link = "OrangeItalic"}
     d.jsxOpenPunct = {link = "Green"}
