@@ -281,7 +281,7 @@ function definitions.get_definitions(opt, colors)
         d.TSConditional = {link = "Red"}
         d.TSConstBuiltin = {link = "PurpleItalic"}
         d.TSConstMacro = {link = "Purple"}
-        d.TSConstant = {link = "PurpleItalic"}
+        d.TSConstant = {link = "Fg"}
         d.TSConstructor = {link = "Fg"}
         d.TSError = {link = "ErrorText"}
         d.TSException = {link = "Red"}
@@ -289,13 +289,13 @@ function definitions.get_definitions(opt, colors)
         d.TSFloat = {link = "Purple"}
         d.TSFuncBuiltin = {link = "Green"}
         d.TSFuncMacro = {link = "Green"}
-        d.TSFunction = {link = "Green"}
+        d.TSFunction = {link = "Yellow"}
         d.TSInclude = {link = "PurpleItalic"}
         d.TSKeyword = {link = "Red"}
         d.TSKeywordFunction = {link = "Red"}
         d.TSLabel = {link = "Orange"}
-        d.TSMethod = {link = "Green"}
-        d.TSNamespace = {link = "BlueItalic"}
+        d.TSMethod = {link = "Aqua"}
+        d.TSNamespace = {link = "Blue"}
         d.TSNumber = {link = "Purple"}
         d.TSOperator = {link = "Orange"}
         d.TSParameter = {link = "Fg"}
@@ -305,7 +305,7 @@ function definitions.get_definitions(opt, colors)
         d.TSPunctDelimiter = {link = "Grey"}
         d.TSPunctSpecial = {link = "Fg"}
         d.TSRepeat = {link = "Red"}
-        d.TSString = {link = "Yellow"}
+        d.TSString = {link = "String"}
         d.TSStringEscape = {link = "Green"}
         d.TSStringRegex = {link = "Green"}
         d.TSStructure = {link = "Orange"}
@@ -314,8 +314,8 @@ function definitions.get_definitions(opt, colors)
         d.TSText = {link = "Green"}
         d.TSEmphasis = {gui = "bold"}
         d.TSUnderline = {gui = "underline"}
-        d.TSType = {link = "Aqua"}
-        d.TSTypeBuiltin = {link = "BlueItalic"}
+        d.TSType = {link = "Yellow"}
+        d.TSTypeBuiltin = {link = "Yellow"}
         d.TSURI = {link = "markdownUrl"}
         d.TSVariable = {link = "Fg"}
         d.TSVariableBuiltin = {link = "PurpleItalic"}
