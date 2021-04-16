@@ -93,10 +93,10 @@ function definitions.get_definitions(opt, colors)
     d.LspDiagnosticsDefaultWarning = {link = "WarningText"}
     d.LspDiagnosticsDefaultInformation = {link = "InfoText"}
     d.LspDiagnosticsDefaultHint = {link = "HintText"}
-    d.LspDiagnosticsVirtualTextError = {link = "Grey"}
-    d.LspDiagnosticsVirtualTextWarning = {link = "Grey"}
-    d.LspDiagnosticsVirtualTextInformation = {link = "Grey"}
-    d.LspDiagnosticsVirtualTextHint = {link = "Grey"}
+    d.LspDiagnosticsVirtualTextError = {link = "Red"}
+    d.LspDiagnosticsVirtualTextWarning = {link = "Yellow"}
+    d.LspDiagnosticsVirtualTextInformation = {link = "Blue"}
+    d.LspDiagnosticsVirtualTextHint = {link = "Green"}
     d.LspDiagnosticsUnderlineError = {link = "ErrorText"}
     d.LspDiagnosticsUnderlineWarning = {link = "WarningText"}
     d.LspDiagnosticsUnderlineInformation = {link = "InfoText"}
@@ -337,10 +337,10 @@ function definitions.get_definitions(opt, colors)
         d.CocWarningSign = {link = "YellowSign"}
         d.CocInfoSign = {link = "BlueSign"}
         d.CocHintSign = {link = "AquaSign"}
-        d.CocWarningVirtualText = {link = "Grey"}
-        d.CocErrorVirtualText = {link = "Grey"}
-        d.CocInfoVirtualText = {link = "Grey"}
-        d.CocHintVirtualText = {link = "Grey"}
+        d.CocWarningVirtualText = {link = "Yellow"}
+        d.CocErrorVirtualText = {link = "Red"}
+        d.CocInfoVirtualText = {link = "Blue"}
+        d.CocHintVirtualText = {link = "Green"}
         d.CocErrorLine = {link = "ErrorLine"}
         d.CocWarningLine = {link = "WarningLine"}
         d.CocInfoLine = {link = "InfoLine"}
@@ -391,10 +391,10 @@ function definitions.get_definitions(opt, colors)
 
     -- prabirshrestha/vim-lsp
     if opt.plugins["vim-lsp"] then
-        d.LspErrorVirtual = {link = "Grey"}
-        d.LspWarningVirtual = {link = "Grey"}
-        d.LspInformationVirtual = {link = "Grey"}
-        d.LspHintVirtual = {link = "Grey"}
+        d.LspErrorVirtual = {link = "Red"}
+        d.LspWarningVirtual = {link = "Yellow"}
+        d.LspInformationVirtual = {link = "Blue"}
+        d.LspHintVirtual = {link = "Green"}
         d.LspErrorHighlight = {link = "ErrorText"}
         d.LspWarningHighlight = {link = "WarningText"}
         d.LspInformationHighlight = {link = "InfoText"}
@@ -423,11 +423,11 @@ function definitions.get_definitions(opt, colors)
         d.ALEErrorLine = {link = "ErrorLine"}
         d.ALEWarningLine = {link = "WarningLine"}
         d.ALEInfoLine = {link = "InfoLine"}
-        d.ALEVirtualTextError = {link = "Grey"}
-        d.ALEVirtualTextWarning = {link = "Grey"}
-        d.ALEVirtualTextInfo = {link = "Grey"}
-        d.ALEVirtualTextStyleError = {link = "Grey"}
-        d.ALEVirtualTextStyleWarning = {link = "Grey"}
+        d.ALEVirtualTextError = {link = "Red"}
+        d.ALEVirtualTextWarning = {link = "Yellow"}
+        d.ALEVirtualTextInfo = {link = "Blue"}
+        d.ALEVirtualTextStyleError = {link = "Green"}
+        d.ALEVirtualTextStyleWarning = {link = "Green"}
     end
 
     -- nvim-telescope/telescope.nvim
