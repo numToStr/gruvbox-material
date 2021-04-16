@@ -532,6 +532,7 @@ function definitions.get_definitions(opt, colors)
         d.NvimTreeOpenedFolderName = {link = "Fg"}
         d.NvimTreeRootFolder = {fg = colors.grey1, gui = "bold"}
         d.NvimTreeExecFile = {link = "FgBold"}
+        d.NvimTreeSpecialFile = {link = "Fg"}
     end
 
     -- lewis6991/gitsigns.nvim
