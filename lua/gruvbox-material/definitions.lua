@@ -320,6 +320,9 @@ function definitions.get_definitions(opt, colors)
         d.TSURI = {link = "markdownUrl"}
         d.TSVariable = {link = "Fg"}
         d.TSVariableBuiltin = {link = "PurpleItalic"}
+
+        -- yaml
+        d.yamlTSField = {link = "Blue"}
     end
 
     -- neoclide/coc.nvim
