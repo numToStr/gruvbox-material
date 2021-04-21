@@ -271,6 +271,12 @@ function definitions.get_definitions(opt, colors)
     -- Predefined: End
     -- ####### Common: End
 
+    return d
+end
+
+function definitions.plugins(opt, colors)
+    local d = {}
+
     -- ####### Plugins: Start
     -- nvim-treesitter/nvim-treesitter
     if opt.plugins.treesitter then
@@ -548,8 +554,13 @@ function definitions.get_definitions(opt, colors)
         d.GitSignsChange = {link = "BlueSign"}
         d.GitSignsDelete = {link = "RedSign"}
     end
-
     -- ####### Plugins: End
+
+    return d
+end
+
+function definitions.filetypes(opt, colors)
+    local d = {}
 
     -- ####### Extended filetype: Start
     -- diff

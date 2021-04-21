@@ -4,6 +4,7 @@ local utils = require("gruvbox-material.utils")
 
 local o = vim.o
 local g = vim.g
+local loop = vim.loop
 local set_var = vim.api.nvim_set_var
 
 -- local highlight = api.nvim_set_hl
@@ -25,19 +26,34 @@ local gruvbox = {}
 -- end
 
 function gruvbox.setup()
-    local c = utils.configure(g.gruvbox_material)
+    local config = utils.configure(g.gruvbox_material)
 
-    local colors = palette.get_palette(c.background, c.palette)
+    local colors = palette.get_palette(config.background, config.palette)
 
     -- Color namespace
     -- local ns = set_namespace("gruvbox-material")
-    local defs = definitions.get_definitions(c, colors)
+    local defs = definitions.get_definitions(config, colors)
 
-    -- Set highlights
-    for color_name, param in pairs(defs) do
-        -- highlight(color_name, param)
-        utils.highlight(color_name, param)
-    end
+    utils.highlights(defs)
+
+    local async
+
+    async =
+        loop.new_async(
+        vim.schedule_wrap(
+            function()
+                local plugin_his = definitions.plugins(config, colors)
+                local filetype_his = definitions.filetypes(config, colors)
+
+                utils.highlights(plugin_his)
+                utils.highlights(filetype_his)
+
+                async:close()
+            end
+        )
+    )
+
+    async:send()
 
     -- ####### Terminal: Start
     if o.termguicolors then

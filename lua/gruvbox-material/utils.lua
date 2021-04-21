@@ -33,26 +33,34 @@ local function hi_link(name, link)
 end
 
 function utils.highlight(name, param)
-    if param.link then
-        return hi_link(name, param.link)
-    end
-
     local fg = param.fg or {"NONE", "NONE"}
     local bg = param.bg or {"NONE", "NONE"}
     local gui = param.gui or "NONE"
 
     local exec =
         string.format(
-        "highlight! %s guifg=%s ctermfg=%s guibg=%s ctermbg=%s gui=%s",
+        "highlight! %s guifg=%s ctermfg=%s guibg=%s ctermbg=%s gui=%s cterm=%s",
         name,
         fg[1],
         fg[2],
         bg[1],
         bg[2],
+        gui,
         gui
     )
 
     cmd(exec)
+
+    if param.link then
+        hi_link(name, param.link)
+    end
+end
+
+function utils.highlights(colors)
+    for color_name, param in pairs(colors) do
+        -- highlight(color_name, param)
+        utils.highlight(color_name, param)
+    end
 end
 
 function utils.configure(opts)
