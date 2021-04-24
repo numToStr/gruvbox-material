@@ -335,6 +335,9 @@ function definitions.plugins(opt, colors)
 
         -- lua
         d.luaTSField = {link = "Fg"}
+
+        -- rust
+        d.rustTSFuncMacro = {link = "Aqua"}
     end
 
     -- neoclide/coc.nvim
