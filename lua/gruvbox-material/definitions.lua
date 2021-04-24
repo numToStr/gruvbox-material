@@ -330,6 +330,9 @@ function definitions.plugins(opt, colors)
         -- yaml
         d.yamlTSField = {link = "Blue"}
 
+        -- toml
+        d.tomlTSProperty = {link = "Blue"}
+
         -- lua
         d.luaTSField = {link = "Fg"}
     end
