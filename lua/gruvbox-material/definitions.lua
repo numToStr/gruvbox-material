@@ -546,7 +546,7 @@ function definitions.plugins(opt, colors)
     if opt.plugins["nvim-tree"] then
         d.NvimTreeFolderName = {link = "Fg"}
         d.NvimTreeFolderIcon = {link = "Fg"}
-        d.NvimTreeIndentMarker = {link = "Comment"}
+        d.NvimTreeIndentMarker = {link = "Whitespace"}
         d.NvimTreeOpenedFile = {link = "Fg"}
         d.NvimTreeOpenedFolderName = {link = "Fg"}
         d.NvimTreeRootFolder = {fg = colors.grey1, gui = "bold"}
