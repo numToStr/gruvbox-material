@@ -559,7 +559,7 @@ function definitions.plugins(opt, colors)
     return d
 end
 
-function definitions.filetypes(opt, colors)
+function definitions.filetypes(_, colors)
     local d = {}
 
     -- ####### Extended filetype: Start
@@ -1040,31 +1040,31 @@ function definitions.filetypes(opt, colors)
     d.dartMetadata = {link = "Blue"}
     -- coffee
     -- vim-coffee-script: https://github.com/kchmck/vim-coffee-script
-    d.coffeeExtendedOp = {link = "Orange"}
-    d.coffeeSpecialOp = {link = "Fg"}
-    d.coffeeDotAccess = {link = "Grey"}
-    d.coffeeCurly = {link = "Fg"}
-    d.coffeeParen = {link = "Fg"}
-    d.coffeeBracket = {link = "Fg"}
-    d.coffeeParens = {link = "Blue"}
-    d.coffeeBrackets = {link = "Blue"}
-    d.coffeeCurlies = {link = "Blue"}
-    d.coffeeOperator = {link = "RedItalic"}
-    d.coffeeStatement = {link = "Orange"}
-    d.coffeeSpecialIdent = {link = "Purple"}
-    d.coffeeObject = {link = "Purple"}
-    d.coffeeObjAssign = {link = "Aqua"}
+    -- d.coffeeExtendedOp = {link = "Orange"}
+    -- d.coffeeSpecialOp = {link = "Fg"}
+    -- d.coffeeDotAccess = {link = "Grey"}
+    -- d.coffeeCurly = {link = "Fg"}
+    -- d.coffeeParen = {link = "Fg"}
+    -- d.coffeeBracket = {link = "Fg"}
+    -- d.coffeeParens = {link = "Blue"}
+    -- d.coffeeBrackets = {link = "Blue"}
+    -- d.coffeeCurlies = {link = "Blue"}
+    -- d.coffeeOperator = {link = "RedItalic"}
+    -- d.coffeeStatement = {link = "Orange"}
+    -- d.coffeeSpecialIdent = {link = "Purple"}
+    -- d.coffeeObject = {link = "Purple"}
+    -- d.coffeeObjAssign = {link = "Aqua"}
     -- purescript
     -- purescript-vim: https://github.com/purescript-contrib/purescript-vim
-    d.purescriptModuleKeyword = {link = "PurpleItalic"}
-    d.purescriptModule = {link = "Aqua"}
-    d.purescriptModuleParams = {link = "Blue"}
-    d.purescriptAsKeyword = {link = "OrangeItalic"}
-    d.purescriptHidingKeyword = {link = "OrangeItalic"}
-    d.purescriptWhere = {link = "OrangeItalic"}
-    d.purescriptIdentifier = {link = "Blue"}
-    d.purescriptFunction = {link = "Yellow"}
-    d.purescriptType = {link = "Aqua"}
+    -- d.purescriptModuleKeyword = {link = "PurpleItalic"}
+    -- d.purescriptModule = {link = "Aqua"}
+    -- d.purescriptModuleParams = {link = "Blue"}
+    -- d.purescriptAsKeyword = {link = "OrangeItalic"}
+    -- d.purescriptHidingKeyword = {link = "OrangeItalic"}
+    -- d.purescriptWhere = {link = "OrangeItalic"}
+    -- d.purescriptIdentifier = {link = "Blue"}
+    -- d.purescriptFunction = {link = "Yellow"}
+    -- d.purescriptType = {link = "Aqua"}
     -- c/cpp/objc/objcpp
     -- vim-cpp-enhanced-highlight: https://github.com/octol/vim-cpp-enhanced-highlight
     d.cppSTLnamespace = {link = "Purple"}
@@ -1076,23 +1076,24 @@ function definitions.filetypes(opt, colors)
     d.cppSTLexception = {link = "Purple"}
     d.cppSTLVariable = {link = "Aqua"}
     -- chromatica: https://github.com/arakashic/chromatica.nvim
-    d.Member = {link = "Aqua"}
-    d.Variable = {link = "Blue"}
-    d.Namespace = {link = "Purple"}
-    d.EnumConstant = {link = "Aqua"}
-    d.chromaticaException = {link = "RedItalic"}
-    d.chromaticaCast = {link = "Orange"}
-    d.OperatorOverload = {link = "Orange"}
-    d.AccessQual = {link = "Orange"}
-    d.Linkage = {link = "Orange"}
-    d.AutoType = {link = "Yellow"}
+    -- d.Member = {link = "Aqua"}
+    -- d.Variable = {link = "Blue"}
+    -- d.Namespace = {link = "Purple"}
+    -- d.EnumConstant = {link = "Aqua"}
+    -- d.chromaticaException = {link = "RedItalic"}
+    -- d.chromaticaCast = {link = "Orange"}
+    -- d.OperatorOverload = {link = "Orange"}
+    -- d.AccessQual = {link = "Orange"}
+    -- d.Linkage = {link = "Orange"}
+    -- d.AutoType = {link = "Yellow"}
     -- vim-lsp-cxx-highlight https://github.com/jackguo380/vim-lsp-cxx-highlight
-    d.LspCxxHlSkippedRegion = {link = "Grey"}
-    d.LspCxxHlSkippedRegionBeginEnd = {link = "PurpleItalic"}
-    d.LspCxxHlGroupEnumConstant = {link = "Aqua"}
-    d.LspCxxHlGroupNamespace = {link = "Purple"}
-    d.LspCxxHlGroupMemberVariable = {link = "Aqua"}
+    -- d.LspCxxHlSkippedRegion = {link = "Grey"}
+    -- d.LspCxxHlSkippedRegionBeginEnd = {link = "PurpleItalic"}
+    -- d.LspCxxHlGroupEnumConstant = {link = "Aqua"}
+    -- d.LspCxxHlGroupNamespace = {link = "Purple"}
+    -- d.LspCxxHlGroupMemberVariable = {link = "Aqua"}
     -- objc
+    d.objcTypeModifier = {link = "Blue"}
     d.objcModuleImport = {link = "PurpleItalic"}
     d.objcException = {link = "RedItalic"}
     d.objcProtocolList = {link = "Aqua"}
@@ -1100,7 +1101,7 @@ function definitions.filetypes(opt, colors)
     d.objcDirective = {link = "RedItalic"}
     d.objcPropertyAttribute = {link = "Orange"}
     d.objcHiddenArgument = {link = "Aqua"}
-    -- cs
+    -- csharp
     -- builtin: https://github.com/nickspoons/vim-cs
     d.csUnspecifiedStatement = {link = "PurpleItalic"}
     d.csStorage = {link = "RedItalic"}
@@ -1133,19 +1134,19 @@ function definitions.filetypes(opt, colors)
     d.pythonNone = {link = "Aqua"}
     d.pythonDot = {link = "Grey"}
     -- semshi: https://github.com/numirias/semshi
-    d.semshiUnresolved = {fg = colors.yellow, gui = "undercurl"}
-    d.semshiImported = {link = "Purple"}
-    d.semshiParameter = {link = "Blue"}
-    d.semshiParameterUnused = {link = "Grey"}
-    d.semshiSelf = {link = "PurpleItalic"}
-    d.semshiGlobal = {link = "Yellow"}
-    d.semshiBuiltin = {link = "Yellow"}
-    d.semshiAttribute = {link = "Aqua"}
-    d.semshiLocal = {link = "Red"}
-    d.semshiFree = {link = "Red"}
-    d.semshiSelected = {link = "CurrentWord"}
-    d.semshiErrorSign = {link = "RedSign"}
-    d.semshiErrorChar = {link = "RedSign"}
+    -- d.semshiUnresolved = {fg = colors.yellow, gui = "undercurl"}
+    -- d.semshiImported = {link = "Purple"}
+    -- d.semshiParameter = {link = "Blue"}
+    -- d.semshiParameterUnused = {link = "Grey"}
+    -- d.semshiSelf = {link = "PurpleItalic"}
+    -- d.semshiGlobal = {link = "Yellow"}
+    -- d.semshiBuiltin = {link = "Yellow"}
+    -- d.semshiAttribute = {link = "Aqua"}
+    -- d.semshiLocal = {link = "Red"}
+    -- d.semshiFree = {link = "Red"}
+    -- d.semshiSelected = {link = "CurrentWord"}
+    -- d.semshiErrorSign = {link = "RedSign"}
+    -- d.semshiErrorChar = {link = "RedSign"}
     -- lua
     d.luaFunc = {link = "Green"}
     d.luaFunction = {link = "Aqua"}
@@ -1229,8 +1230,8 @@ function definitions.filetypes(opt, colors)
     d.swiftProperty = {link = "Aqua"}
     d.swiftTypeDeclaration = {link = "Orange"}
     d.swiftClosureArgument = {link = "Purple"}
-    d.phpVarSelector = {link = "Blue"}
     -- php
+    d.phpVarSelector = {link = "Blue"}
     d.phpDefine = {link = "OrangeItalic"}
     d.phpStructure = {link = "RedItalic"}
     d.phpSpecialFunction = {link = "GreenBold"}
@@ -1381,10 +1382,10 @@ function definitions.filetypes(opt, colors)
     d.fishLabel = {link = "RedItalic"}
     d.fishCommandSub = {link = "Yellow"}
     -- ps1
-    d.ps1FunctionInvocation = {link = "AquaBold"}
-    d.ps1FunctionDeclaration = {link = "AquaBold"}
-    d.ps1InterpolationDelimiter = {link = "Yellow"}
-    d.ps1BuiltIn = {link = "Yellow"}
+    -- d.ps1FunctionInvocation = {link = "AquaBold"}
+    -- d.ps1FunctionDeclaration = {link = "AquaBold"}
+    -- d.ps1InterpolationDelimiter = {link = "Yellow"}
+    -- d.ps1BuiltIn = {link = "Yellow"}
     -- vim
     d.vimCommentTitle = {fg = colors.grey1, gui = "bold"}
     d.vimLet = {link = "Orange"}
@@ -1538,12 +1539,12 @@ function definitions.filetypes(opt, colors)
     d.gitcommitArrow = {link = "Grey"}
     d.gitcommitFile = {link = "Green"}
     -- dosini
-    d.dosiniHeader = {fg = colors.red, gui = "bold"}
-    d.dosiniLabel = {link = "Yellow"}
-    d.dosiniValue = {link = "Green"}
-    d.dosiniNumber = {link = "Green"}
-    d.helpNote = {fg = colors.purple, gui = "bold"}
+    -- d.dosiniHeader = {fg = colors.red, gui = "bold"}
+    -- d.dosiniLabel = {link = "Yellow"}
+    -- d.dosiniValue = {link = "Green"}
+    -- d.dosiniNumber = {link = "Green"}
     -- help
+    d.helpNote = {fg = colors.purple, gui = "bold"}
     d.helpHeadline = {fg = colors.red, gui = "bold"}
     d.helpHeader = {fg = colors.orange, gui = "bold"}
     d.helpURL = {fg = colors.green, gui = "underline"}
