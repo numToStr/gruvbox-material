@@ -1,8 +1,7 @@
 local palette = {}
-local bg = vim.o.background
 -- local rgb_color = vim.api.nvim_get_color_by_name
 
-local is_dark = bg == "dark"
+local is_dark = vim.o.background == "dark"
 
 local function palette_base(gruvbox_bg, p)
     if gruvbox_bg == "hard" then

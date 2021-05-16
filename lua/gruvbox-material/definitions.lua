@@ -1,7 +1,10 @@
 local wo = vim.wo
+local set_var = vim.api.nvim_set_var
+
+local is_dark = vim.o.background == "dark"
 local definitions = {}
 
-function definitions.get_definitions(opt, colors)
+function definitions.editor(opt, colors)
     local d = {}
 
     -- ####### Common: Start
@@ -406,6 +409,7 @@ function definitions.plugins(opt, colors)
         d.CocExplorerIndentLine = {link = "Conceal"}
         d.CocExplorerHelpDescription = {link = "Grey"}
         d.CocExplorerHelpHint = {link = "Grey"}
+        d.CocFadeOut = {link = "WarningText"}
     end
 
     -- prabirshrestha/vim-lsp
@@ -1563,6 +1567,36 @@ function definitions.filetypes(_, colors)
     -- ####### Extended: End
 
     return d
+end
+
+function definitions.terminal(colors)
+    -- ####### Terminal: Start
+    if vim.o.termguicolors then
+        local dark = is_dark and colors.bg5[1] or colors.fg0[1]
+        local light = is_dark and colors.fg0[1] or colors.bg5[1]
+
+        set_var("terminal_color_0", dark)
+        set_var("terminal_color_1", colors.red[1])
+        set_var("terminal_color_2", colors.green[1])
+        set_var("terminal_color_3", colors.yellow[1])
+        set_var("terminal_color_4", colors.blue[1])
+        set_var("terminal_color_5", colors.purple[1])
+        set_var("terminal_color_6", colors.aqua[1])
+        set_var("terminal_color_7", light)
+
+        set_var("terminal_color_8", dark)
+        set_var("terminal_color_9", colors.red[1])
+        set_var("terminal_color_10", colors.green[1])
+        set_var("terminal_color_11", colors.yellow[1])
+        set_var("terminal_color_12", colors.blue[1])
+        set_var("terminal_color_13", colors.purple[1])
+        set_var("terminal_color_14", colors.aqua[1])
+        set_var("terminal_color_15", light)
+
+        set_var("terminal_color_background", dark)
+        set_var("terminal_color_foreground", light)
+    end
+    -- ####### Terminal: End
 end
 
 return definitions
