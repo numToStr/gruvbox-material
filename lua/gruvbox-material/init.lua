@@ -3,7 +3,6 @@ local definitions = require("gruvbox-material.definitions")
 local utils = require("gruvbox-material.utils")
 
 local g = vim.g
-local loop = vim.loop
 
 -- local highlight = api.nvim_set_hl
 
@@ -24,37 +23,23 @@ local gruvbox = {}
 -- end
 
 function gruvbox.setup()
-    local config = utils.configure(g.gruvbox_material)
+	local config = utils.configure(g.gruvbox_material)
 
-    local colors = palette.get_palette(config.background, config.palette)
+	local colors = palette.get_palette(config.background, config.palette)
 
-    -- Color namespace
-    -- local ns = set_namespace("gruvbox-material")
+	-- Color namespace
+	-- local ns = set_namespace("gruvbox-material")
 
-    local async
+	local plugin_his = definitions.plugins(config, colors)
+	local filetype_his = definitions.filetypes(config, colors)
+	local edtior = definitions.editor(config, colors)
 
-    async =
-        loop.new_async(
-        vim.schedule_wrap(
-            function()
-                local plugin_his = definitions.plugins(config, colors)
-                local filetype_his = definitions.filetypes(config, colors)
+	utils.highlights(plugin_his)
+	utils.highlights(filetype_his)
+	utils.highlights(edtior)
 
-                utils.highlights(plugin_his)
-                utils.highlights(filetype_his)
-
-                definitions.terminal(colors)
-
-                async:close()
-            end
-        )
-    )
-
-    async:send()
-
-    local defs = definitions.editor(config, colors)
-
-    utils.highlights(defs)
+	-- Terminal colors
+	definitions.terminal(colors)
 end
 
 return gruvbox
