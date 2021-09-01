@@ -27,7 +27,7 @@ end
 
 function gruvbox:setup(cfg)
     if cfg ~= nil then
-        self.config = vim.tbl_extend('keep', self.config, cfg)
+        self.config = vim.tbl_extend('keep', cfg, self.config)
     end
 
     if cfg.plugins ~= nil then
