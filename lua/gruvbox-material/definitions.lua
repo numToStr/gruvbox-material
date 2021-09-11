@@ -1,6 +1,3 @@
-local wo = vim.wo
-local set_var = vim.api.nvim_set_var
-
 local is_dark = vim.o.background == 'dark'
 local definitions = {}
 
@@ -39,7 +36,7 @@ function definitions.editor(opt, colors)
     d.lCursor = { link = 'Cursor' }
     d.CursorIM = { link = 'Cursor' }
 
-    if wo.diff then
+    if vim.wo.diff then
         d.CursorLine = { gui = 'underline' }
         d.CursorColumn = { gui = 'bold' }
     else
@@ -266,7 +263,7 @@ function definitions.editor(opt, colors)
     d.InfoFloat = { fg = colors.blue, bg = colors.bg3 }
     d.HintFloat = { fg = colors.green, bg = colors.bg3 }
 
-    if wo.diff then
+    if vim.wo.diff then
         d.CurrentWord = { fg = colors.bg0, bg = colors.bg_green }
     else
         d.CurrentWord = { bg = colors.bg_current_word }
@@ -1570,33 +1567,29 @@ function definitions.filetypes(_, colors)
 end
 
 function definitions.terminal(colors)
-    -- ####### Terminal: Start
-    if vim.o.termguicolors then
-        local dark = is_dark and colors.bg5[1] or colors.fg0[1]
-        local light = is_dark and colors.fg0[1] or colors.bg5[1]
+    local dark = is_dark and colors.bg5[1] or colors.fg0[1]
+    local light = is_dark and colors.fg0[1] or colors.bg5[1]
 
-        set_var('terminal_color_0', dark)
-        set_var('terminal_color_1', colors.red[1])
-        set_var('terminal_color_2', colors.green[1])
-        set_var('terminal_color_3', colors.yellow[1])
-        set_var('terminal_color_4', colors.blue[1])
-        set_var('terminal_color_5', colors.purple[1])
-        set_var('terminal_color_6', colors.aqua[1])
-        set_var('terminal_color_7', light)
+    vim.g.terminal_color_0 = dark
+    vim.g.terminal_color_1 = colors.red[1]
+    vim.g.terminal_color_2 = colors.green[1]
+    vim.g.terminal_color_3 = colors.yellow[1]
+    vim.g.terminal_color_4 = colors.blue[1]
+    vim.g.terminal_color_5 = colors.purple[1]
+    vim.g.terminal_color_6 = colors.aqua[1]
+    vim.g.terminal_color_7 = light
 
-        set_var('terminal_color_8', dark)
-        set_var('terminal_color_9', colors.red[1])
-        set_var('terminal_color_10', colors.green[1])
-        set_var('terminal_color_11', colors.yellow[1])
-        set_var('terminal_color_12', colors.blue[1])
-        set_var('terminal_color_13', colors.purple[1])
-        set_var('terminal_color_14', colors.aqua[1])
-        set_var('terminal_color_15', light)
+    vim.g.terminal_color_8 = dark
+    vim.g.terminal_color_9 = colors.red[1]
+    vim.g.terminal_color_10 = colors.green[1]
+    vim.g.terminal_color_11 = colors.yellow[1]
+    vim.g.terminal_color_12 = colors.blue[1]
+    vim.g.terminal_color_13 = colors.purple[1]
+    vim.g.terminal_color_14 = colors.aqua[1]
+    vim.g.terminal_color_15 = light
 
-        set_var('terminal_color_background', dark)
-        set_var('terminal_color_foreground', light)
-    end
-    -- ####### Terminal: End
+    vim.g.terminal_color_background = dark
+    vim.g.terminal_color_foreground = light
 end
 
 return definitions

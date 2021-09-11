@@ -2,32 +2,26 @@ local palette = require('gruvbox-material.palette')
 local defs = require('gruvbox-material.definitions')
 local utils = require('gruvbox-material.utils')
 
-local gruvbox = {}
+local G = {
+    name = 'gruvbox-material',
+    config = {
+        background = 'hard', -- 'hard' | 'medium' | 'soft'
+        palette = 'material', -- 'material' | 'mix' | 'original'
+        transparent_bg = false,
+        italic = false,
+        italic_comment = false,
+        bold = false,
+        -- LSP
+        diagnostic_text_highlight = false,
+        diagnostic_line_highlight = false,
+        -- {'treesitter', 'coc', 'vim-lsp', 'ycm', 'ale', 'telescope', 'git-gutter', 'easymotion', 'vim-sneak','vim-plug', 'nerdtree', 'vim-startify', 'hop.nvim', 'nvim-tree', 'gitsigns'}
+        plugins = {},
+    },
+}
 
-function gruvbox:new()
-    local state = {
-        config = {
-            background = 'hard', -- 'hard' | 'medium' | 'soft'
-            palette = 'material', -- 'material' | 'mix' | 'original'
-            transparent_bg = false,
-            italic = false,
-            italic_comment = false,
-            bold = false,
-            -- LSP
-            diagnostic_text_highlight = false,
-            diagnostic_line_highlight = false,
-            -- {'treesitter', 'coc', 'vim-lsp', 'ycm', 'ale', 'telescope', 'git-gutter', 'easymotion', 'vim-sneak','vim-plug', 'nerdtree', 'vim-startify', 'hop.nvim', 'nvim-tree', 'gitsigns'}
-            plugins = {},
-        },
-    }
-
-    self.__index = self
-    return setmetatable(state, self)
-end
-
-function gruvbox:setup(cfg)
+function G.setup(cfg)
     if cfg ~= nil then
-        self.config = vim.tbl_extend('keep', cfg, self.config)
+        G.config = vim.tbl_extend('keep', cfg, G.config)
     end
 
     if cfg.plugins ~= nil then
@@ -37,12 +31,15 @@ function gruvbox:setup(cfg)
             plugins[v] = true
         end
 
-        self.config.plugins = plugins
+        G.config.plugins = plugins
     end
 end
 
-function gruvbox:load()
-    local config = self.config
+function G.load()
+    vim.g.colors_name = G.name
+    vim.o.termguicolors = true
+
+    local config = G.config
     local colors = palette.get_palette(config.background, config.palette)
 
     -- Color namespace
@@ -70,10 +67,10 @@ end
 --
 --     -- This API isn't stable yet. It will receive breaking changes
 --     -- and be renamed to nvim_set_hl_ns later be aware of that.
---     -- for more details https://github.com/neovim/neovim/issues/14090#issuecomment-799285918
+--     -- for more details https.//github.com/neovim/neovim/issues/14090#issuecomment-799285918
 --     api.nvim__set_hl_ns(ns)
 --
 --     return ns
 -- end
 
-return gruvbox:new()
+return G
